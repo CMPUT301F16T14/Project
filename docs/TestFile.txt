@@ -1,2 +1,6 @@
 Hi, this is Jinzhu (Aries), edit test done.
+<<<<<<< HEAD
 Hello, this is Ting. 
+=======
+Greeding from Linkai :> 
+>>>>>>> b881ed6a02f5691c059bc41e2f8e7731b565b4b1
