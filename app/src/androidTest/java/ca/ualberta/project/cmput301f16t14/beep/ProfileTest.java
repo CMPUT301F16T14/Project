@@ -61,7 +61,7 @@ public class ProfileTest extends ActivityInstrumentationTestCase2 {
     /**
      * Test for UC-P03 (US03.03.01)
      */
-    public void ViewProfile(){
+    public void testViewProfile(){
         UserList testUserList = new UserList();
         Profile testProfile1 = new Profile("testUserName", "7807109999", "CMPUT301@ualberta.ca");
         UserAccount user1 = new UserAccount(testProfile1);

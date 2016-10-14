@@ -67,7 +67,7 @@ public class RequestsTest extends ActivityInstrumentationTestCase2{
         Location testStartLocation = new Location(100, 200);
         Location testEndLocation = new Location(400, 500);
         try {
-            Request testRequest = Request(testStartLocation, testEndLocation, rider, reason);
+            Request testRequest = new Request(testStartLocation, testEndLocation, rider, reason);
         } catch (Exception e) {
             assertTrue("Test request by location unsuccessful", Boolean.FALSE);
         }
