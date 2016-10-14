@@ -18,7 +18,7 @@ public class LocationTest extends ActivityInstrumentationTestCase2 {
     /**
      * Test for UC-L01 (US10.02.01)
      */
-    public void testViewRequestByLocations(){
+    public void testViewRequestRoute(){
         Location testStartLocation = new Location(100, 200);
         Location testEndLocation = new Location(400, 500);
         String reason = new String("This is a reason for testing.");
