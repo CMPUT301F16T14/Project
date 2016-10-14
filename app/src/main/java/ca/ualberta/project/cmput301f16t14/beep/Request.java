@@ -58,4 +58,10 @@ public class Request {
 
     public void acceptPayment() {
     }
+
+    public long getStartLocation() {
+    }
+
+    public long getEndLocation() {
+    }
 }

@@ -20,4 +20,16 @@ public class RequestList {
 
     public ArrayList<Request> getAvailableRequest() {
     }
+
+    public RequestList searchRequestsByGeo(Location testDriverLocation) {
+    }
+
+    public int size() {
+    }
+
+    public RequestList searchRequestsByKeyword(String testReason) {
+    }
+
+    public void delete(Request myRequest) {
+    }
 }
