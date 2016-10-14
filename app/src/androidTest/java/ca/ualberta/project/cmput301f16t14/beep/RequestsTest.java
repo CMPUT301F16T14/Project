@@ -60,21 +60,6 @@ public class RequestsTest extends ActivityInstrumentationTestCase2{
         assertTrue(server.getData().getRequest(rider).size() == 1);
     }
 
-    public void testRequestRideOffline(){
-        Boolean isConnect = Boolean.FALSE;  //offline
-        Request myRequest = new Request(startLocation, endLocation, rider, reason);
-        RequestList testRequestList= new RequestList();
-        testRequestList.add(myRequest);
-        testRequestList.pushToServer();
-
-        assertTrue(server.getData().getRequest(rider).size() == 0);
-        isConnect = Boolean.TRUE;  //online
-
-        // After the system has network connectivity, check if the system has automatically
-        // push the requestList to its server
-        assertTrue(server.getData().getRequest(rider).size() == 1);
-    }
-
     /**
      * Test for UC-R01 (US10.01.01)
      */
