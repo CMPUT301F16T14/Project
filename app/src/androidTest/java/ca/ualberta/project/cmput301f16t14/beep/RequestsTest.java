@@ -16,9 +16,9 @@ public class RequestsTest extends ActivityInstrumentationTestCase2{
 
     Pair<Integer,Integer> startLocation = new Pair<Integer, Integer>(100,100);
     Pair<Integer,Integer> endLocation = new Pair<Integer, Integer>(200,200);
+    String reason = new String("This is a reason for testing.");
     Profile myProfile = new Profile("testUserName", "7807109999", "CMPUT301@ualberta.ca");
     UserAccount rider = new UserAccount(myProfile);
-    String reason = new String("This is a reason for testing.");
 
     public RequestsTest(){
         super(ca.ualberta.project.cmput301f16t14.beep.MainActivity.class);
