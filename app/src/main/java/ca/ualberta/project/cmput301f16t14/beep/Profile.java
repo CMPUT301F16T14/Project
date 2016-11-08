@@ -6,7 +6,7 @@ package ca.ualberta.project.cmput301f16t14.beep;
 public class Profile {
 
     private String email;
-    private String phone; // sting or integer???
+    private Integer phone;
 
     public Profile(String username, String phone, String email) {
 
