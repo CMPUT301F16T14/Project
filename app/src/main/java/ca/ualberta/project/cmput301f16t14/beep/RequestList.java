@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by administrator on 2016-10-13.
  */
 public class RequestList {
-    public ArrayList<Request> getRequest(UserAccount rider) {
+    public ArrayList<Request> getRequest(Account rider) {
     }
 
     public void add(Request myRequest) {
@@ -15,7 +15,7 @@ public class RequestList {
     public void pushToServer() {
     }
 
-    public ArrayList<Request> getByDriver(UserAccount driver) {
+    public ArrayList<Request> getByDriver(Account driver) {
     }
 
     public ArrayList<Request> getAvailableRequest() {

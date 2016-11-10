@@ -8,17 +8,17 @@ import java.util.ArrayList;
 
 public class AccountList {
 
-    private ArrayList<UserAccount> accounts;
+    private ArrayList<Account> accounts;
 
-    public ArrayList<UserAccount> getAccountList() {
+    public ArrayList<Account> getAccountList() {
         return accounts;
     }
 
-    public UserAccount getUserAccount(String username) {
+    public Account getUserAccount(String username) {
 
     }
 
-    public UserAccount addUserAccount(Account useraccount) {
+    public Account addUserAccount(Account useraccount) {
 
     }
 }

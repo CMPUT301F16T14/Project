@@ -22,19 +22,19 @@ public class Request {
     public Account ConfirmedDriver;
     public  Integer Status;
 
-    public Request(Pair<Integer, Integer> startLocation, Pair<Integer, Integer> endLocation, UserAccount rider, String reason) {
+    public Request(Pair<Integer, Integer> startLocation, Pair<Integer, Integer> endLocation, Account rider, String reason) {
 
     }
 
-    public Request(Location startLocation, Location endLocation, UserAccount rider, String reason) {
+    public Request(Location startLocation, Location endLocation, Account rider, String reason) {
 
     }
 
-    public static void setAcceptances(UserAccount acceptances) {
+    public static void setAcceptances(Account acceptances) {
         Request.acceptances = acceptances;
     }
 
-    public void setAcceptedDriver(UserAccount driver) {
+    public void setAcceptedDriver(Account driver) {
     }
 
     public void setStatus(String accepted) {
@@ -52,7 +52,7 @@ public class Request {
         return status;
     }
 
-    public static ArrayList<UserAccount> getAcceptance() {
+    public static ArrayList<Account> getAcceptance() {
     }
 
     public Integer getEstimate() {
@@ -61,7 +61,7 @@ public class Request {
     public Address getProfile() {
     }
 
-    public ArrayList<Request> getPendingRequest(UserAccount driver) {
+    public ArrayList<Request> getPendingRequest(Account driver) {
     }
 
     public ForkJoinTask getAcceptedDriver() {
