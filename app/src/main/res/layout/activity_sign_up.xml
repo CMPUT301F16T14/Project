@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/E-mailEditText"
+        android:hint="E-mail"
+        android:layout_marginTop="67dp"
+        android:layout_below="@+id/PhoneEditText"
+        android:layout_toEndOf="@+id/phoneIcon" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/PhoneEditText"
+        android:hint="Phone"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/emailIcon"
+        android:src="@drawable/email"
+        android:layout_alignTop="@+id/E-mailEditText"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/E-mailEditText"
+        android:layout_alignBottom="@+id/E-mailEditText" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/phoneIcon"
+        android:layout_alignBottom="@+id/PhoneEditText"
+        android:layout_alignTop="@+id/PhoneEditText"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/PhoneEditText"
+        android:clickable="true"
+        android:src="@drawable/phone" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/NameEditText"
+        android:hint="Name"
+        android:layout_marginBottom="71dp"
+        android:layout_above="@+id/PhoneEditText"
+        android:layout_toEndOf="@+id/phoneIcon" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameIcon"
+        android:layout_alignBottom="@+id/NameEditText"
+        android:layout_alignTop="@+id/NameEditText"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/NameEditText"
+        android:src="@drawable/name" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FINISH"
+        android:id="@+id/finishSignUpbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
