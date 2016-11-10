@@ -5,11 +5,12 @@ package ca.ualberta.project.cmput301f16t14.beep;
  */
 public class Profile {
 
-    private String email;
     private Integer phone;
+    private String email;
 
-    public Profile(String username, String phone, String email) {
-
+    public Profile(Integer phone, String email) {
+        this.phone = phone;
+        this.email = email;
     }
 
     public String getEmail() {
@@ -20,11 +21,11 @@ public class Profile {
         this.email = email;
     }
 
-    public String getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 }
