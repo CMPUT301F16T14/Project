@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/cshome/linkai/.gradle/caches/modules-2/files-2.1/io.searchbox/jest-droid/2.0.3/63732634901438ac56b8f6ab0ca16c8e20da85c5/jest-droid-2.0.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="63732634901438ac56b8f6ab0ca16c8e20da85c5">
+        <dex dex="/cshome/linkai/Beep/app/build/intermediates/pre-dexed/debug/jest-droid-2.0.3-48b3eeb97dd6913fb4bddda7bbf6a3cdcbb98fd6.jar" />
+    </item>
+
+</items>
