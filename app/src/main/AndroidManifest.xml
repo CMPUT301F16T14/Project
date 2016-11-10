@@ -9,9 +9,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-<<<<<<< Updated upstream
-        <activity android:name=".DisplayProfileActivity"></activity>
-=======
 
         <activity
             android:name=".MainActivity"
@@ -22,8 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
->>>>>>> Stashed changes
     </application>
 
 </manifest>
