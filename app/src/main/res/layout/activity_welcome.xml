@@ -28,7 +28,8 @@
         android:text="Sign Up"
         android:id="@+id/button3"
         android:layout_alignTop="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="signUp"/>
 
     <EditText
         android:layout_width="wrap_content"
