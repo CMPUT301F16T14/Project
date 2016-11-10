@@ -76,7 +76,7 @@ public class ElasticsearchAccountController {
                 }
             }
             catch (Exception e) {
-                Log.i("Uhoh", "We failed to add a tweet to elastic search!");
+                Log.i("Error", "We failed to add a tweet to elastic search!");
                 e.printStackTrace();
             }
 

@@ -15,10 +15,10 @@ public class AccountList {
     }
 
     public Account getUserAccount(String username) {
-
+        return new Account();
     }
 
     public Account addUserAccount(Account useraccount) {
-
+        return new Account();
     }
 }
