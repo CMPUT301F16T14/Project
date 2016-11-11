@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.apache.commons.lang3.ObjectUtils;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -16,6 +19,10 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText userPhone;
     private EditText userEmail;
     private Button finishButton;
+    private Integer phone;
+    private String name;
+    private String email;
+    private Integer flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +47,32 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setResult(RESULT_OK);
                 String name = userName.getText().toString();
-                Integer phone = Integer.parseInt(userPhone.getText().toString());;
-                String email = userEmail.getText().toString();
+                flag = 1;
+                if (name.isEmpty()){
+                    Toast.makeText(SignUpActivity.this, "Name field cannot be empty", Toast.LENGTH_SHORT).show();
+                    flag = 0;
+                }
+
+                try {
+                    phone = Integer.parseInt(userPhone.getText().toString());
+                } catch(NumberFormatException e) {
+                    //todo
+                    email = userEmail.getText().toString();
+                    if (email.isEmpty()){
+                        Toast.makeText(SignUpActivity.this, "Contact information fields cannot be both empty", Toast.LENGTH_SHORT).show();
+                        flag = 0;
+                    }
+                };
+
+
 
                 //make a new profile with phone and email
                 Profile newProfile = new Profile(phone, email);
 
                 //destroy this page, return to last page
-                finish();
+                if (flag == 1) {
+                    finish();
+                }
 
             }
         });
