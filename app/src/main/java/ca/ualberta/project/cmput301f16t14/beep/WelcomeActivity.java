@@ -24,6 +24,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void signInDriver (View view) {
-
+        Intent intent = new Intent(this, DriverMainActivity.class);
+        startActivity(intent);
     }
 }
