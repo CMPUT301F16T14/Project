@@ -18,19 +18,19 @@
         </activity>
         <activity
             android:name=".SignUpActivity"
-            android:label="@string/title_activity_sign_up" >
+            android:label="SignUp" >
         </activity>
         <activity
             android:name=".ViewProfileActivity"
-            android:label="@string/title_activity_view_profile" >
+            android:label="Profile" >
         </activity>
         <activity
             android:name=".DriverMainActivity"
-            android:label="@string/title_activity_driver_main" >
+            android:label="DriverSearch" >
         </activity>
         <activity
             android:name=".ViewEstimateActivity"
-            android:label="@string/title_activity_view_estimate" >
+            android:label="EstimateFare" >
         </activity>
     </application>
 
