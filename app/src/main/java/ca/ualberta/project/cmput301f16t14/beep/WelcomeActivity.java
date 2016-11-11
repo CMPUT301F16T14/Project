@@ -16,6 +16,7 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
     }
 
+    /* Call when the user click on the SignUp button */
     public void signUp(View view){
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
