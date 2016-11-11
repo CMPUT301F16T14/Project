@@ -1,7 +1,7 @@
 package ca.ualberta.project.cmput301f16t14.beep;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class ViewEstimateActivity extends AppCompatActivity {
+public class ViewEstimateActivity extends Activity {
 
     private TextView currentEstimate;
     private EditText userKeyword;
