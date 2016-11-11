@@ -24,6 +24,10 @@
             android:name=".ViewProfileActivity"
             android:label="@string/title_activity_view_profile" >
         </activity>
+        <activity
+            android:name=".DriverMainActivity"
+            android:label="@string/title_activity_driver_main" >
+        </activity>
     </application>
 
 </manifest>

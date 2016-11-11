@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/cshome/jinzhu/.gradle/caches/modules-2/files-2.1/io.searchbox/jest-droid/2.0.3/63732634901438ac56b8f6ab0ca16c8e20da85c5/jest-droid-2.0.3.jar"
+        jar="/cshome/xizi/301/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="63732634901438ac56b8f6ab0ca16c8e20da85c5">
-        <dex dex="/cshome/jinzhu/Desktop/Project/app/build/intermediates/pre-dexed/debug/jest-droid-2.0.3-6858bd384969d16a05cf32fa931e2351a36dffc4.jar" />
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/cshome/xizi/301/Project/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-b3f912bf3fce538d3c41f6268ac535f26f31ddcb.jar" />
+    </item>
+    <item
+        jar="/cshome/xizi/301/Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/cshome/xizi/301/Project/app/build/intermediates/pre-dexed/debug/classes-e87109428bdfd7e1b8a251af5b07919716084cfe.jar" />
+    </item>
+    <item
+        jar="/cshome/xizi/301/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/cshome/xizi/301/Project/app/build/intermediates/pre-dexed/debug/classes-240165ca002a385680e15a215eb7a8f004107363.jar" />
     </item>
     <item
         jar="/usr/local/share/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/cshome/jinzhu/Desktop/Project/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-6b8f43d628bde674586e533393329d929d7ff825.jar" />
+        <dex dex="/cshome/xizi/301/Project/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-6b8f43d628bde674586e533393329d929d7ff825.jar" />
     </item>
     <item
-        jar="/cshome/jinzhu/Desktop/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jar="/cshome/xizi/.gradle/caches/modules-2/files-2.1/io.searchbox/jest-droid/2.0.3/63732634901438ac56b8f6ab0ca16c8e20da85c5/jest-droid-2.0.3.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/cshome/jinzhu/Desktop/Project/app/build/intermediates/pre-dexed/debug/classes-2b9d5c2f1ad06d29906e3ba7a3c1ecc9c31581c3.jar" />
-    </item>
-    <item
-        jar="/cshome/jinzhu/Desktop/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/cshome/jinzhu/Desktop/Project/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-9f0329bf30954a8794bf6683ef29acaf7bc13a8e.jar" />
-    </item>
-    <item
-        jar="/cshome/jinzhu/Desktop/Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/cshome/jinzhu/Desktop/Project/app/build/intermediates/pre-dexed/debug/classes-89eda919744d0b027bacc830f0f77b375cb6bbc0.jar" />
+        sha1="63732634901438ac56b8f6ab0ca16c8e20da85c5">
+        <dex dex="/cshome/xizi/301/Project/app/build/intermediates/pre-dexed/debug/jest-droid-2.0.3-7e57e718403589a4d69d786b2a430ae447e73457.jar" />
     </item>
 
 </items>
