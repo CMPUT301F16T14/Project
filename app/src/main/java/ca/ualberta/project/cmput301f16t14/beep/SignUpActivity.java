@@ -71,6 +71,9 @@ public class SignUpActivity extends AppCompatActivity {
 
                 //destroy this page, return to last page
                 if (flag == 1) {
+
+
+
                     finish();
                 }
 

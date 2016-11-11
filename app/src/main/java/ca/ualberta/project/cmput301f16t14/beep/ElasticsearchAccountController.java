@@ -55,7 +55,7 @@ public class ElasticsearchAccountController {
     }
 
 
-    // TODO we need a function which adds an account!
+    // we need a function which adds an account!
     public static class AddAccountTask extends AsyncTask<Account, Void, Void> {
 
         @Override
