@@ -2,41 +2,6 @@
 <items version="2" >
 
     <item
-<<<<<<< HEAD
-        jar="/usr/local/share/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/cshome/xingqi1/Documents/cmput301/Project/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-6b8f43d628bde674586e533393329d929d7ff825.jar" />
-    </item>
-    <item
-        jar="/cshome/xingqi1/Documents/cmput301/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/cshome/xingqi1/Documents/cmput301/Project/app/build/intermediates/pre-dexed/debug/classes-76ea88c85108158c1451dd57368efead7272a407.jar" />
-    </item>
-    <item
-        jar="/cshome/xingqi1/Documents/cmput301/Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/cshome/xingqi1/Documents/cmput301/Project/app/build/intermediates/pre-dexed/debug/classes-744cc6c98a48b925fbf34f14266bf7c156b1ce4a.jar" />
-    </item>
-    <item
-        jar="/cshome/xingqi1/.gradle/caches/modules-2/files-2.1/io.searchbox/jest-droid/2.0.3/63732634901438ac56b8f6ab0ca16c8e20da85c5/jest-droid-2.0.3.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="63732634901438ac56b8f6ab0ca16c8e20da85c5">
-        <dex dex="/cshome/xingqi1/Documents/cmput301/Project/app/build/intermediates/pre-dexed/debug/jest-droid-2.0.3-15cc3c085ba04b06bee5e9318e54ef0fecfd6ee4.jar" />
-    </item>
-    <item
-        jar="/cshome/xingqi1/Documents/cmput301/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/cshome/xingqi1/Documents/cmput301/Project/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-dd6e53a9133d023b80ece290caa084fb07b4f971.jar" />
-=======
         jar="/cshome/jinzhu/.gradle/caches/modules-2/files-2.1/io.searchbox/jest-droid/2.0.3/63732634901438ac56b8f6ab0ca16c8e20da85c5/jest-droid-2.0.3.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -70,7 +35,6 @@
         revision="22.0.1"
         sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
         <dex dex="/cshome/jinzhu/Desktop/Project/app/build/intermediates/pre-dexed/debug/classes-89eda919744d0b027bacc830f0f77b375cb6bbc0.jar" />
->>>>>>> 90be5dc354151bd4109b21b564c32d2b81051c85
     </item>
 
 </items>
