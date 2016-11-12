@@ -44,7 +44,7 @@ public class ElasticsearchAccountController {
                     myAccount.addAll(foundAccount);
                 }
                 else {
-                    Log.i("Error", "The search query failed to find any tweets that matched.");
+                    Log.i("Error", "The search query failed to find any account that matched.");
                 }
             }
             catch (Exception e) {
@@ -71,11 +71,11 @@ public class ElasticsearchAccountController {
                     newAccount[0].setId(result.getId());
                 }
                 else {
-                    Log.i("Error", "Elastic search was not able to add the tweet.");
+                    Log.i("Error", "Elastic search was not able to add the account.");
                 }
             }
             catch (Exception e) {
-                Log.i("Error", "We failed to add a tweet to elastic search!");
+                Log.i("Error", "We failed to add an account to elastic search!");
                 e.printStackTrace();
             }
 

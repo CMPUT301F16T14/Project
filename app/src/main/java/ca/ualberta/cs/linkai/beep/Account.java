@@ -21,18 +21,18 @@ public class Account {
     private Integer phone;
     private String email;
 
-    public void Account(String username, Integer phone, String email){
+    public Account(String username, Integer phone, String email){
         this.username = username;
         this.phone = phone;
         this.email = email;
     }
 
-    public void Account(String username, Integer phone){
+    public Account(String username, Integer phone){
         this.username = username;
         this.phone = phone;
     }
 
-    public void Account(String username, String email){
+    public Account(String username, String email){
         this.username = username;
         this.email = email;
     }

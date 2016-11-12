@@ -38,7 +38,7 @@ public class SignUpActivity extends Activity {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
-                String name = userName.getText().toString();
+                name = userName.getText().toString();
                 flag = 1;
                 if (name.isEmpty()){
                     Toast.makeText(SignUpActivity.this, "Name field cannot be empty", Toast.LENGTH_SHORT).show();
@@ -63,8 +63,11 @@ public class SignUpActivity extends Activity {
 
                 //destroy this page, return to last page
                 if (flag == 1) {
+                    Account myAccount = new Account(name, phone, email);
 
-
+                    // saveInFile(); // TODO replace this with elastic search
+                    ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
+                    addAccountTask.execute(myAccount);
 
                     finish();
                 }
