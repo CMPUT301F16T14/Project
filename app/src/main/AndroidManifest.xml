@@ -32,6 +32,10 @@
             android:name=".ViewEstimateActivity"
             android:label="EstimateFare" >
         </activity>
+        <activity
+            android:name=".EditProfileActivity"
+            android:label="EditProfile" >
+        </activity>
     </application>
 
 </manifest>

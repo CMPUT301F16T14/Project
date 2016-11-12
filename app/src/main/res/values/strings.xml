@@ -7,4 +7,5 @@
     <string name="title_activity_view_profile">ViewProfileActivity</string>
     <string name="title_activity_driver_main">DriverMainActivity</string>
     <string name="title_activity_view_estimate">ViewEstimateActivity</string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
 </resources>
