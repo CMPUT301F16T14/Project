@@ -94,8 +94,6 @@ public class SignUpActivity extends AppCompatActivity {
                     ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
                     addAccountTask.execute(newAccount);
 
-                    Toast.makeText(SignUpActivity.this, newAccount.getId(), Toast.LENGTH_SHORT).show();
-
                     finish();
                 }
 
