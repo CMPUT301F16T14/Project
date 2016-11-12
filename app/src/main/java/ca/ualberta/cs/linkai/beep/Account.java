@@ -18,31 +18,23 @@ public class Account {
     @JestId
     private  String id;
     private String username;
-    private Integer phone;
+    private String phone;
     private String email;
 
-    public Account(String username, Integer phone, String email){
+    public Account(String username, String phone, String email){
         this.username = username;
         this.phone = phone;
-        this.email = email;
-    }
-
-    public Account(String username, Integer phone){
-        this.username = username;
-        this.phone = phone;
-    }
-
-    public Account(String username, String email){
-        this.username = username;
         this.email = email;
     }
 
     public String getUsername(){
         return username;
     }
-    public Integer getPhone() {
+
+    public String getPhone() {
         return phone;
     }
+
     public String getEmail() {
         return email;
     }
