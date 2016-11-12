@@ -17,22 +17,33 @@ public class Account {
     @JestId
     private  String id;
     private String username;
-    private Profile profile;
+    private Integer phone;
+    private String email;
 
-    public void Account(String username, Profile profile){
+    public Account(String username, Integer phone, String email){
         this.username = username;
-        this.profile = profile;
+        this.phone = phone;
+        this.email = email;
     }
 
-    public Profile getProfile() {
-        return profile;
-    }
 
     public String getUsername(){
         return username;
     }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public String getEmail() {
+        return email;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Integer phone) {
+        this.phone = phone;
+    }
+
 }

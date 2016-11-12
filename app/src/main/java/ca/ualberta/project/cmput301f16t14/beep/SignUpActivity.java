@@ -68,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
-                String name = userName.getText().toString();
+                name = userName.getText().toString();
                 flag = 1;
                 if (name.isEmpty()){
                     Toast.makeText(SignUpActivity.this, "Name field cannot be empty", Toast.LENGTH_SHORT).show();
@@ -78,7 +78,6 @@ public class SignUpActivity extends AppCompatActivity {
                 try {
                     phone = Integer.parseInt(userPhone.getText().toString());
                 } catch(NumberFormatException e) {
-                    //todo
                     email = userEmail.getText().toString();
                     if (email.isEmpty()){
                         Toast.makeText(SignUpActivity.this, "Contact information fields cannot be both empty", Toast.LENGTH_SHORT).show();
@@ -88,13 +87,14 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-                //make a new profile with phone and email
-                Profile newProfile = new Profile(phone, email);
-
                 //destroy this page, return to last page
                 if (flag == 1) {
 
+                    Account newAccount = new Account(name, phone, email);
+                    ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
+                    addAccountTask.execute(newAccount);
 
+                    Toast.makeText(SignUpActivity.this, newAccount.getId(), Toast.LENGTH_SHORT).show();
 
                     finish();
                 }
