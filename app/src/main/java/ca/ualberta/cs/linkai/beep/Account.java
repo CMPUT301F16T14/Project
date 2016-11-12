@@ -40,5 +40,11 @@ public class Account {
     public String getUsername(){
         return username;
     }
+    public Integer getPhone() {
+        return phone;
+    }
+    public String getEmail() {
+        return email;
+    }
 
 }

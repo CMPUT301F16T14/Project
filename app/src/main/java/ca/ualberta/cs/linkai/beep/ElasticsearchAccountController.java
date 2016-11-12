@@ -23,9 +23,9 @@ public class ElasticsearchAccountController {
     private static JestDroidClient client;
 
     // TODO we need a function that gets account information!
-    public static class GetAccountTask extends AsyncTask<String, Void, Account> {
+    public static class GetAccountTask extends AsyncTask<String, Void, ArrayList<Account>> {
         @Override
-        protected Account doInBackground(String... search_parameters) {
+        protected ArrayList<Account> doInBackground(String... search_parameters) {
             verifySettings();
 
             ArrayList<Account> myAccount = new ArrayList<Account>();
@@ -51,7 +51,7 @@ public class ElasticsearchAccountController {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
 
-            return myAccount.get(0);
+            return myAccount;
         }
     }
 
