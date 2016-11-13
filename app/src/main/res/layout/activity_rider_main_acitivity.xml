@@ -10,4 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.ualberta.project.cmput301f16t14.beep.RiderMainAcitivity">
 
+    <Button
+        android:text="RIderMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button6" />
 </RelativeLayout>
