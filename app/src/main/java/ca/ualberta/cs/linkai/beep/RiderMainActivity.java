@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -76,7 +78,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
         if (ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
 
-            ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  }, MY_PERMISSION_ACCESS_COURSE_LOCATION );
+            ActivityCompat.requestPermissions(this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  }, MY_PERMISSION_ACCESS_COURSE_LOCATION );
         }
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(true);
@@ -88,11 +90,12 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
     }
 
+
     @Override
     public void onConnected(Bundle bundle) {
         if (ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
 
-            ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  }, MY_PERMISSION_ACCESS_COURSE_LOCATION );
+            ActivityCompat.requestPermissions( this, new String[] {android.Manifest.permission.ACCESS_COARSE_LOCATION  }, MY_PERMISSION_ACCESS_COURSE_LOCATION );
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
@@ -102,7 +105,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             lng = mLastLocation.getLongitude();
 
             LatLng loc = new LatLng(lat, lng);
-            mMap.addMarker(new MarkerOptions().position(loc).title("New Marker"));
+            mMap.addMarker(new MarkerOptions().position(loc).title("My Current Location"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
             mMap.getUiSettings().setZoomControlsEnabled(true);
             mMap.getUiSettings().setCompassEnabled(true);

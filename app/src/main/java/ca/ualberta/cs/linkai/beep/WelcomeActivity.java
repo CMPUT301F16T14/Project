@@ -73,7 +73,26 @@ public class WelcomeActivity extends Activity {
     }
 
     public void signInRider (View view) {
-        Intent intent = new Intent(this, RiderMainActivity.class);
-        startActivity(intent);
+        username = usernameEditText.getText().toString();
+        usernameEditText.setText("");
+
+        ElasticsearchAccountController.GetAccountTask getAccountTask = new ElasticsearchAccountController.GetAccountTask();
+        getAccountTask.execute(username.toLowerCase());
+
+        try {
+            resultAccounts = getAccountTask.get();
+        }
+        catch (Exception e) {
+            Log.i("Error", "Failed to get the Accounts out of the async object.");
+            Toast.makeText(WelcomeActivity.this, "Unable to find the Account by elastic search", Toast.LENGTH_SHORT).show();
+        }
+
+        if(resultAccounts.isEmpty()){
+            Toast.makeText(WelcomeActivity.this, "Username not found", Toast.LENGTH_SHORT).show();
+        } else {
+            logInAccount = resultAccounts.get(0);
+            Intent intent = new Intent(this, RiderMainActivity.class);
+            startActivity(intent);
+        }
     }
 }
