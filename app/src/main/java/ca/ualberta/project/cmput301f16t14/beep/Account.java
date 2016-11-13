@@ -17,10 +17,10 @@ public class Account {
     @JestId
     private  String id;
     private String username;
-    private Integer phone;
+    private String phone;
     private String email;
 
-    public Account(String username, Integer phone, String email){
+    public Account(String username, String phone, String email){
         this.username = username;
         this.phone = phone;
         this.email = email;
@@ -38,11 +38,11 @@ public class Account {
         this.email = email;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

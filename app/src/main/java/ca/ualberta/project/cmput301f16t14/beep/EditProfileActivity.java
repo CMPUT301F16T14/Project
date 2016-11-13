@@ -1,11 +1,23 @@
 package ca.ualberta.project.cmput301f16t14.beep;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class EditProfileActivity extends ActionBarActivity {
+public class EditProfileActivity extends Activity {
+    private TextView userName;
+    private EditText newPhone;
+    private EditText newEmail;
+    private Button finishChangeButton;
+    private String userPhone;
+    private String userEmail;
+    //TODO:to use a public static variable currentAccount instead
+    private Account currentAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,24 +26,62 @@ public class EditProfileActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_edit_profile, menu);
-        return true;
-    }
+    protected void onStart() {
+        super.onStart();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        userName = (TextView) findViewById(R.id.currentNameTextView);
+        newPhone = (EditText) findViewById(R.id.newPhoneEditText);
+        newEmail = (EditText) findViewById(R.id.newEmailEditText);
+        finishChangeButton = (Button) findViewById(R.id.finishChangeButton);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        //TODO: change text to current user profile!
+        userName.setText(currentAccount.getUsername());
+
+        if (currentAccount.getEmail().equals("No email info")){
+            //if user does not have email information before, leave the editText blank, wait for change
+            newEmail.setText("");
+        }else{
+            newEmail.setText(currentAccount.getEmail());
         }
 
-        return super.onOptionsItemSelected(item);
+        if (currentAccount.getPhone().equals("No phone info")){
+            //if user does not have phone information before, leave the editText blank, wait for change
+            newPhone.setText("");
+        }else{
+            newPhone.setText(currentAccount.getPhone());
+        }
+
+        //reach here when user click the finishChange button
+        finishChangeButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+
+                // get email
+                userEmail = newEmail.getText().toString();
+                if (userEmail.isEmpty()) {
+                    userEmail = "No email info";
+                }
+
+                //get phone
+                userPhone = newPhone.getText().toString();
+                if (userPhone.isEmpty()) {
+                    userPhone = "No phone info";
+                }
+                //check if newName or newEmail is valid
+                if (userEmail.equals("No email info") && userPhone.equals("No phone info")) {
+                    Toast.makeText(EditProfileActivity.this, "Contact information fields cannot be both empty",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    //TODO: save newPhone and newEmail to elasticSearch
+                    currentAccount.setEmail(userEmail);
+                    currentAccount.setPhone(userPhone);
+
+                    //destroy this page, return to last page
+                    finish();
+                }
+            }
+        });
     }
+
 }
