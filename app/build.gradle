@@ -27,6 +27,7 @@ dependencies {
 
     compile 'io.searchbox:jest-droid:2.0.3'
     compile 'com.google.android.gms:play-services-maps:9.0.0'
+    compile 'com.google.android.gms:play-services-location:9.0.0'
     compile 'com.android.support:appcompat-v7:25.0.0'
     testCompile 'junit:junit:4.12'
 }
