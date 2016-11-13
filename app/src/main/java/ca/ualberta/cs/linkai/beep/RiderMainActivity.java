@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,6 +27,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
+import static ca.ualberta.cs.linkai.beep.R.id.placeRequestButton;
+import static ca.ualberta.cs.linkai.beep.R.id.search;
+import static ca.ualberta.cs.linkai.beep.R.id.search_button;
+
 public class RiderMainActivity extends FragmentActivity implements OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -37,6 +42,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
     private EditText sourceInput;
     private EditText destinationInput;
+    private Button searchButton;
+    private Button PlaceRequestButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         setContentView(R.layout.activity_rider_main);
         //sourceInput = (EditText) findViewById(R.id.source);
         //destinationInput = (EditText) findViewById(R.id.destination);
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -90,7 +98,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         }
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(true);
-
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setCompassEnabled(true);
         //buildGoogleApiClient();
 
         //LatLng loc = new LatLng(lat, lng);
@@ -114,13 +123,15 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             LatLng loc = new LatLng(lat, lng);
             mMap.addMarker(new MarkerOptions().position(loc).title("My Current Location"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-            mMap.getUiSettings().setZoomControlsEnabled(true);
-            mMap.getUiSettings().setCompassEnabled(true);
+            //mMap.getUiSettings().setZoomControlsEnabled(true);
+            //mMap.getUiSettings().setCompassEnabled(true);
         }
     }
 
-    public void onSearch(View view) {
-        List<Address> addressList = null;
+    public void onPlaceRequest(View view) {
+        Request myRequest;
+        List<Address> startAddress = null;
+        List<Address> endAddress = null;
         sourceInput = (EditText) findViewById(R.id.source);
         destinationInput = (EditText) findViewById(R.id.destination);
         String sourceLocation = sourceInput.getText().toString();
@@ -128,14 +139,23 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         if(!sourceLocation.isEmpty() && !destinationLocation.isEmpty()) {
             Geocoder geocoder = new Geocoder(this);
             try {
-                addressList = geocoder.getFromLocationName(sourceLocation,1);
+                startAddress = geocoder.getFromLocationName(sourceLocation,1);
+                endAddress = geocoder.getFromLocationName(destinationLocation,1);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+            Address start = startAddress.get(0);
+            Address end = endAddress.get(0);
+            LatLng startLatLng = new LatLng(start.getLatitude(),start.getLongitude());
+            LatLng endLatLng = new LatLng(end.getLatitude(),end.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(startLatLng).title("start"));
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
+            mMap.addMarker(new MarkerOptions().position(endLatLng).title("end"));
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(endLatLng));
+            myRequest = new Request(startLatLng, endLatLng);
+            ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
+            addRequestTask.execute(myRequest);
         }
     }
 
@@ -152,7 +172,36 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     @Override
     protected void onStart() {
         super.onStart();
-
         mGoogleApiClient.connect();
+
+ /*       searchButton = (Button) findViewById(R.id.search);
+        PlaceRequestButton = (Button) findViewById(R.id.placerequest);
+        sourceInput = (EditText) findViewById(R.id.source);
+        destinationInput = (EditText) findViewById(R.id.destination);
+
+        PlaceRequestButton.setOnClickListener(new View.onClickListener() {
+            public void onClick(View view) {
+                setResult(RESULT_OK);
+            }
+            Request myRequest;
+            List<Address> addressList = null;
+            String sourceLocation = sourceInput.getText().toString();
+            String destinationLocation = destinationInput.getText().toString();
+            if(!sourceLocation.isEmpty() && !destinationLocation.isEmpty()) {
+                Geocoder geocoder = new Geocoder(this);
+                try {
+                    addressList = geocoder.getFromLocationName(sourceLocation,1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                myRequest = new Request(address.getLatitude(),address.getLongitude());
+                ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
+                addRequestTask.execute(myRequest);
+            }
+        }; */
     }
 }

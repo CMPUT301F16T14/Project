@@ -25,12 +25,19 @@ public class Request {
     private Account initiator;
     private LatLng startLocation;
     private LatLng endLocation;
+    //private double start;
+    //private double end;
     private String reason;
     private Float estimate;
     private Payment payment;
     private ArrayList<Account> acceptances = new ArrayList<Account>();
     private Account confirmedDriver;
     private Integer status = 0;
+
+    public Request(LatLng start, LatLng end) {
+        this.startLocation = start;
+        this.endLocation = end;
+    }
 
     public Float getEstimate() {
         return estimate;
