@@ -38,6 +38,12 @@ public class WelcomeActivity extends Activity {
         startActivity(intent);
     }
 
+    /* Call when the user click on the SignIn As Rider button */
+    public void signInRider(View view){
+        Intent intent = new Intent(this, RiderMainAcitivity.class);
+        startActivity(intent);
+    }
+
     public void signInDriver (View view) {
         username = usernameEditText.getText().toString();
 
