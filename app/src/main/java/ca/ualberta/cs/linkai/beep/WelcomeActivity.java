@@ -18,6 +18,7 @@ public class WelcomeActivity extends Activity {
     private EditText usernameEditText;
     private String username;
     private ArrayList<Account> resultAccounts;
+    public static Account logInAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,20 +48,16 @@ public class WelcomeActivity extends Activity {
         }
         catch (Exception e) {
             Log.i("Error", "Failed to get the Accounts out of the async object.");
-            Toast.makeText(WelcomeActivity.this, "Unable to find the Account on elastic search", Toast.LENGTH_SHORT).show();
+            Toast.makeText(WelcomeActivity.this, "Unable to find the Account by elastic search", Toast.LENGTH_SHORT).show();
         }
 
         if(resultAccounts.isEmpty()){
             Toast.makeText(WelcomeActivity.this, "Username not found", Toast.LENGTH_SHORT).show();
         } else {
-            //Toast.makeText(WelcomeActivity.this, resultAccounts.get(0).getEmail(), Toast.LENGTH_SHORT).show();
+            logInAccount = resultAccounts.get(0);
             Intent intent = new Intent(this, DriverMainActivity.class);
             startActivity(intent);
         }
-
-
-        //Intent intent = new Intent(this, DriverMainActivity.class);
-        //startActivity(intent);
     }
 
     public void signInRider (View view) {
