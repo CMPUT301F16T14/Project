@@ -2,7 +2,10 @@ package ca.ualberta.cs.linkai.beep;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +22,9 @@ public class WelcomeActivity extends Activity {
     private String username;
     private ArrayList<Account> resultAccounts;
     public static Account logInAccount;
+    private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,12 @@ public class WelcomeActivity extends Activity {
         //riderSignInButton = (Button) findViewById(R.id.button);
         //driverSignInButton = (Button) findViewById(R.id.button2);
         usernameEditText = (EditText) findViewById(R.id.editText);
+
+        // get location permission
+        if (ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+
+            ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  }, MY_PERMISSION_ACCESS_COURSE_LOCATION );
+        }
     }
 
     /* Call when the user click on the SignUp button */

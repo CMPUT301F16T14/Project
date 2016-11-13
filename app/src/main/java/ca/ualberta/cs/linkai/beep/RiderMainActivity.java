@@ -1,11 +1,13 @@
 package ca.ualberta.cs.linkai.beep;
 
+import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -95,6 +97,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
+            Log.i("lala", mLastLocation.toString());
             lat = mLastLocation.getLatitude();
             lng = mLastLocation.getLongitude();
 
@@ -103,6 +106,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
             mMap.getUiSettings().setZoomControlsEnabled(true);
             mMap.getUiSettings().setCompassEnabled(true);
+        } else {
+            Log.i("lala", "mLastLocation == null !!!");
         }
     }
 
