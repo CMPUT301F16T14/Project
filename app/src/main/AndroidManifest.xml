@@ -36,6 +36,10 @@
             android:name=".EditProfileActivity"
             android:label="EditProfile" >
         </activity>
+        <activity
+            android:name=".RiderMainAcitivity"
+            android:label="Rider" >
+        </activity>
     </application>
 
 </manifest>
