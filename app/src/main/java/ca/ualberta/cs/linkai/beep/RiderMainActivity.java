@@ -100,7 +100,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
-            Log.i("lala", mLastLocation.toString());
             lat = mLastLocation.getLatitude();
             lng = mLastLocation.getLongitude();
 
@@ -110,7 +109,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             mMap.getUiSettings().setZoomControlsEnabled(true);
             mMap.getUiSettings().setCompassEnabled(true);
         } else {
-            Log.i("lala", "mLastLocation == null !!!");
+            // TODO
         }
     }
 
