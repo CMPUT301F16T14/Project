@@ -52,13 +52,14 @@ public class WelcomeActivity extends Activity {
         if(resultAccounts.isEmpty()){
             Toast.makeText(WelcomeActivity.this, "Username not found", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(WelcomeActivity.this, resultAccounts.get(0).getEmail(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(WelcomeActivity.this, resultAccounts.get(0).getEmail(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, DriverMainActivity.class);
+            startActivity(intent);
         }
 
 
-
-        Intent intent = new Intent(this, DriverMainActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, DriverMainActivity.class);
+        //startActivity(intent);
     }
 
     public void signInRider (View view) {
