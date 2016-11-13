@@ -121,7 +121,7 @@ public class ElasticsearchRequestController {
     }
 
 
-    // TODO we need a function which adds an account!
+    // TODO
     public static class AddRequestTask extends AsyncTask<Request, Void, Void> {
 
         @Override
