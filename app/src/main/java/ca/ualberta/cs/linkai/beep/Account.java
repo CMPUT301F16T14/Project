@@ -31,6 +31,14 @@ public class Account {
         return username;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPhone() {
         return phone;
     }

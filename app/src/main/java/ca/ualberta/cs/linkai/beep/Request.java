@@ -4,11 +4,24 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import io.searchbox.annotations.JestId;
+
 /**
  * Created by F16T14 on 2016-11-12.
  */
 
 public class Request {
+    public String getId(){
+        return id;
+    }
+
+    public void setId(String id){
+        this.id = id;
+    }
+
+    @JestId
+    private  String id;
+
     private Account initiator;
     private LatLng startLocation;
     private LatLng endLocation;
