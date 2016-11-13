@@ -22,9 +22,9 @@ public class ElasticsearchAccountController {
     private static JestDroidClient client;
 
     // TODO we need a function that gets account information!
-    public static class GetAccountTask extends AsyncTask<String, Void, Account> {
+    public static class GetAccountTask extends AsyncTask<String, Void, ArrayList<Account>> {
         @Override
-        protected Account doInBackground(String... search_parameters) {
+        protected ArrayList<Account> doInBackground(String... search_parameters) {
             verifySettings();
 
             ArrayList<Account> myAccount = new ArrayList<Account>();
@@ -43,14 +43,14 @@ public class ElasticsearchAccountController {
                     myAccount.addAll(foundAccount);
                 }
                 else {
-                    Log.i("Error", "The search query failed to find any tweets that matched.");
+                    Log.i("Error", "The search query failed to find any account that matched.");
                 }
             }
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
 
-            return myAccount.get(0);
+            return myAccount;
         }
     }
 
@@ -70,11 +70,11 @@ public class ElasticsearchAccountController {
                     newAccount[0].setId(result.getId());
                 }
                 else {
-                    Log.i("Error", "Elastic search was not able to add the tweet.");
+                    Log.i("Error", "Elastic search was not able to add the account.");
                 }
             }
             catch (Exception e) {
-                Log.i("Error", "We failed to add a tweet to elastic search!");
+                Log.i("Error", "We failed to add an account to elastic search!");
                 e.printStackTrace();
             }
 

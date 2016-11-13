@@ -1,51 +1,65 @@
 package ca.ualberta.project.cmput301f16t14.beep;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class WelcomeActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class WelcomeActivity extends Activity {
+
+    //private Button riderSignInButton;
+    //private Button driverSignInButton;
+    private EditText usernameEditText;
+    private String username;
+    private ArrayList<Account> resultAccounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_welcome, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        //riderSignInButton = (Button) findViewById(R.id.button);
+        //driverSignInButton = (Button) findViewById(R.id.button2);
+        usernameEditText = (EditText) findViewById(R.id.editText);
     }
 
     /* Call when the user click on the SignUp button */
     public void signUp(View view){
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
-
     }
 
     public void signInDriver (View view) {
+        username = usernameEditText.getText().toString();
+
+        ElasticsearchAccountController.GetAccountTask getAccountTask = new ElasticsearchAccountController.GetAccountTask();
+        getAccountTask.execute(username.toLowerCase());
+
+        try {
+            resultAccounts = getAccountTask.get();
+        }
+        catch (Exception e) {
+            Log.i("Error", "Failed to get the Accounts out of the async object.");
+            Toast.makeText(WelcomeActivity.this, "Unable to find the Account on elastic search", Toast.LENGTH_SHORT).show();
+        }
+
+        if(resultAccounts.isEmpty()){
+            Toast.makeText(WelcomeActivity.this, "Username not found", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(WelcomeActivity.this, resultAccounts.get(0).getEmail(), Toast.LENGTH_SHORT).show();
+        }
+
+
+
         Intent intent = new Intent(this, DriverMainActivity.class);
         startActivity(intent);
     }
