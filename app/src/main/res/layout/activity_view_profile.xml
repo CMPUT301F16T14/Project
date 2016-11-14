@@ -41,7 +41,9 @@
         android:layout_alignStart="@+id/phoneTextView"
         android:layout_marginTop="75dp"
         android:textSize="30dp"
-        android:layout_alignEnd="@+id/phoneTextView" />
+        android:layout_alignEnd="@+id/phoneTextView"
+        android:clickable="true"
+        android:autoLink="email"/>
 
     <ImageView
         android:layout_width="wrap_content"
