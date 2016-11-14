@@ -16,7 +16,6 @@ public class EditProfileActivity extends Activity {
     private Button finishChangeButton;
     private String userPhone;
     private String userEmail;
-    //TODO:to use a public static variable currentAccount instead
     private Account currentAccount;
 
     @Override
@@ -29,12 +28,17 @@ public class EditProfileActivity extends Activity {
     protected void onStart() {
         super.onStart();
 
+        currentAccount = WelcomeActivity.logInAccount;
+
+        Toast.makeText(EditProfileActivity.this, currentAccount.getUsername(),
+                Toast.LENGTH_SHORT).show();
+
         userName = (TextView) findViewById(R.id.currentNameTextView);
         newPhone = (EditText) findViewById(R.id.newPhoneEditText);
         newEmail = (EditText) findViewById(R.id.newEmailEditText);
         finishChangeButton = (Button) findViewById(R.id.finishChangeButton);
 
-        //TODO: change text to current user profile!
+        //change text to current user profile!
         userName.setText(currentAccount.getUsername());
 
         if (currentAccount.getEmail().equals("No email info")){
@@ -74,6 +78,7 @@ public class EditProfileActivity extends Activity {
                             Toast.LENGTH_SHORT).show();
                 } else {
                     //TODO: save newPhone and newEmail to elasticSearch
+                    //ToDO: update to clould
                     currentAccount.setEmail(userEmail);
                     currentAccount.setPhone(userPhone);
 
