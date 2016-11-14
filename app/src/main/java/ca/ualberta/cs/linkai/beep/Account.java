@@ -4,9 +4,22 @@ import io.searchbox.annotations.JestId;
 
 /**
  * Created by lincolnqi on 2016-11-11.
+ *
+ * @author LinKai
+ * @see SignUpActivity
+ * @see WelcomeActivity
+ *
+ * <p>Here is the class to save all information about account</p>
+ * <ul>
+ *     <li>AccountId</li>
+ *     <li>UserName</li>
+ *     <li>PhoneNumber</li>
+ *     <li>EmailAddress</li>
+ * </ul>
  */
 
 public class Account {
+    
     public String getId(){
         return id;
     }
