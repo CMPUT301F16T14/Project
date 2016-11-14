@@ -8,6 +8,8 @@ import android.view.MenuItem;
 
 /**
  * This is the class to deal with driver main activity
+ * @see EditProfileActivity
+ * @see RequestsListActivity
  */
 public class DriverMainActivity extends Activity {
 
