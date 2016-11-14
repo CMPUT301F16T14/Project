@@ -37,7 +37,7 @@ public class DriverMainActivity extends Activity {
         }
 
         if (id == R.id.view_request) {
-            Intent intent = new Intent(this, EditProfileActivity.class);
+            Intent intent = new Intent(this, RequestActivity.class);
             startActivity(intent);
             return true;
         }
