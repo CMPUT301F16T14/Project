@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * This is the class to deal with driver main activity
+ */
 public class DriverMainActivity extends Activity {
 
     @Override
@@ -14,6 +17,7 @@ public class DriverMainActivity extends Activity {
         setContentView(R.layout.activity_driver_main);
     }
 
+    /* Following two classes deal with hamburger buttons */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

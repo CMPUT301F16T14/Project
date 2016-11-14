@@ -12,6 +12,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This is the activity for user to edit profile
+ * @author Ting Wang
+ * @see DriverMainActivity
+ * @see RiderMainActivity
+ */
 public class EditProfileActivity extends Activity {
     private TextView userName;
     private EditText newPhone;

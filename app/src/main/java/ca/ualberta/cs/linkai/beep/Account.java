@@ -34,6 +34,12 @@ public class Account {
     private String phone;
     private String email;
 
+    /**
+     * This method is a constructor which initialize the account
+     * @param username
+     * @param phone
+     * @param email
+     */
     public Account(String username, String phone, String email){
         this.username = username;
         this.phone = phone;

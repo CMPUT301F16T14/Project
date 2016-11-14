@@ -8,7 +8,8 @@ import java.util.Date;
 import io.searchbox.annotations.JestId;
 
 /**
- * Created by F16T14 on 2016-11-12.
+ * This is activity deal with request
+ * @author Linkai
  */
 
 public class Request {
@@ -26,8 +27,6 @@ public class Request {
     private Account initiator;
     private LatLng startLocation;
     private LatLng endLocation;
-    //private double start;
-    //private double end;
     private String reason;
     private Float estimate;
     private Payment payment;
@@ -36,6 +35,12 @@ public class Request {
     private Date date;
     private Integer status;
 
+    /**
+     * Constructor initialize the request
+      * @param initiator
+     * @param start
+     * @param end
+     */
     public Request(Account initiator, LatLng start, LatLng end) {
         this.initiator = initiator;
         this.startLocation = start;

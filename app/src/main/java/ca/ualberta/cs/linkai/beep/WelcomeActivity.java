@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * It deals with sign in/up activity
  * User can sign in as rider or driver, or sign up
  * Elastic search will detect duplicate username or invalid username
- * @author Team members
+ * @since 1.0
  * @version 14/11/16
  * @see SignUpActivity
  * @see DriverMainActivity
@@ -36,8 +36,9 @@ public class WelcomeActivity extends Activity {
     public static Account logInAccount;
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
 
-
-
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

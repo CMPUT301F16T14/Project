@@ -16,7 +16,9 @@ import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 
 /**
- * Created by lincolnqi on 2016-11-11.
+ * This is the controller for account elastic search
+ * Code from lab: https://github.com/SRomansky/AndroidElasticSearch
+ * @author Linkai
  */
 
 public class ElasticsearchAccountController {
