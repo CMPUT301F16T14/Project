@@ -14,6 +14,18 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * This class is the main view class in Beep class
+ * It deals with sign in/up activity
+ * User can sign in as rider or driver, or sign up
+ * Elastic search will detect duplicate username or invalid username
+ * @author Team members
+ * @version 14/11/16
+ * @see SignUpActivity
+ * @see DriverMainActivity
+ * @see RiderMainActivity
+ */
+
 public class WelcomeActivity extends Activity {
 
     //private Button riderSignInButton;
@@ -48,6 +60,7 @@ public class WelcomeActivity extends Activity {
         startActivity(intent);
     }
 
+    /* Call when the user click on the SignIn as Driver button */
     public void signInDriver (View view) {
         username = usernameEditText.getText().toString();
         usernameEditText.setText("");
@@ -72,6 +85,7 @@ public class WelcomeActivity extends Activity {
         }
     }
 
+    /* Call when the user click on the SignIn as Rider button */
     public void signInRider (View view) {
         username = usernameEditText.getText().toString();
 
