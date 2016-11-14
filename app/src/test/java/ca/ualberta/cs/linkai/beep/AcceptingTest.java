@@ -181,24 +181,15 @@ public class AcceptingTest {
     @Test
     public void testViewAcceptanceStatus(){
         // rider1 creates a request
-        Pair<Integer,Integer> startLocation = new Pair<Integer, Integer>(100,100);
-        Pair<Integer,Integer> endLocation = new Pair<Integer, Integer>(200,200);
-        String reason = new String("This is a reason for testing.");
-        Request testRequest1 = new Request(startLocation, endLocation, rider1, reason);
+        Request testRequest1 = new Request(rider1, startLocation1, endLocation1);
+        testRequest1.setReason("Reason: for test!");
 
         // add acceptance and set status
-        testRequest1.setAcceptedDriver(driver);
-        testRequest1.setStatus("Accepted");
+        testRequest1.setConfirmedDriver(driver);
+        testRequest1.setStatus(1);
 
-        // create requestList and add the testRequest to the list
-        RequestList testRequestList = new RequestList();
-        testRequestList.add(testRequest1);
-
-        // test if the system can the request by providing driver's information
-        // and shows acceptance's status
-        ArrayList<Request> AcceptanceList = testRequestList.getByDriver(driver);
-        Request acceptance = AcceptanceList.get(0);
-        assertTrue(acceptance.equals(testRequest1));
-        assertTrue(acceptance.getStatus().equals("Accepted"));
+        // getAcceptanceStatus
+        Integer myStatus = testRequest1.getStatus()
+        assertTrue(myStatus.equals(1));
     }
 }
