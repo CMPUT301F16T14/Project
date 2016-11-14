@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -25,16 +24,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
-
-import static ca.ualberta.cs.linkai.beep.R.id.placeRequestButton;
-import static ca.ualberta.cs.linkai.beep.R.id.search_button;
 
 public class RiderMainActivity extends FragmentActivity implements OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
@@ -218,7 +213,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         }
 
         if (id == R.id.view_request) {
-            Intent intent = new Intent(this, RequestActivity.class);
+            Intent intent = new Intent(this, RequestsListActivity.class);
             startActivity(intent);
             return true;
         }
