@@ -6,13 +6,10 @@ package ca.ualberta.cs.linkai.beep;
 
 public class RuntimeAccount {
     private static RuntimeAccount instance = null;
-    private Account myAccount;
+    public static Account myAccount;
 
     private RuntimeAccount(Account account){
         myAccount = account;
-    }
-    private Account getAccount(){
-        return myAccount;
     }
 
     public static RuntimeAccount getInstance(){

@@ -32,11 +32,13 @@ public class Request {
     private Payment payment;
     private ArrayList<Account> acceptances = new ArrayList<Account>();
     private Account confirmedDriver;
-    private Integer status = 0;
+    private Integer status;
 
-    public Request(LatLng start, LatLng end) {
+    public Request(Account initiator, LatLng start, LatLng end) {
+        this.initiator = initiator;
         this.startLocation = start;
         this.endLocation = end;
+        this.status = 0;
     }
 
     public Float getEstimate() {

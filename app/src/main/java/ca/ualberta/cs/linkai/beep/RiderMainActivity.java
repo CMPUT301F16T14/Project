@@ -156,6 +156,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             Address end = endAddress.get(0);
             LatLng startLatLng = new LatLng(start.getLatitude(),start.getLongitude());
             LatLng endLatLng = new LatLng(end.getLatitude(),end.getLongitude());
+            LatLng avgLatLng = new LatLng((start.getLatitude() + end.getLatitude())/2,
+                    (start.getLongitude() + end.getLongitude())/2);
             //MarkerOptions marker = new MarkerOptions().position(startLatLng).title("start");
             //marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.src));
             //mMap.addMarker(marker);
@@ -164,14 +166,14 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             //http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
             // add start marker
             BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.src);
-            Bitmap b=bitmapdraw.getBitmap();
+            Bitmap b = bitmapdraw.getBitmap();
             Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
             mMap.addMarker(new MarkerOptions()
                     .position(startLatLng)
                     .title("start")
                     .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
             );
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
+            //mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
 
             //mMap.addMarker(new MarkerOptions().position(endLatLng).title("end"));
             // add end marker
@@ -183,8 +185,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                     .title("end")
                     .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1))
             );
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(endLatLng));
-            myRequest = new Request(startLatLng, endLatLng);
+
+            // Set Camera position
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(avgLatLng));
+
+            myRequest = new Request(RuntimeAccount.getInstance().myAccount, startLatLng, endLatLng);
             ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
             addRequestTask.execute(myRequest);
         }
