@@ -189,7 +189,7 @@ public class AcceptingTest {
         testRequest1.setStatus(1);
 
         // getAcceptanceStatus
-        Integer myStatus = testRequest1.getStatus()
+        Integer myStatus = testRequest1.getStatus();
         assertTrue(myStatus.equals(1));
     }
 }

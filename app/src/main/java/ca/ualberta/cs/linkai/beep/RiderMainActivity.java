@@ -31,6 +31,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Rider main activity to view map and place requests between two locations
+ * @author Jinzhu, Linkai
+ * @see EditProfileActivity
+ * @see RequestsListActivity
+ */
+
 public class RiderMainActivity extends FragmentActivity implements OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -78,15 +85,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
- /*   @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }*/
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -158,7 +156,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             //mMap.addMarker(marker);
             //mMap.addMarker(new MarkerOptions().position(startLatLng).title("start"));
 
-            //http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
+            /**
+             * reuse statements
+             * code from
+             * http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
+             */
             // add start marker
             BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.src);
             Bitmap b = bitmapdraw.getBitmap();

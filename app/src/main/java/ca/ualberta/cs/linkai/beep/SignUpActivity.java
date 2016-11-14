@@ -10,6 +10,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * sign up activity for new user
+ * @author Jinzhu, Xizi
+ * @see WelcomeActivity
+ */
+
 public class SignUpActivity extends Activity {
 
     private EditText userName;
@@ -41,25 +47,6 @@ public class SignUpActivity extends Activity {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
-                /*
-                name = userName.getText().toString();
-                flag = 1;
-                if (name.isEmpty()){
-                    Toast.makeText(SignUpActivity.this, "Name field cannot be empty", Toast.LENGTH_SHORT).show();
-                    flag = 0;
-                }
-
-                try {
-                    email = userEmail.getText().toString();
-                    phone = Integer.parseInt(userPhone.getText().toString());
-                } catch(NumberFormatException e) {
-                    //todo
-                    if (email.isEmpty()){
-                        Toast.makeText(SignUpActivity.this, "Contact information fields cannot be both empty", Toast.LENGTH_SHORT).show();
-                        flag = 0;
-                    }
-                };
-                */
 
                 name = userName.getText().toString();
                 if(name.isEmpty()){

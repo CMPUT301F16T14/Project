@@ -9,6 +9,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * Request list to store and show cuurent user requests
+ */
+
 public class RequestsListActivity extends Activity {
 
     public static RequestsAdapter myAdapter;
