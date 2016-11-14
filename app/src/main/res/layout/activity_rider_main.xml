@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_rider_main"
     android:layout_width="wrap_content"
@@ -16,11 +17,11 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:id="@+id/source"
         android:hint="Source"
-        android:layout_toStartOf="@+id/placerequest" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/DestSearchButton" />
 
     <EditText
         android:layout_width="0dp"
@@ -33,25 +34,46 @@
         android:hint="Destination"
         android:layout_alignEnd="@+id/source" />
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        tools:context="ca.ualberta.cs.linkai.beep.RiderMainActivity"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/destination" />
-
     <Button
         android:text="PlaceRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/placerequest"
         android:onClick="onPlaceRequest"
-        android:layout_marginTop="12dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/map" />
+
+    <Button
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SourceSearchButton"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/DestSearchButton"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:textSize="12sp"
+        android:layout_above="@+id/map" />
+
+    <Button
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SourceSearchButton"
+        android:textSize="12sp"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/destination"
+        android:layout_alignParentTop="true" />
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        tools:context="ca.ualberta.cs.linkai.beep.RiderMainActivity"
+        android:layout_below="@+id/destination"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/placerequest" />
 </RelativeLayout>
 

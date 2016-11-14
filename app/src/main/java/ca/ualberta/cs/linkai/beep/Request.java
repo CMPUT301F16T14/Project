@@ -3,6 +3,7 @@ package ca.ualberta.cs.linkai.beep;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import io.searchbox.annotations.JestId;
 
@@ -32,13 +33,18 @@ public class Request {
     private Payment payment;
     private ArrayList<Account> acceptances = new ArrayList<Account>();
     private Account confirmedDriver;
+    private Date date;
     private Integer status;
 
     public Request(Account initiator, LatLng start, LatLng end) {
         this.initiator = initiator;
         this.startLocation = start;
         this.endLocation = end;
+        this.date = new Date();
         this.status = 0;
+    }
+    public Date getDate(){
+        return date;
     }
 
     public Float getEstimate() {

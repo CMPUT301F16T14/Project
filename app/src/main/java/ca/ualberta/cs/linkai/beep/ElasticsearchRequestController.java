@@ -22,14 +22,15 @@ import io.searchbox.core.SearchResult;
 public class ElasticsearchRequestController {
     private static JestDroidClient client;
 
-    public static class GetRequestByInitiatorTask extends AsyncTask<Request, Void, ArrayList<Request>> {
+    public static class GetRequestByInitiatorTask extends AsyncTask<Account, Void, ArrayList<Request>> {
         @Override
-        protected ArrayList<Request> doInBackground(Request... search_parameters) {
+        protected ArrayList<Request> doInBackground(Account... search_parameters) {
             verifySettings();
 
             ArrayList<Request> myRequests = new ArrayList<Request>();
 
-            String search_string = "{\"from\" : 0, \"size\" : 1000, \"query\" : {\"term\" : {\"initiator\":\"" + search_parameters[0] + "\" }}}";
+            String search_string = "{\"from\" : 0, \"size\" : 1000, \"query\" : {\"term\" : {\"username\":\"" +
+                    search_parameters[0].getUsername().toLowerCase() + "\" }}}";
             // assume that search_parameters[0] is the only search term we are interested in using
             Search search = new Search.Builder(search_string)
                     .addIndex("f16t14")
@@ -52,6 +53,12 @@ public class ElasticsearchRequestController {
 
             return myRequests;
         }
+
+        /*
+        protected void onPostExecute(ArrayList<Request> myRequests) {
+            RequestsListActivity.myAdapter.notifyDataSetChanged();
+        }
+        */
     }
 
     // TODO
@@ -121,7 +128,6 @@ public class ElasticsearchRequestController {
     }
 
 
-    // TODO
     public static class AddRequestTask extends AsyncTask<Request, Void, Void> {
 
         @Override

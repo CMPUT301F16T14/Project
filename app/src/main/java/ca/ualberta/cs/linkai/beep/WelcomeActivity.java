@@ -74,7 +74,6 @@ public class WelcomeActivity extends Activity {
 
     public void signInRider (View view) {
         username = usernameEditText.getText().toString();
-        usernameEditText.setText("");
 
         ElasticsearchAccountController.GetAccountTask getAccountTask = new ElasticsearchAccountController.GetAccountTask();
         getAccountTask.execute(username.toLowerCase());
