@@ -43,7 +43,7 @@ public class ProfileTest extends ActivityInstrumentationTestCase2 {
         testUserList.add(user1);
 
         // edit profile
-        testUser = testUserList.getUser("testUserName")
+        testUser = testUserList.getUser("testUserName");
         Profile testProfile = testUser.getProfile();
         testProfile.setUsername("newTestUserName");
         testProfile.setPhoneNumber("7807108888");
