@@ -3,6 +3,8 @@ package ca.ualberta.cs.linkai.beep;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
@@ -12,13 +14,16 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class ProfileTest {
+
     // rider1
     Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca");
     // rider2 (with the same name as rider1)
     Account rider2 = new Account("testRiderName1", "7807101331", "CMPUT321@ualberta.ca");
+
     /**
      * Test for UC-P01 (US03.01.01)
      */
+    @Test
     public void testCreateProfile(){
         ArrayList<Account> resultAccounts = new ArrayList<Account>();
         Account resultAccount;
@@ -70,6 +75,7 @@ public class ProfileTest {
     /**
      * Test for UC-P02 (US03.02.01)
      */
+    @Test
     public void testEditProfile(){
         ArrayList<Account> resultAccounts = new ArrayList<Account>();
         Account resultAccount;
@@ -117,6 +123,7 @@ public class ProfileTest {
     /**
      * Test for UC-P03 (US03.03.01)
      */
+    @Test
     public void testViewProfile(){
         ArrayList<Account> resultAccounts = new ArrayList<Account>();
         Account resultAccount;

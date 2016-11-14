@@ -4,6 +4,8 @@ import android.util.Pair;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
@@ -30,6 +32,7 @@ public class OfflineBehaviorTest {
     /**
      * Test for UC-OB01 (US08.01.01)
      */
+    @Test
     public void testViewAcceptanceHistory(){
         Boolean isConnect = Boolean.TRUE;  //online
 
@@ -58,6 +61,7 @@ public class OfflineBehaviorTest {
     /**
      * Test for UC-OB02 (US08.02.01)
      */
+    @Test
     public void testViewRequestHistory(){
         Boolean isConnect = Boolean.FALSE;  //offline
 

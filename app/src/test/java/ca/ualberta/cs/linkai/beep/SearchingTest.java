@@ -2,6 +2,8 @@ package ca.ualberta.cs.linkai.beep;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 
 import static junit.framework.Assert.assertEquals;
@@ -30,6 +32,7 @@ public class SearchingTest {
      * Test for UC-SE01 (US04.01.01 & US04.02.01)
      * Test for UC-SE01-A (US04.01.01)
      */
+    @Test
     public void testSearchRequestsByGeo(){
         ArrayList<Request> searchResult = new ArrayList<Request>();
 
@@ -65,6 +68,7 @@ public class SearchingTest {
      * Test for UC-SE01 (US04.01.01 & US04.02.01)
      * Test for UC-SE01-B (US04.02.01)
      */
+    @Test
     public void testSearchRequestsByKeyword(){
         ArrayList<Request> searchResult = new ArrayList<Request>();
 

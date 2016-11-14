@@ -2,6 +2,8 @@ package ca.ualberta.cs.linkai.beep;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import org.junit.Test;
+
 import static junit.framework.Assert.assertEquals;
 
 /**
@@ -16,6 +18,7 @@ public class LocationTest {
     /**
      * Test for UC-L01 (US10.02.01)
      */
+    @Test
     public void testViewRequestRoute(){
         LatLng startLocation1 = new LatLng(-34, 151);
         LatLng endLocation1 = new LatLng(-41, 139);
