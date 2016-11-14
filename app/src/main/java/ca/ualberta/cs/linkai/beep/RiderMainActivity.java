@@ -174,34 +174,5 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         super.onStart();
         mGoogleApiClient.connect();
 
- /*       searchButton = (Button) findViewById(R.id.search);
-        PlaceRequestButton = (Button) findViewById(R.id.placerequest);
-        sourceInput = (EditText) findViewById(R.id.source);
-        destinationInput = (EditText) findViewById(R.id.destination);
-
-        PlaceRequestButton.setOnClickListener(new View.onClickListener() {
-            public void onClick(View view) {
-                setResult(RESULT_OK);
-            }
-            Request myRequest;
-            List<Address> addressList = null;
-            String sourceLocation = sourceInput.getText().toString();
-            String destinationLocation = destinationInput.getText().toString();
-            if(!sourceLocation.isEmpty() && !destinationLocation.isEmpty()) {
-                Geocoder geocoder = new Geocoder(this);
-                try {
-                    addressList = geocoder.getFromLocationName(sourceLocation,1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Address address = addressList.get(0);
-                LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                myRequest = new Request(address.getLatitude(),address.getLongitude());
-                ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
-                addRequestTask.execute(myRequest);
-            }
-        }; */
     }
 }

@@ -64,6 +64,7 @@
         android:layout_alignBaseline="@+id/destination"
         android:layout_alignBottom="@+id/destination"
         android:layout_alignParentEnd="true"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:onClick="onPlaceRequest"/>
 </RelativeLayout>
 
