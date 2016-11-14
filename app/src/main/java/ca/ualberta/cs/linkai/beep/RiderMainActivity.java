@@ -1,6 +1,8 @@
 package ca.ualberta.cs.linkai.beep;
 
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -21,6 +23,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -132,6 +135,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         Request myRequest;
         List<Address> startAddress = null;
         List<Address> endAddress = null;
+        int width = 100;
+        int height = 100;
         sourceInput = (EditText) findViewById(R.id.source);
         destinationInput = (EditText) findViewById(R.id.destination);
         String sourceLocation = sourceInput.getText().toString();
@@ -149,9 +154,33 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             Address end = endAddress.get(0);
             LatLng startLatLng = new LatLng(start.getLatitude(),start.getLongitude());
             LatLng endLatLng = new LatLng(end.getLatitude(),end.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(startLatLng).title("start"));
+            //MarkerOptions marker = new MarkerOptions().position(startLatLng).title("start");
+            //marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.src));
+            //mMap.addMarker(marker);
+            //mMap.addMarker(new MarkerOptions().position(startLatLng).title("start"));
+
+            //http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
+            // add start marker
+            BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.src);
+            Bitmap b=bitmapdraw.getBitmap();
+            Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+            mMap.addMarker(new MarkerOptions()
+                    .position(startLatLng)
+                    .title("start")
+                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+            );
             mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
-            mMap.addMarker(new MarkerOptions().position(endLatLng).title("end"));
+
+            //mMap.addMarker(new MarkerOptions().position(endLatLng).title("end"));
+            // add end marker
+            BitmapDrawable bitmapdraw1 = (BitmapDrawable)getResources().getDrawable(R.drawable.des);
+            Bitmap b1 = bitmapdraw1.getBitmap();
+            Bitmap smallMarker1 = Bitmap.createScaledBitmap(b1, width, height, false);
+            mMap.addMarker(new MarkerOptions()
+                    .position(endLatLng)
+                    .title("end")
+                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1))
+            );
             mMap.animateCamera(CameraUpdateFactory.newLatLng(endLatLng));
             myRequest = new Request(startLatLng, endLatLng);
             ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
