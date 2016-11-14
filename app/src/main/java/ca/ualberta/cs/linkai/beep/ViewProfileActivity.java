@@ -89,6 +89,8 @@ public class ViewProfileActivity extends Activity {
             }
         });
 
+        //https://www.tutorialspoint.com/android/android_sending_email.htm
+        // send an email when click on phone number
         currentUserEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
