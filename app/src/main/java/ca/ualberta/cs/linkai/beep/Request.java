@@ -118,4 +118,8 @@ public class Request {
     public void setEndLocation(LatLng endLocation) {
         this.endLocation = endLocation;
     }
+
+    public void acceptPayment(){
+
+    }
 }

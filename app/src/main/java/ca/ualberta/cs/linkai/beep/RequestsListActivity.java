@@ -33,12 +33,12 @@ public class RequestsListActivity extends Activity {
         myRequests.clear();
 
         // Search Requests by initiator
-        ElasticsearchRequestController.GetRequestByInitiatorTask getRequestByInitiatorTaskTask =
+        ElasticsearchRequestController.GetRequestByInitiatorTask getRequestByInitiatorTask =
                 new ElasticsearchRequestController.GetRequestByInitiatorTask();
-        getRequestByInitiatorTaskTask.execute(RuntimeAccount.getInstance().myAccount);
+        getRequestByInitiatorTask.execute(RuntimeAccount.getInstance().myAccount);
 
         try {
-            myRequests = getRequestByInitiatorTaskTask.get();
+            myRequests = getRequestByInitiatorTask.get();
         }
         catch (Exception e) {
             Log.i("Error", "Failed to get the Requests out of the async object.");
