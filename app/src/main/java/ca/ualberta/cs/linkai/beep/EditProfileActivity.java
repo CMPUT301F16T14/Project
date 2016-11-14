@@ -31,7 +31,8 @@ public class EditProfileActivity extends Activity {
     protected void onStart() {
         super.onStart();
 
-        currentAccount = WelcomeActivity.logInAccount;
+        //currentAccount = WelcomeActivity.logInAccount;
+        currentAccount = RuntimeAccount.getInstance().myAccount;
 
         Toast.makeText(EditProfileActivity.this, currentAccount.getUsername(),
                 Toast.LENGTH_SHORT).show();
@@ -81,10 +82,11 @@ public class EditProfileActivity extends Activity {
                             Toast.LENGTH_SHORT).show();
                 } else {
                     //TODO: save newPhone and newEmail to elasticSearch
-                    //ToDO: update to clould
+                    //ToDO: update to cloud
                     currentAccount.setEmail(userEmail);
                     currentAccount.setPhone(userPhone);
-
+                    ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
+                    addAccountTask.execute(currentAccount);
                     //destroy this page, return to last page
                     finish();
                 }
