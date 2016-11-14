@@ -42,7 +42,8 @@
 
         <activity
             android:name=".RiderMainActivity"
-            android:label="@string/title_activity_rider_main"></activity>
+            android:label="@string/title_activity_rider_main" />
+        <activity android:name=".EditProfileActivity"></activity>
     </application>
 
 </manifest>
