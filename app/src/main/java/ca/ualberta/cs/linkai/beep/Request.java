@@ -13,13 +13,6 @@ import io.searchbox.annotations.JestId;
  */
 
 public class Request {
-    public String getId(){
-        return id;
-    }
-
-    public void setId(String id){
-        this.id = id;
-    }
 
     @JestId
     private  String id;
@@ -126,5 +119,14 @@ public class Request {
 
     public void acceptPayment(){
 
+    }
+
+    //getter and setter about JestId
+    public String getId(){
+        return id;
+    }
+
+    public void setId(String id){
+        this.id = id;
     }
 }

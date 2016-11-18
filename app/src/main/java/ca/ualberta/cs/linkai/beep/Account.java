@@ -19,17 +19,9 @@ import io.searchbox.annotations.JestId;
  */
 
 public class Account {
-    
-    public String getId(){
-        return id;
-    }
-
-    public void setId(String id){
-        this.id = id;
-    }
 
     @JestId
-    private  String id;
+    private String id;
     private String username;
     private String phone;
     private String email;
@@ -64,6 +56,15 @@ public class Account {
 
     public String getEmail() {
         return email;
+    }
+
+    //getter and setter about JestId
+    public String getId(){
+        return id;
+    }
+
+    public void setId(String id){
+        this.id = id;
     }
 
 }

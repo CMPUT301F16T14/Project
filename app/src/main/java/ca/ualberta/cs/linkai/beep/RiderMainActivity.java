@@ -42,10 +42,16 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         ActivityCompat.OnRequestPermissionsResultCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    public static final int DIVIDE_BY_TWO = 2;
+    public static final int BITMAP_SIZE = 100;
     private GoogleMap mMap;
+    /**
+     * Implement Google API Client
+     */
     protected GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-    double lat =0, lng=0;
+    double lat = 0;
+    double lng = 0;
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
     private EditText sourceInput;
     private EditText destinationInput;
@@ -130,8 +136,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         Request myRequest;
         List<Address> startAddress = null;
         List<Address> endAddress = null;
-        int width = 100;
-        int height = 100;
+        int width = BITMAP_SIZE;
+        int height = BITMAP_SIZE;
         sourceInput = (EditText) findViewById(R.id.source);
         destinationInput = (EditText) findViewById(R.id.destination);
         String sourceLocation = sourceInput.getText().toString();
@@ -149,8 +155,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             Address end = endAddress.get(0);
             LatLng startLatLng = new LatLng(start.getLatitude(),start.getLongitude());
             LatLng endLatLng = new LatLng(end.getLatitude(),end.getLongitude());
-            LatLng avgLatLng = new LatLng((start.getLatitude() + end.getLatitude())/2,
-                    (start.getLongitude() + end.getLongitude())/2);
+            LatLng avgLatLng = new LatLng((start.getLatitude() + end.getLatitude())/ DIVIDE_BY_TWO,
+                    (start.getLongitude() + end.getLongitude())/DIVIDE_BY_TWO);
             //MarkerOptions marker = new MarkerOptions().position(startLatLng).title("start");
             //marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.src));
             //mMap.addMarker(marker);
