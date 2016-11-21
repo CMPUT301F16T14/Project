@@ -49,7 +49,6 @@
             android:name=".RiderMainActivity"
             android:label="@string/title_activity_rider_main" />
         <activity android:name=".EditProfileActivity" />
-        <activity android:name=".ViewProfileActivity"></activity>
     </application>
 
 </manifest>

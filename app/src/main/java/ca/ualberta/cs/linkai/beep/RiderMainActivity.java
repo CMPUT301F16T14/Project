@@ -64,7 +64,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
      * Implement Google API Client
      */
     protected GoogleApiClient mGoogleApiClient; // GoogleApiClient for Location Service API
-    protected GoogleApiClient MyGoogleApiClient; // GoogleApiClient for Place API
+    //protected GoogleApiClient MyGoogleApiClient; // GoogleApiClient for Place API
     Location mLastLocation;
     double lat = 0;
     double lng = 0;
@@ -72,7 +72,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private EditText sourceInput;
     private EditText destinationInput;
     private ListView listView;
-    private PlacesListViewAdapter mAutoCompleteAdapter;
     private Button searchButton;
     private Button PlaceRequestButton;
 
@@ -81,7 +80,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         buildGoogleApiClient();
         setContentView(R.layout.activity_rider_main);
-        listView = (ListView) findViewById(R.id.sourcesearchlist);
         sourceInput = (EditText) findViewById(R.id.source);
         //destinationInput = (EditText) findViewById(R.id.destination);
 
@@ -152,77 +150,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     }
 
 
-    public void searchPlace (final Editable editable) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (!editable.toString().equals("") && mGoogleApiClient.isConnected()) {
-                    try {
-                        mAutoCompleteAdapter.getFilter().filter(editable.toString());
-
-                    } catch (Exception e) {
-                        Log.e(TAG, "Exception");
-
-                    }
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onResume () {
-        //buildGoogleApiClient();
-        super.onResume();
-
-        if (!mGoogleApiClient.isConnected() && !mGoogleApiClient.isConnecting()) {
-            mGoogleApiClient.connect();
-        }
-
-        sourceInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if ((keyEvent != null && (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                    Utils.hideKeyboard(RiderMainActivity.this);
-
-                }
-                return false;
-            }
-        });
-
-        mAutoCompleteAdapter = new PlacesListViewAdapter(mGoogleApiClient, DEFAULT_BOUNDS, null, RiderMainActivity.this);
-        listView.setAdapter(mAutoCompleteAdapter);
-
-        // https://developers.google.com/places/web-service/autocomplete#place_autocomplete_responses
-        // The Google Places API Web Service returns up to 5 results.
-
-        sourceInput.addTextChangedListener(new TextWatcher() {
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            public void afterTextChanged(final Editable s) {
-                searchPlace(s);
-
-            }
-
-        });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                final PlaceAutocomplete item = mAutoCompleteAdapter.getItem(i);
-                final String placeId = String.valueOf(item.placeId);
-
-                itemClickAction(placeId);
-
-                Utils.hideKeyboard(RiderMainActivity.this);
-            }
-
-        });
-    }
 
     /**
      * call when click on the PlaceRequest button
@@ -328,32 +255,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     }
 
 
-    /**
-     * Handle item click and launch Geo Data API to get more informations about the selected address
-     *
-     * @param placeId
-     */
-    public void itemClickAction(final String placeId) {
-        PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
-                .getPlaceById(mGoogleApiClient, placeId);
-        placeResult.setResultCallback(new ResultCallback<PlaceBuffer>() {
-            @Override
-            public void onResult(PlaceBuffer places) {
-
-                Log.d(TAG, "place count: " + places.getCount());
-                if (places.getCount() == 1) {
-                    Log.i(TAG, "place address: " + places.get(0).getAddress());
-                    Log.i(TAG, "place latLng: " + places.get(0).getLatLng());
-                    Log.i(TAG, "place latitude: " + places.get(0).getLatLng().latitude);
-                    Log.i(TAG, "place longitude: " + places.get(0).getLatLng().longitude);
-                    Log.i(TAG, "place name: " + places.get(0).getName());
-
-                } else {
-                    Log.i(TAG, "Get Places Detail Error");
-                }
-            }
-        });
-    }
 
     @Override
     public void onConnectionSuspended(int i) {
