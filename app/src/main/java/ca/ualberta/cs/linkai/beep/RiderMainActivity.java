@@ -82,12 +82,15 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         //destinationInput = (EditText) findViewById(R.id.destination);
 
         // Retrieve the PlaceAutocompleteFragment.
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
-                getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        PlaceAutocompleteFragment SourceAutocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.autocomplete_source);
+        PlaceAutocompleteFragment DestinationAutocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.autocomplete_destination);
 
         // Register a listener to receive callbacks when a place has been selected or an error has
         // occurred.
-        autocompleteFragment.setOnPlaceSelectedListener(this);
+        SourceAutocompleteFragment.setOnPlaceSelectedListener(this);
+        DestinationAutocompleteFragment.setOnPlaceSelectedListener(this);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -167,7 +170,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         int width = BITMAP_SIZE;
         int height = BITMAP_SIZE;
         //sourceInput = (EditText) findViewById(R.id.source);
-        destinationInput = (EditText) findViewById(R.id.destination);
+        //destinationInput = (EditText) findViewById(R.id.destination);
         String sourceLocation = sourceInput.getText().toString();
         String destinationLocation = destinationInput.getText().toString();
         if(!sourceLocation.isEmpty() && !destinationLocation.isEmpty()) {
@@ -281,6 +284,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
     /**
      * Callbak invoked when a place has been selected from the PlaceAutocompleteFragment.
+     *
      * @param status
      */
     @Override

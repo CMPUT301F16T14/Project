@@ -12,19 +12,6 @@
     android:orientation="vertical"
     tools:context="ca.ualberta.cs.linkai.beep.RiderMainActivity">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp" >
-        <fragment
-            android:id="@+id/autocomplete_fragment"
-            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </android.support.v7.widget.CardView>
-
     <Button
         android:text="PlaceRequest"
         android:layout_width="wrap_content"
@@ -35,26 +22,42 @@
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/map" />
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentTop="true">
+
+        <fragment
+            android:id="@+id/autocomplete_source"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/map">
+
+        <fragment
+            android:id="@+id/autocomplete_destination"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.v7.widget.CardView>
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         tools:context="ca.ualberta.cs.linkai.beep.RiderMainActivity"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/placerequest"
-        android:layout_below="@+id/destination"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/destination"
-        android:hint="Destination"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp"
-        android:layout_alignParentEnd="true" />
+        android:layout_height="325dp" />
 
 
 </RelativeLayout>
