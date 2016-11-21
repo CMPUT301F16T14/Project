@@ -11,27 +11,25 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -53,7 +51,7 @@ import java.util.List;
 
 public class RiderMainActivity extends FragmentActivity implements OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, PlaceSelectionListener {
 
     public static final int DIVIDE_BY_TWO = 2;
     public static final int BITMAP_SIZE = 100;
@@ -80,9 +78,16 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         buildGoogleApiClient();
         setContentView(R.layout.activity_rider_main);
-        sourceInput = (EditText) findViewById(R.id.source);
+        //sourceInput = (EditText) findViewById(R.id.source);
         //destinationInput = (EditText) findViewById(R.id.destination);
 
+        // Retrieve the PlaceAutocompleteFragment.
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        // Register a listener to receive callbacks when a place has been selected or an error has
+        // occurred.
+        autocompleteFragment.setOnPlaceSelectedListener(this);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -161,7 +166,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         List<Address> endAddress = null;
         int width = BITMAP_SIZE;
         int height = BITMAP_SIZE;
-        sourceInput = (EditText) findViewById(R.id.source);
+        //sourceInput = (EditText) findViewById(R.id.source);
         destinationInput = (EditText) findViewById(R.id.destination);
         String sourceLocation = sourceInput.getText().toString();
         String destinationLocation = destinationInput.getText().toString();
@@ -250,11 +255,41 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             return true;
         }
 
-
         return super.onOptionsItemSelected(item);
     }
 
 
+    /**
+     * Callback invoked when a place has been selected from the PlaceAutocompleteFragment.
+     * @param place
+     */
+    @Override
+    public void onPlaceSelected(Place place) {
+        Log.i(TAG, "Place Selected: " + place.getName());
+
+        // Format the returned place's details and display them in the TextView.
+     /*   mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(), place.getId(),
+                place.getAddress(), place.getPhoneNumber(), place.getWebsiteUri()));
+
+        CharSequence attributions = place.getAttributions();
+        if (!TextUtils.isEmpty(attributions)) {
+            mPlaceAttribution.setText(Html.fromHtml(attributions.toString()));
+        } else {
+            mPlaceAttribution.setText("");
+        }*/
+    }
+
+    /**
+     * Callbak invoked when a place has been selected from the PlaceAutocompleteFragment.
+     * @param status
+     */
+    @Override
+    public void onError(Status status) {
+        Log.e(TAG, "onError: Status = " + status.toString());
+
+        Toast.makeText(this, "Place selection failed: " + status.getStatusMessage(),
+                Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onConnectionSuspended(int i) {
