@@ -11,21 +11,34 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -44,17 +57,22 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
     public static final int DIVIDE_BY_TWO = 2;
     public static final int BITMAP_SIZE = 100;
+    private static final String TAG = RiderMainActivity.class.getSimpleName();
+    private static final LatLngBounds DEFAULT_BOUNDS = new LatLngBounds(new LatLng(0, 0), new LatLng(0, 0));
     private GoogleMap mMap;
     /**
      * Implement Google API Client
      */
-    protected GoogleApiClient mGoogleApiClient;
+    protected GoogleApiClient mGoogleApiClient; // GoogleApiClient for Location Service API
+    protected GoogleApiClient MyGoogleApiClient; // GoogleApiClient for Place API
     Location mLastLocation;
     double lat = 0;
     double lng = 0;
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
     private EditText sourceInput;
     private EditText destinationInput;
+    private ListView listView;
+    private PlacesListViewAdapter mAutoCompleteAdapter;
     private Button searchButton;
     private Button PlaceRequestButton;
 
@@ -63,7 +81,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         buildGoogleApiClient();
         setContentView(R.layout.activity_rider_main);
-        //sourceInput = (EditText) findViewById(R.id.source);
+        listView = (ListView) findViewById(R.id.sourcesearchlist);
+        sourceInput = (EditText) findViewById(R.id.source);
         //destinationInput = (EditText) findViewById(R.id.destination);
 
 
@@ -71,6 +90,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
     private void buildGoogleApiClient() {
@@ -78,6 +98,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
+                .addApi(Places.GEO_DATA_API)
                 .addOnConnectionFailedListener(this).build();
     }
 
@@ -127,11 +148,86 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             LatLng loc = new LatLng(lat, lng);
             mMap.addMarker(new MarkerOptions().position(loc).title("My Current Location"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-            //mMap.getUiSettings().setZoomControlsEnabled(true);
-            //mMap.getUiSettings().setCompassEnabled(true);
         }
     }
 
+
+    public void searchPlace (final Editable editable) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (!editable.toString().equals("") && mGoogleApiClient.isConnected()) {
+                    try {
+                        mAutoCompleteAdapter.getFilter().filter(editable.toString());
+
+                    } catch (Exception e) {
+                        Log.e(TAG, "Exception");
+
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onResume () {
+        //buildGoogleApiClient();
+        super.onResume();
+
+        if (!mGoogleApiClient.isConnected() && !mGoogleApiClient.isConnecting()) {
+            mGoogleApiClient.connect();
+        }
+
+        sourceInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if ((keyEvent != null && (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    Utils.hideKeyboard(RiderMainActivity.this);
+
+                }
+                return false;
+            }
+        });
+
+        mAutoCompleteAdapter = new PlacesListViewAdapter(mGoogleApiClient, DEFAULT_BOUNDS, null, RiderMainActivity.this);
+        listView.setAdapter(mAutoCompleteAdapter);
+
+        // https://developers.google.com/places/web-service/autocomplete#place_autocomplete_responses
+        // The Google Places API Web Service returns up to 5 results.
+
+        sourceInput.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(final Editable s) {
+                searchPlace(s);
+
+            }
+
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                final PlaceAutocomplete item = mAutoCompleteAdapter.getItem(i);
+                final String placeId = String.valueOf(item.placeId);
+
+                itemClickAction(placeId);
+
+                Utils.hideKeyboard(RiderMainActivity.this);
+            }
+
+        });
+    }
+
+    /**
+     * call when click on the PlaceRequest button
+     * @param view
+     */
     public void onPlaceRequest(View view) {
         Request myRequest;
         List<Address> startAddress = null;
@@ -198,6 +294,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -230,6 +327,34 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         return super.onOptionsItemSelected(item);
     }
 
+
+    /**
+     * Handle item click and launch Geo Data API to get more informations about the selected address
+     *
+     * @param placeId
+     */
+    public void itemClickAction(final String placeId) {
+        PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
+                .getPlaceById(mGoogleApiClient, placeId);
+        placeResult.setResultCallback(new ResultCallback<PlaceBuffer>() {
+            @Override
+            public void onResult(PlaceBuffer places) {
+
+                Log.d(TAG, "place count: " + places.getCount());
+                if (places.getCount() == 1) {
+                    Log.i(TAG, "place address: " + places.get(0).getAddress());
+                    Log.i(TAG, "place latLng: " + places.get(0).getLatLng());
+                    Log.i(TAG, "place latitude: " + places.get(0).getLatLng().latitude);
+                    Log.i(TAG, "place longitude: " + places.get(0).getLatLng().longitude);
+                    Log.i(TAG, "place name: " + places.get(0).getName());
+
+                } else {
+                    Log.i(TAG, "Get Places Detail Error");
+                }
+            }
+        });
+    }
+
     @Override
     public void onConnectionSuspended(int i) {
 
@@ -246,4 +371,14 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         mGoogleApiClient.connect();
 
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+    }
+
 }
