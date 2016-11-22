@@ -54,18 +54,16 @@ import static android.R.attr.data;
 
 public class RiderMainActivity extends FragmentActivity implements OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, PlaceSelectionListener {
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     public static final int DIVIDE_BY_TWO = 2;
     public static final int BITMAP_SIZE = 100;
     private static final String TAG = RiderMainActivity.class.getSimpleName();
-    private static final LatLngBounds DEFAULT_BOUNDS = new LatLngBounds(new LatLng(0, 0), new LatLng(0, 0));
     private GoogleMap mMap;
     /**
      * Implement Google API Client
      */
-    protected GoogleApiClient mGoogleApiClient; // GoogleApiClient for Location Service API
-    //protected GoogleApiClient MyGoogleApiClient; // GoogleApiClient for Place API
+    protected GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     double lat = 0;
     double lng = 0;
@@ -78,25 +76,78 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         buildGoogleApiClient();
         setContentView(R.layout.activity_rider_main);
-        //sourceInput = (EditText) findViewById(R.id.source);
-        //destinationInput = (EditText) findViewById(R.id.destination);
 
-        // Retrieve the PlaceAutocompleteFragment.
+
+        /**
+         * Retrieve the PlaceAutocompleteFragment.
+         *
+         * Code from:
+         * https://github.com/googlesamples/android-play-places/tree/master/PlaceCompleteActivity
+         */
         PlaceAutocompleteFragment SourceAutocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_source);
         PlaceAutocompleteFragment DestinationAutocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_destination);
 
-        // Register a listener to receive callbacks when a place has been selected or an error has
-        // occurred.
-        SourceAutocompleteFragment.setOnPlaceSelectedListener(this);
-        DestinationAutocompleteFragment.setOnPlaceSelectedListener(this);
+        /**
+         * Register a listener to receive callbacks when a place has been selected or an error has occoured.
+         *
+         * Code from:
+         * https://github.com/googlesamples/android-play-places/tree/master/PlaceCompleteActivity
+         */
+        //SourceAutocompleteFragment.setOnPlaceSelectedListener(this);
+        //DestinationAutocompleteFragment.setOnPlaceSelectedListener(this);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        SourceAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            /**
+             * Callback invoked when a place has been selected from the PlaceAutocompleteFragment.
+             *
+             * @param place
+             */
+            @Override
+            public void onPlaceSelected(Place place) {
+                Log.i(TAG, "Place Selected: " + place.getName());
+
+                sourceLocation = place.getAddress();
+            }
+
+            /**
+             * Callbak invoked when a place has been selected from the PlaceAutocompleteFragment.
+             *
+             * @param status
+             */
+            @Override
+            public void onError(Status status) {
+                Log.e(TAG, "onError: Status = " + status.toString());
+            }
+        });
+        DestinationAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            /**
+             * Callback invoked when a place has been selected from the PlaceAutocompleteFragment.
+             *
+             * @param place
+             */
+            @Override
+            public void onPlaceSelected(Place place) {
+                Log.i(TAG, "Place Selected: " + place.getName());
+
+                destLocation = place.getAddress();
+            }
+            /**
+             * Callbak invoked when a place has been selected from the PlaceAutocompleteFragment.
+             *
+             * @param status
+             */
+            @Override
+            public void onError(Status status) {
+                Log.e(TAG, "onError: Status = " + status.toString());
+            }
+        });
     }
 
     private void buildGoogleApiClient() {
@@ -259,43 +310,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    /**
-     * Callback invoked when a place has been selected from the PlaceAutocompleteFragment.
-     * @param place
-     */
-    @Override
-    public void onPlaceSelected(Place place) {
-        Log.i(TAG, "Place Selected: " + place.getName());
-
-        sourceLocation = place.getAddress();
-        destLocation = place.getAddress();
-
-        // Format the returned place's details and display them in the TextView.
-     /*   mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(), place.getId(),
-                place.getAddress(), place.getPhoneNumber(), place.getWebsiteUri()));
-
-        CharSequence attributions = place.getAttributions();
-        if (!TextUtils.isEmpty(attributions)) {
-            mPlaceAttribution.setText(Html.fromHtml(attributions.toString()));
-        } else {
-            mPlaceAttribution.setText("");
-        }*/
-    }
-
-    /**
-     * Callbak invoked when a place has been selected from the PlaceAutocompleteFragment.
-     *
-     * @param status
-     */
-    @Override
-    public void onError(Status status) {
-        Log.e(TAG, "onError: Status = " + status.toString());
-
-        Toast.makeText(this, "Place selection failed: " + status.getStatusMessage(),
-                Toast.LENGTH_SHORT).show();
     }
 
     @Override
