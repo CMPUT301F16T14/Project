@@ -28,6 +28,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,6 +42,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
+
+import static android.R.attr.data;
 
 /**
  * Rider main activity to view map and place requests between two locations
@@ -67,11 +70,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     double lat = 0;
     double lng = 0;
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
-    private EditText sourceInput;
-    private EditText destinationInput;
-    private ListView listView;
-    private Button searchButton;
-    private Button PlaceRequestButton;
+    private CharSequence sourceLocation;
+    private CharSequence destLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,13 +171,13 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         int height = BITMAP_SIZE;
         //sourceInput = (EditText) findViewById(R.id.source);
         //destinationInput = (EditText) findViewById(R.id.destination);
-        String sourceLocation = sourceInput.getText().toString();
-        String destinationLocation = destinationInput.getText().toString();
-        if(!sourceLocation.isEmpty() && !destinationLocation.isEmpty()) {
+
+
+        if(!sourceLocation.toString().isEmpty() && !destLocation.toString().isEmpty()) {
             Geocoder geocoder = new Geocoder(this);
             try {
-                startAddress = geocoder.getFromLocationName(sourceLocation,1);
-                endAddress = geocoder.getFromLocationName(destinationLocation,1);
+                startAddress = geocoder.getFromLocationName(sourceLocation.toString(),1);
+                endAddress = geocoder.getFromLocationName(destLocation.toString(),1);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -269,6 +269,9 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     @Override
     public void onPlaceSelected(Place place) {
         Log.i(TAG, "Place Selected: " + place.getName());
+
+        sourceLocation = place.getAddress();
+        destLocation = place.getAddress();
 
         // Format the returned place's details and display them in the TextView.
      /*   mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(), place.getId(),

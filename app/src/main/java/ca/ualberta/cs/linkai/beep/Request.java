@@ -16,10 +16,11 @@ public class Request {
 
     @JestId
     private  String id;
-
     private Account initiator;
     private LatLng startLocation;
     private LatLng endLocation;
+    private CharSequence start;
+    private CharSequence end;
     private String reason;
     private Float estimate;
     private Payment payment;
@@ -41,6 +42,15 @@ public class Request {
         this.date = new Date();
         this.status = 0;
     }
+
+    public Request(Account initiator, CharSequence start, CharSequence end) {
+        this.initiator = initiator;
+        this.start = start;
+        this.end = end;
+        this.date = new Date();
+        this.status = 0;
+    }
+
     public Date getDate(){
         return date;
     }
