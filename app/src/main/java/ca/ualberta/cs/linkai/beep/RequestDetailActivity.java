@@ -39,8 +39,6 @@ public class RequestDetailActivity extends Activity {
 
         if(bundle != null) {
             flag = bundle.getInt("senPosition");
-            //from = RiderMainActivity.start.getLocality();
-            //to = RiderMainActivity.DestAddress;
             mRequest = RequestsListActivity.myRequests.get(flag);
         }
 
