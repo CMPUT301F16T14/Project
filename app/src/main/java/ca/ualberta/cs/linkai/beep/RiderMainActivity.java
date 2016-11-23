@@ -102,7 +102,14 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                 getFragmentManager().findFragmentById(R.id.autocomplete_source);
         PlaceAutocompleteFragment DestinationAutocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_destination);
-
+        /**
+         * Sets the hint text to display in the search input field when there is no text entered.
+         *
+         * Reference from:
+         * https://developers.google.com/android/reference/com/google/android/gms/location/places/ui/PlaceAutocompleteFragment
+         */
+        SourceAutocompleteFragment.setHint("From");
+        DestinationAutocompleteFragment.setHint("To");
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
