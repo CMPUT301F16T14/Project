@@ -70,6 +70,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
     private CharSequence sourceLocation;
     private CharSequence destLocation;
+    private String SourceAddress;
+    private  String DestAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,13 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        /**
+         * set on place selected listen on autocomplete fragment when choose from the list
+         *
+         * Partial code from:
+         * http://www.itgo.me/a/x3124093687586414109/android-using-placeautocompleteactivity-google-places-api
+         */
+
         SourceAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             /**
              * Callback invoked when a place has been selected from the PlaceAutocompleteFragment.
@@ -126,6 +135,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                 Log.e(TAG, "onError: Status = " + status.toString());
             }
         });
+
         DestinationAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             /**
              * Callback invoked when a place has been selected from the PlaceAutocompleteFragment.
@@ -135,7 +145,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             @Override
             public void onPlaceSelected(Place place) {
                 Log.i(TAG, "Place Selected: " + place.getName());
-
                 destLocation = place.getAddress();
             }
             /**
@@ -233,8 +242,13 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
             Address start = startAddress.get(0);
             Address end = endAddress.get(0);
+
+            SourceAddress = start.getLocality();
+            DestAddress = end.getLocality();
+
             LatLng startLatLng = new LatLng(start.getLatitude(),start.getLongitude());
             LatLng endLatLng = new LatLng(end.getLatitude(),end.getLongitude());
             LatLng avgLatLng = new LatLng((start.getLatitude() + end.getLatitude())/ DIVIDE_BY_TWO,
@@ -274,7 +288,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             // Set Camera position
             mMap.animateCamera(CameraUpdateFactory.newLatLng(avgLatLng));
 
-            myRequest = new Request(RuntimeAccount.getInstance().myAccount, startLatLng, endLatLng);
+            myRequest = new Request(RuntimeAccount.getInstance().myAccount, SourceAddress, DestAddress);
             ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
             addRequestTask.execute(myRequest);
         }

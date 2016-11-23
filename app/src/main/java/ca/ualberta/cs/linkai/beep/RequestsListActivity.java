@@ -6,7 +6,18 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.concurrent.Exchanger;
 
 /**
  * Request list to store and show cuurent user requests
@@ -59,4 +70,6 @@ public class RequestsListActivity extends Activity {
         myAdapter.addAll(myRequests);
         myAdapter.notifyDataSetChanged();
     }
+
+
 }
