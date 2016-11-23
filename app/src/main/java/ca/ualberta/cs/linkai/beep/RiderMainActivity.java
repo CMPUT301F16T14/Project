@@ -75,8 +75,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
     private CharSequence sourceLocation;
     private CharSequence destLocation;
-    private String SourceAddress;
-    private  String DestAddress;
+    public static String SourceAddress;
+    public static String DestAddress;
     List<Address> startAddress = null;
     List<Address> endAddress = null;
     Address start;

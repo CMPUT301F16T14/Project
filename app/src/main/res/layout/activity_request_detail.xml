@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_request_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ca.ualberta.cs.linkai.beep.RequestDetailActivity">
+
+    <Button
+        android:text="Confirm and Pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm"
+        android:layout_marginBottom="88dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Cancel Request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelrequest"
+        android:layout_above="@+id/confirm"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="How's your rider? "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rate"
+        android:textSize="18sp"
+        android:layout_above="@+id/ratingBar"
+        android:layout_alignParentStart="true" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="From:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/from"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="To:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/to"
+        android:textSize="20sp"
+        android:layout_below="@+id/from"
+        android:layout_alignStart="@+id/from"
+        android:layout_alignEnd="@+id/from" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/from"
+        android:id="@+id/StartAddress"
+        android:layout_alignStart="@+id/ratingBar"
+        android:textSize="20sp"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/to"
+        android:layout_toEndOf="@+id/from"
+        android:id="@+id/DestAddress"
+        android:textSize="20sp"
+        android:layout_alignRight="@+id/to"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:text="Driver:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/to"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="17dp"
+        android:id="@+id/Driver"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Driver"
+        android:id="@+id/DriverName"
+        android:textSize="18sp"
+        android:layout_alignStart="@+id/StartAddress"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:text="(Click name to see driver profile)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DriverName"
+        android:layout_alignStart="@+id/DriverName"
+        android:layout_marginStart="62dp"
+        android:id="@+id/DriverInfo" />
+
+    <TextView
+        android:text="Driver's vehicle:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DriverInfo"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp"
+        android:id="@+id/car"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/car"
+        android:layout_toEndOf="@+id/car"
+        android:id="@+id/CarInfo"
+        android:textSize="18sp"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

@@ -1,8 +1,11 @@
 package ca.ualberta.cs.linkai.beep;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +22,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.concurrent.Exchanger;
 
+import static ca.ualberta.cs.linkai.beep.R.styleable.View;
+
 /**
  * Request list to store and show cuurent user requests
  */
@@ -27,7 +32,7 @@ public class RequestsListActivity extends Activity {
 
     public static RequestsAdapter myAdapter;
     private ListView myRequestsList;
-    private ArrayList<Request> myRequests = new ArrayList<Request>();
+    public static ArrayList<Request> myRequests = new ArrayList<Request>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,15 @@ public class RequestsListActivity extends Activity {
 
         myAdapter = new RequestsAdapter(this, myRequests);
         myRequestsList.setAdapter(myAdapter);
+
+        myRequestsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity.class);
+                intent.putExtra("sendLocation", position);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -70,6 +84,7 @@ public class RequestsListActivity extends Activity {
         myAdapter.addAll(myRequests);
         myAdapter.notifyDataSetChanged();
     }
+
 
 
 }
