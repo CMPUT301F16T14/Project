@@ -200,11 +200,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                  */
                 BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.des);
                 Bitmap b = bitmapdraw.getBitmap();
-                Bitmap smallMarker1 = Bitmap.createScaledBitmap(b, width, height, false);
+                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
                 mMap.addMarker(EndMarker
                         .position(endLatLng)
                         .title("end")
-                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1))
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                 );
                 LatLng avgLatLng = new LatLng((start.getLatitude() + end.getLatitude()) / DIVIDE_BY_TWO,
                         (start.getLongitude() + end.getLongitude()) / DIVIDE_BY_TWO);
@@ -253,15 +253,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
             ActivityCompat.requestPermissions(this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  }, MY_PERMISSION_ACCESS_COURSE_LOCATION );
         }
-        // Add a marker in Sydney and move the camera
+
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
-        //buildGoogleApiClient();
 
-        //LatLng loc = new LatLng(lat, lng);
-        //mMap.addMarker(new MarkerOptions().position(loc).title("New Marker"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
     }
 
 
