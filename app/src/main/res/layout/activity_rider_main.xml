@@ -12,24 +12,15 @@
     android:orientation="vertical"
     tools:context="ca.ualberta.cs.linkai.beep.RiderMainActivity">
 
-    <Button
-        android:text="PlaceRequest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/placerequest"
-        android:onClick="onPlaceRequest"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/map" />
-
     <android.support.v7.widget.CardView
+        android:id="@+id/source_cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_alignParentTop="true">
 
         <fragment
             android:id="@+id/autocomplete_source"
+            android:hint="From: Address"
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -37,13 +28,14 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/dest_cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/map">
+        android:layout_below="@+id/source_cardView">
 
         <fragment
             android:id="@+id/autocomplete_destination"
+            android:hint="To: Address"
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -55,9 +47,19 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="fill_parent"
         tools:context="ca.ualberta.cs.linkai.beep.RiderMainActivity"
-        android:layout_alignParentStart="true"
+        android:layout_height="325dp"
         android:layout_above="@+id/placerequest"
-        android:layout_height="325dp" />
+        android:layout_below="@+id/dest_cardView"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="PlaceRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/placerequest"
+        android:onClick="onPlaceRequest"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

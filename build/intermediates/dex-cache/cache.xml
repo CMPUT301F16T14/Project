@@ -3,372 +3,210 @@
 
     <item
         is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a819aae4f0c711e50b4fd633922a3c1a176cb51e">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-maps-9.0.0_c142a1fba8730546bccb07db46201865525469af.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_ee2e217b21221eb0228c604e596ce889a47dcca3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-9.0.0_874084dd0c0b31409a977c7925a1ac340d7f6d9f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="1941832901fc4e7a93300b53762e9f65d7650b99">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.0.0_4edf405735d36a5e69971f6e1c91b6ca8108e9e8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.0.0_7f5fcdf265ef17359fdee3437f59a9235ba30e11.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_b80f5a8a14ea889016c8986f200be9ce9a29dfb7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_6b5d6d7835fca4e7edc5876b9a74fdf2a23c10b9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.0.0_0882db3846ec367c43b3922e7268600c1f8fb650.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/.gradle/caches/modules-2/files-2.1/io.searchbox/jest-droid/2.0.3/63732634901438ac56b8f6ab0ca16c8e20da85c5/jest-droid-2.0.3.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="63732634901438ac56b8f6ab0ca16c8e20da85c5">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/jest-droid-2.0.3_6c07c91c3fbfbbb201f01949596c42fced98cc75.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="cc178928721f3222b3b06bdfbd9497378ccb9792">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-9.0.0_b704ff1393a221740ba09a9fae6a36e1b6b7cf91.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.0.0_e0a6dfb21c1f4bb84ac5a3419d9de500725f9460.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="26674000177e45447a0326a6ad84612761199a13">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.0.0_c624feaba6f4a0c899324c65c73b97cd16bb0ea8.jar" />
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.0.0_940c3801fb8c658eb60f3d1726c176529af54806.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.0.0_ad13b2f8cbc25251bc4e6a316c918f8c648612cf.jar" />
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.0.0_8e15914dde839c825f6dd36e96a901509bffb0b7.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_e1221cf5793c081bb7584d87485fbe12b263e036.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.0.0_542effe5bf955582e5c4b3f741579f2311e1b7c8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.0.0_000dc444d032095ffaf32f4aa6333991f7725af1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-9.0.0_84bf7e1bf2aa001a39a09fa15350611d12e43969.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.0.0_3f82a8e405c97e56262ea5bf692ed847164de98a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_11f8dd6fba96a7b458fbbf7d1176b001e7f9517f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="1941832901fc4e7a93300b53762e9f65d7650b99">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.0.0_417fd5da0b3078432df09ab7562f4d39f09a81c3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.0.0_8f78b5fcd5aeab7951ce76a8c557201af1917f7c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.0.0_2c613bc8a057d2bdf74fcb0d9e3d61a4f2680ec0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_a97718946935ff0199ee1bfbb70f7891ac754409.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.0/jars/classes.jar"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="42df48c7305b08b14fa0e84561091b0c24d70d26">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-9.0.0_b3706a7778755c0ed03187c43403c50bbbf8f0ab.jar" />
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-9.0.0_4eddbc22b1770a3125ff83c655e7b3292b58e1fa.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-9.0.0_59d3f1b270b2dd18ebb40f40521ee9a07c29c5af.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.0.0_c7f9197b7eadde76d8577a753306a59cc91aa5a8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cc178928721f3222b3b06bdfbd9497378ccb9792">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-9.0.0_6712f4d3a83c7542fcdbfc0f639157e5e282d23b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.0.0_c04bd9e3206b8b6c143e264f1ca8375de0683c0b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_f2d378634c92fef7d1dfe15767267044678663fe.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.0.0_3c94ca76a5644e071eb5aec5e306c1c1666f6a90.jar" />
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.0.0_10a0c7de4f951615f33a6551e46543d67ba7fdc0.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.0/jars/classes.jar"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_b6f1ab462b51dc7004affda8d051ac20ba1e5390.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_a657796bcaa4eb194061c2299603b027e1f8bc29.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.0.0_9fd1933d84ae887c254143648e4012e337fc0d8d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="59cca9b91688dc2467754d36793b3d23bebd21a9">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-location-9.0.0_fae738eb8dd798cdccb1e1eeb891bbd9161dc0ac.jar" />
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-location-9.0.0_42a10f5b4080a0e21b93416de4c3d5219805abf4.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.0/jars/classes.jar"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="42df48c7305b08b14fa0e84561091b0c24d70d26">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-9.0.0_ccd5c29d525c2ca195bbc01f74b6276211415fe2.jar" />
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_f385ba5d0fd4573836b603812cfabb71d6f542fb.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.0.0_6f56588f2071e0783212fd05501d7d6e6b88fb25.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.0.0_8ada81dfce40d291911ae23acf48b26a902d78ea.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.0.0_5179ea7b76d0c5a1a4c9cf67c6f4a94f82af984e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.0.0_236b5cdcd71960bd3c9a11bd0ee64b09ac32d59e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_6948f574c5e8acf0583542539b16ee9f45a5be4d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.0.0_8bc721f2653dae90c6c8e9976fc9cd0239397b26.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_f8e08c3dcfa1acfdbdd17516d22e66f15a21106e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_01f56b86e9e08cf9c52673853193e83c164895e0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26674000177e45447a0326a6ad84612761199a13">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.0.0_374e3d6ec683927bedc4f2e55a7c194c0ac36bd6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="cc178928721f3222b3b06bdfbd9497378ccb9792">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-9.0.0_4d2a4d1c16daa5ebdba2cf3b6b90265ef220ad5c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Beep/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.0.0_2f36c017515e2dbe65afa719d00531ffcbe15208.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a819aae4f0c711e50b4fd633922a3c1a176cb51e">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-maps-9.0.0_fe65d20b3ff762dac45394b374e22a8b09636171.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/lincolnqi/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
+        jar="/Users/linkai/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
-        <dex dex="/Users/lincolnqi/Beep/app/build/intermediates/pre-dexed/debug/support-annotations-25.0.0_9ba56cf234275dc4c021461b92001f5f0719a752.jar" />
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/support-annotations-25.0.0_0b8b4f9d9dfdf2029f44ff70f5f78ca72b0fffae.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/lincolnqi/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="/Users/lincolnqi/Documents/Project/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_7be499f8fe99baa9ec44a40c4e2d5704890ef2c4.jar" />
+        sha1="1941832901fc4e7a93300b53762e9f65d7650b99">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.0.0_04f6ce22402503226e436058cadcac295217f302.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_a75c3ebf88c0373bae73684418b85ac7c354b64f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.0.0_36515795263a8a22344e1818567574f5b02fbae6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.0.0_7bf6ad2bd2f978919207d8c9677797a9bffe4eff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8a372c4191f80489770a231f7be4820b204b886a">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-25.0.0_70c03f351b1b2af0d283f80696af48bc045ebe2f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a819aae4f0c711e50b4fd633922a3c1a176cb51e">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-maps-9.0.0_2754096b6082a7fa63ab90b5957ae820d7c35f76.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.0.0_fa162918e156362893bc33a4824d03b384656cf2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/linkai/.gradle/caches/modules-2/files-2.1/io.searchbox/jest-droid/2.0.3/63732634901438ac56b8f6ab0ca16c8e20da85c5/jest-droid-2.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="63732634901438ac56b8f6ab0ca16c8e20da85c5">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/pre-dexed/debug/jest-droid-2.0.3_41cf6826b8edfe2a9a75de8297931f1bd387861e.jar" />
     </item>
 
 </items>
