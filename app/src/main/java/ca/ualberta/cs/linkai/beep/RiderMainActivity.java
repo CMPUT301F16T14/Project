@@ -58,6 +58,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
     public static final int DIVIDE_BY_TWO = 2;
     public static final int BITMAP_SIZE = 100;
+    int width = BITMAP_SIZE;
+    int height = BITMAP_SIZE;
     private static final String TAG = RiderMainActivity.class.getSimpleName();
     private GoogleMap mMap;
     /**
@@ -67,18 +69,24 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     Location mLastLocation;
     double lat = 0;
     double lng = 0;
+    LatLng startLatLng;
+    LatLng endLatLng;
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
     private CharSequence sourceLocation;
     private CharSequence destLocation;
     private String SourceAddress;
     private  String DestAddress;
+    List<Address> startAddress = null;
+    List<Address> endAddress = null;
+    Address start;
+    Address end;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         buildGoogleApiClient();
         setContentView(R.layout.activity_rider_main);
-
+        Geocoder geocoder = new Geocoder(RiderMainActivity.this);
 
         /**
          * Retrieve the PlaceAutocompleteFragment.
@@ -91,19 +99,13 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         PlaceAutocompleteFragment DestinationAutocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_destination);
 
-        /**
-         * Register a listener to receive callbacks when a place has been selected or an error has occoured.
-         *
-         * Code from:
-         * https://github.com/googlesamples/android-play-places/tree/master/PlaceCompleteActivity
-         */
-        //SourceAutocompleteFragment.setOnPlaceSelectedListener(this);
-        //DestinationAutocompleteFragment.setOnPlaceSelectedListener(this);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
 
         /**
          * set on place selected listen on autocomplete fragment when choose from the list
@@ -114,15 +116,40 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
         SourceAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             /**
-             * Callback invoked when a place has been selected from the PlaceAutocompleteFragment.
+             * Callback invoked when a place has been selected from the "Source" PlaceAutocompleteFragment.
              *
              * @param place
              */
             @Override
             public void onPlaceSelected(Place place) {
                 Log.i(TAG, "Place Selected: " + place.getName());
-
+                Geocoder geocoder = new Geocoder(RiderMainActivity.this);
                 sourceLocation = place.getAddress();
+
+                if(!sourceLocation.toString().isEmpty()) {
+                    try {
+                        startAddress = geocoder.getFromLocationName(sourceLocation.toString(), 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    start = startAddress.get(0);
+                    SourceAddress = start.getLocality();
+                    startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
+                }
+                /**
+                 * reuse statements
+                 * code from
+                 * http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
+                 */
+                // add start marker
+                BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.src);
+                Bitmap b = bitmapdraw.getBitmap();
+                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                mMap.addMarker(new MarkerOptions()
+                        .position(startLatLng)
+                        .title("start")
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                );
             }
 
             /**
@@ -138,14 +165,41 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
         DestinationAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             /**
-             * Callback invoked when a place has been selected from the PlaceAutocompleteFragment.
+             * Callback invoked when a place has been selected from the "Destination" PlaceAutocompleteFragment.
              *
              * @param place
              */
             @Override
             public void onPlaceSelected(Place place) {
                 Log.i(TAG, "Place Selected: " + place.getName());
+                Geocoder geocoder = new Geocoder(RiderMainActivity.this);
                 destLocation = place.getAddress();
+                if(!destLocation.toString().isEmpty()) {
+                    try {
+                        endAddress = geocoder.getFromLocationName(destLocation.toString(), 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    end = endAddress.get(0);
+                    DestAddress = end.getLocality();
+                    endLatLng = new LatLng(end.getLatitude(), end.getLongitude());
+
+                }
+                // add end marker
+                BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.des);
+                Bitmap b = bitmapdraw.getBitmap();
+                Bitmap smallMarker1 = Bitmap.createScaledBitmap(b, width, height, false);
+                mMap.addMarker(new MarkerOptions()
+                        .position(endLatLng)
+                        .title("end")
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1))
+                );
+                LatLng avgLatLng = new LatLng((start.getLatitude() + end.getLatitude()) / DIVIDE_BY_TWO,
+                        (start.getLongitude() + end.getLongitude()) / DIVIDE_BY_TWO);
+
+                // Set Camera position
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(avgLatLng));
+
             }
             /**
              * Callbak invoked when a place has been selected from the PlaceAutocompleteFragment.
@@ -225,73 +279,13 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
      */
     public void onPlaceRequest(View view) {
         Request myRequest;
-        List<Address> startAddress = null;
-        List<Address> endAddress = null;
-        int width = BITMAP_SIZE;
-        int height = BITMAP_SIZE;
-        //sourceInput = (EditText) findViewById(R.id.source);
-        //destinationInput = (EditText) findViewById(R.id.destination);
 
+        myRequest = new Request(RuntimeAccount.getInstance().myAccount, SourceAddress, DestAddress);
+        ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
+        addRequestTask.execute(myRequest);
 
-        if(!sourceLocation.toString().isEmpty() && !destLocation.toString().isEmpty()) {
-            Geocoder geocoder = new Geocoder(this);
-            try {
-                startAddress = geocoder.getFromLocationName(sourceLocation.toString(),1);
-                endAddress = geocoder.getFromLocationName(destLocation.toString(),1);
+        Toast.makeText(RiderMainActivity.this, "Request has been sent, please wait for drivers to accept.", Toast.LENGTH_SHORT).show();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Address start = startAddress.get(0);
-            Address end = endAddress.get(0);
-
-            SourceAddress = start.getLocality();
-            DestAddress = end.getLocality();
-
-            LatLng startLatLng = new LatLng(start.getLatitude(),start.getLongitude());
-            LatLng endLatLng = new LatLng(end.getLatitude(),end.getLongitude());
-            LatLng avgLatLng = new LatLng((start.getLatitude() + end.getLatitude())/ DIVIDE_BY_TWO,
-                    (start.getLongitude() + end.getLongitude())/DIVIDE_BY_TWO);
-            //MarkerOptions marker = new MarkerOptions().position(startLatLng).title("start");
-            //marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.src));
-            //mMap.addMarker(marker);
-            //mMap.addMarker(new MarkerOptions().position(startLatLng).title("start"));
-
-            /**
-             * reuse statements
-             * code from
-             * http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
-             */
-            // add start marker
-            BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.src);
-            Bitmap b = bitmapdraw.getBitmap();
-            Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-            mMap.addMarker(new MarkerOptions()
-                    .position(startLatLng)
-                    .title("start")
-                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-            );
-            //mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
-
-            //mMap.addMarker(new MarkerOptions().position(endLatLng).title("end"));
-            // add end marker
-            BitmapDrawable bitmapdraw1 = (BitmapDrawable)getResources().getDrawable(R.drawable.des);
-            Bitmap b1 = bitmapdraw1.getBitmap();
-            Bitmap smallMarker1 = Bitmap.createScaledBitmap(b1, width, height, false);
-            mMap.addMarker(new MarkerOptions()
-                    .position(endLatLng)
-                    .title("end")
-                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1))
-            );
-
-            // Set Camera position
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(avgLatLng));
-
-            myRequest = new Request(RuntimeAccount.getInstance().myAccount, SourceAddress, DestAddress);
-            ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
-            addRequestTask.execute(myRequest);
-        }
     }
 
 
