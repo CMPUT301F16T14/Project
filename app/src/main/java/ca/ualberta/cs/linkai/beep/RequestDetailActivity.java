@@ -23,6 +23,7 @@ public class RequestDetailActivity extends Activity {
     private TextView end;
     private TextView driver;
     private TextView vehicle;
+    private TextView date;
     private Button cancel;
     private Button confirm;
     private RatingBar ratingBar;
@@ -42,6 +43,7 @@ public class RequestDetailActivity extends Activity {
         end = (TextView) findViewById(R.id.DestAddress);
         driver = (TextView) findViewById(R.id.DriverInfo);
         vehicle = (TextView) findViewById(R.id.CarInfo);
+        date = (TextView) findViewById(R.id.DateInfo);
         cancel = (Button) findViewById(R.id.cancelrequest);
         confirm = (Button) findViewById(R.id.confirm);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -53,6 +55,7 @@ public class RequestDetailActivity extends Activity {
 
         start.setText(mRequest.getStartLocation());
         end.setText(mRequest.getEndLocation());
+        date.setText(mRequest.getDate());
 
         // Set a listener for changes to RatingBar
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {

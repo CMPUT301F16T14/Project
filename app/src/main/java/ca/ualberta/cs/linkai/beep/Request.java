@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,6 +40,8 @@ public class Request {
     private Account confirmedDriver;
     private Date date;
     private Integer status;
+    private DateFormat dateFormat;
+    private String datestring;
 
     /**
      * Constructor initialize the request
@@ -78,13 +82,10 @@ public class Request {
 
 
 
-
-
-
-
-
-    public Date getDate(){
-        return date;
+    public String getDate(){
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        datestring = dateFormat.format(date);
+        return datestring;
     }
 
     public Float getEstimate() {
