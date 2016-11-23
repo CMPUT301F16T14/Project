@@ -7,20 +7,28 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+/**
+ * @author Aries
+ * @since 22/11/16
+ * @see RequestsListActivity
+ *
+ */
 public class RequestDetailActivity extends Activity {
 
     private TextView start;
-    TextView end;
-    TextView driver;
-    TextView vehicle;
-    Button cancel;
-    Button confirm;
-    int flag;
-    String from;
-    String to;
+    private TextView end;
+    private TextView driver;
+    private TextView vehicle;
+    private Button cancel;
+    private Button confirm;
+    private RatingBar ratingBar;
+    private int flag;
     Request mRequest;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,7 @@ public class RequestDetailActivity extends Activity {
         vehicle = (TextView) findViewById(R.id.CarInfo);
         cancel = (Button) findViewById(R.id.cancelrequest);
         confirm = (Button) findViewById(R.id.confirm);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
         if(bundle != null) {
             flag = bundle.getInt("senPosition");
@@ -44,6 +53,16 @@ public class RequestDetailActivity extends Activity {
 
         start.setText(mRequest.getStartLocation());
         end.setText(mRequest.getEndLocation());
+
+        // Set a listener for changes to RatingBar
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            // Call when the user swipes the RatingBar
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                Toast.makeText(RequestDetailActivity.this, "Thank you for rating " + v + "stars", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     @Override

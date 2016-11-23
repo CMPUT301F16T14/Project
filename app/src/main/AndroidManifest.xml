@@ -32,6 +32,7 @@
         <activity android:name=".ViewEstimateActivity" />
         <activity android:name=".RequestsListActivity" />
         <activity android:name=".ViewProfileActivity" />
+        <activity android:name=".RequestDetailActivity" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
