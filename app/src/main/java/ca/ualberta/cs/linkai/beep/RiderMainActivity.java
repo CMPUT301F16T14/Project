@@ -38,6 +38,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -80,13 +81,16 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     List<Address> endAddress = null;
     Address start;
     Address end;
+    final MarkerOptions OriginMarker = new MarkerOptions();
+    final MarkerOptions StartMarker = new MarkerOptions();
+    final MarkerOptions EndMarker = new MarkerOptions();
+    Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         buildGoogleApiClient();
         setContentView(R.layout.activity_rider_main);
-        Geocoder geocoder = new Geocoder(RiderMainActivity.this);
 
         /**
          * Retrieve the PlaceAutocompleteFragment.
@@ -104,8 +108,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
 
         /**
          * set on place selected listen on autocomplete fragment when choose from the list
@@ -135,17 +137,17 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                     start = startAddress.get(0);
                     SourceAddress = start.getLocality();
                     startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
+                    marker.remove();
                 }
                 /**
-                 * reuse statements
+                 * add start marker
                  * code from
                  * http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
                  */
-                // add start marker
                 BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.src);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-                mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(StartMarker
                         .position(startLatLng)
                         .title("start")
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
@@ -183,13 +185,16 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                     end = endAddress.get(0);
                     DestAddress = end.getLocality();
                     endLatLng = new LatLng(end.getLatitude(), end.getLongitude());
-
                 }
-                // add end marker
+                /**
+                 * add end marker
+                 * code from
+                 * http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
+                 */
                 BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.des);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker1 = Bitmap.createScaledBitmap(b, width, height, false);
-                mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(EndMarker
                         .position(endLatLng)
                         .title("end")
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1))
@@ -266,9 +271,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             lng = mLastLocation.getLongitude();
 
             LatLng loc = new LatLng(lat, lng);
-            mMap.addMarker(new MarkerOptions().position(loc).title("My Current Location"));
+            marker = mMap.addMarker(OriginMarker.position(loc).title("My Current Location"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+
         }
+
     }
 
 
