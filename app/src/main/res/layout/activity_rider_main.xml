@@ -20,7 +20,7 @@
 
         <fragment
             android:id="@+id/autocomplete_source"
-            android:hint="From: Address"
+            android:hint="From: "
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -35,7 +35,7 @@
 
         <fragment
             android:id="@+id/autocomplete_destination"
-            android:hint="To: Address"
+            android:hint="To: "
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

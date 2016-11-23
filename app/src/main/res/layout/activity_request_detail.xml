@@ -46,7 +46,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="From:"
+        android:text="From:  "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/from"
@@ -55,7 +55,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="To:"
+        android:text="To: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -63,16 +63,16 @@
         android:textSize="20sp"
         android:layout_below="@+id/from"
         android:layout_alignStart="@+id/from"
-        android:layout_alignEnd="@+id/from" />
+        android:layout_toStartOf="@+id/ratingBar" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/from"
         android:id="@+id/StartAddress"
-        android:layout_alignStart="@+id/ratingBar"
         android:textSize="20sp"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/from" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -82,7 +82,6 @@
         android:id="@+id/DestAddress"
         android:textSize="20sp"
         android:layout_alignRight="@+id/to"
-        android:layout_alignParentLeft="false"
         android:layout_alignParentRight="true" />
 
     <TextView
@@ -101,18 +100,8 @@
         android:layout_alignBottom="@+id/Driver"
         android:id="@+id/DriverName"
         android:textSize="18sp"
-        android:layout_alignStart="@+id/StartAddress"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:text="(Click name to see driver profile)"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/DriverName"
-        android:layout_alignStart="@+id/DriverName"
-        android:layout_marginStart="62dp"
-        android:id="@+id/DriverInfo" />
+        android:layout_alignParentRight="true"
+        android:layout_toEndOf="@+id/to" />
 
     <TextView
         android:text="Driver's vehicle:"
@@ -132,5 +121,14 @@
         android:id="@+id/CarInfo"
         android:textSize="18sp"
         android:layout_alignParentRight="true" />
+
+    <TextView
+        android:text="(Click name to see driver profile)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/DriverInfo"
+        android:layout_marginEnd="39dp"
+        android:layout_below="@+id/DriverName"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

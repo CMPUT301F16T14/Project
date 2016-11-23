@@ -48,7 +48,7 @@ public class RequestsListActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity.class);
-                intent.putExtra("sendLocation", position);
+                intent.putExtra("sendPosition", position);
                 startActivity(intent);
             }
         });

@@ -79,7 +79,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     public static String DestAddress;
     List<Address> startAddress = null;
     List<Address> endAddress = null;
-    Address start;
+    public static Address start;
     Address end;
     final MarkerOptions OriginMarker = new MarkerOptions();
     final MarkerOptions StartMarker = new MarkerOptions();

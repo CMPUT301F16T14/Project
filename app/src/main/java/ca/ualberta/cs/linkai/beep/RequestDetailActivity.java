@@ -20,6 +20,7 @@ public class RequestDetailActivity extends Activity {
     int flag;
     String from;
     String to;
+    Request mRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +38,14 @@ public class RequestDetailActivity extends Activity {
         confirm = (Button) findViewById(R.id.confirm);
 
         if(bundle != null) {
-            flag = bundle.getInt("sendLocation");
-            from = RiderMainActivity.SourceAddress;
-            to = RiderMainActivity.DestAddress;
+            flag = bundle.getInt("senPosition");
+            //from = RiderMainActivity.start.getLocality();
+            //to = RiderMainActivity.DestAddress;
+            mRequest = RequestsListActivity.myRequests.get(flag);
         }
 
-        start.setText(from);
-        end.setText(to);
+        start.setText(mRequest.getStartLocation());
+        end.setText(mRequest.getEndLocation());
     }
 
     @Override
