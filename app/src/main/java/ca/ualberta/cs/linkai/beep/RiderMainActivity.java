@@ -77,7 +77,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private CharSequence destLocation;
     public static String SourceAddress;
     public static String DestAddress;
-    private Request myRequest;
+    public static Request myRequest;
     List<Address> startAddress = null;
     List<Address> endAddress = null;
     Address start;
@@ -85,7 +85,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private Marker OriginMarker;
     private Marker StartMarker;
     private Marker EndMarker;
-    Account currentAccount = RuntimeAccount.getInstance().myAccount;
+    public static Account currentAccount = RuntimeAccount.getInstance().myAccount;
     private PlaceAutocompleteFragment SourceAutocompleteFragment;
     private PlaceAutocompleteFragment DestinationAutocompleteFragment;
 
@@ -290,7 +290,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
      * call when click on the PlaceRequest button
      * @param view
      */
-    public void onPlaceRequest(View view) {
+    public void onViewEstimate(View view) {
 
         if(SourceAddress.isEmpty()) {
             Toast.makeText(RiderMainActivity.this, "Empty Source Location!", Toast.LENGTH_SHORT).show();
@@ -299,28 +299,20 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         } else if(SourceAddress.isEmpty() && DestAddress.isEmpty()) {
             Toast.makeText(RiderMainActivity.this, "Please Enter Two Locations", Toast.LENGTH_SHORT).show();
         } else {
-            myRequest = new Request(RuntimeAccount.getInstance().myAccount, SourceAddress, DestAddress);
-            ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
-            addRequestTask.execute(myRequest);
-            // add request to request list
-            RequestsListActivity.requestsList.add(myRequest);
-
-            // change the number of requests the current user has
-            currentAccount.setRequestNum(RuntimeAccount.getInstance().myAccount.getRequestNum() + 1);
-            // update to the elastic search server
-            ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
-            addAccountTask.execute(currentAccount);
+            myRequest = new Request(currentAccount, SourceAddress, DestAddress);
 
             /**
              * remove the content of autocomplete fragment and maker when ...
              */
             //TODO: what's the next page after place request???
-            //SourceAutocompleteFragment.setText("");
-            //DestinationAutocompleteFragment.setText("");
+            SourceAutocompleteFragment.setText("");
+            DestinationAutocompleteFragment.setText("");
             StartMarker.remove();
             EndMarker.remove();
 
-            Toast.makeText(RiderMainActivity.this, "Request has been sent, please wait for drivers to accept.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ViewEstimateActivity.class);
+            startActivity(intent);
+
         }
 
     }

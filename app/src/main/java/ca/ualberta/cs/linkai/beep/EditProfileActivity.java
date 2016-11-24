@@ -22,7 +22,7 @@ public class EditProfileActivity extends Activity {
     private Button finishChangeButton;
     private String userPhone;
     private String userEmail;
-    private Account currentAccount;
+    Account currentAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

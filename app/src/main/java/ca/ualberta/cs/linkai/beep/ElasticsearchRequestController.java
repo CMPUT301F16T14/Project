@@ -156,6 +156,8 @@ public class ElasticsearchRequestController {
         }
     }
 
+    //TODO: make this a cancel from elastic search server
+
 
     private static void verifySettings() {
         // if the client hasn't been initialized then we should make it!

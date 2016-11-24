@@ -48,16 +48,16 @@
         android:layout_width="fill_parent"
         tools:context="ca.ualberta.cs.linkai.beep.RiderMainActivity"
         android:layout_height="325dp"
-        android:layout_above="@+id/placerequest"
+        android:layout_above="@+id/viewestimate"
         android:layout_below="@+id/dest_cardView"
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="PlaceRequest"
+        android:text="View Estimate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/placerequest"
-        android:onClick="onPlaceRequest"
+        android:id="@+id/viewestimate"
+        android:onClick="onViewEstimate"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 

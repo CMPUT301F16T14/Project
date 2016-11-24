@@ -13,22 +13,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * @author Aries
+ * @author Jinzhu
  * @since 22/11/16
  * @see RequestsListActivity
  *
  */
 public class RequestDetailActivity extends Activity {
 
-    private TextView start;
-    private TextView end;
-    private TextView driver;
-    private TextView vehicle;
-    private TextView date;
-    private Button cancel;
-    private Button confirm;
-    private RatingBar ratingBar;
-    private int flag;
+    TextView start;
+    TextView end;
+    TextView driver;
+    TextView vehicle;
+    TextView date;
+    Button cancel;
+    Button confirm;
+    RatingBar ratingBar;
+    int flag;
     Request mRequest;
 
 
@@ -51,7 +51,7 @@ public class RequestDetailActivity extends Activity {
 
         if(bundle != null) {
             flag = bundle.getInt("sendPosition");
-            if(RiderMainActivity.SourceAddress.isEmpty()) {
+            if(RiderMainActivity.SourceAddress == null) {
                 mRequest = RequestsListActivity.requestsList.getRequest().get(flag);
             } else {
                 mRequest = RequestsListActivity.requestsList.getRequest().get(flag+RuntimeAccount.getInstance().myAccount.getRequestNum()-1);
