@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class RequestDetailActivity extends Activity {
 
         if(bundle != null) {
             flag = bundle.getInt("senPosition");
-            mRequest = RequestsListActivity.myRequests.get(flag);
+            mRequest = RequestsListActivity.requestsList.getRequest().get(flag);
         }
 
         start.setText(mRequest.getStartLocation());
@@ -62,8 +63,19 @@ public class RequestDetailActivity extends Activity {
             // Call when the user swipes the RatingBar
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                Toast.makeText(RequestDetailActivity.this, "Thank you for rating " + v + "stars", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RequestDetailActivity.this, "Thank you for rating!", Toast.LENGTH_SHORT).show();
+                mRequest.setRating(v);
+            }
+        });
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setResult(RESULT_OK);
+                Toast.makeText(RequestDetailActivity.this, "Request has been canceled", Toast.LENGTH_SHORT).show();
+                RequestsListActivity.requestsList.delete(mRequest);
+                //TODO: save the cancel change in elastic search server
+                finish();
             }
         });
     }

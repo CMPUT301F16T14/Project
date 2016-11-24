@@ -77,6 +77,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private CharSequence destLocation;
     private String SourceAddress;
     private String DestAddress;
+    private Request myRequest;
     List<Address> startAddress = null;
     List<Address> endAddress = null;
     Address start;
@@ -288,11 +289,12 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
      * @param view
      */
     public void onPlaceRequest(View view) {
-        Request myRequest;
 
         myRequest = new Request(RuntimeAccount.getInstance().myAccount, SourceAddress, DestAddress);
         ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
         addRequestTask.execute(myRequest);
+
+        RequestsListActivity.requestsList.add(myRequest);
 
         Toast.makeText(RiderMainActivity.this, "Request has been sent, please wait for drivers to accept.", Toast.LENGTH_SHORT).show();
 

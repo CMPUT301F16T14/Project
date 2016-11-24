@@ -32,7 +32,8 @@ public class RequestsListActivity extends Activity {
 
     public static RequestsAdapter myAdapter;
     private ListView myRequestsList;
-    public static ArrayList<Request> myRequests = new ArrayList<Request>();
+    private ArrayList<Request> myRequests = new ArrayList<Request>();
+    public static RequestsList requestsList = new RequestsList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

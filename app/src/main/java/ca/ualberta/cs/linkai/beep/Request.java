@@ -1,6 +1,7 @@
 package ca.ualberta.cs.linkai.beep;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.phenotype.Flag;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +43,7 @@ public class Request {
     private Integer status;
     private DateFormat dateFormat;
     private String datestring;
+    private float mRating;
 
     /**
      * Constructor initialize the request
@@ -86,6 +88,11 @@ public class Request {
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         datestring = dateFormat.format(date);
         return datestring;
+    }
+
+    public Float setRating (Float rating) {
+        this.mRating = rating;
+        return mRating;
     }
 
     public Float getEstimate() {
