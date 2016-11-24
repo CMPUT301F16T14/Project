@@ -112,26 +112,6 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="Driver's vehicle:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/car"
-        android:textSize="18sp"
-        android:layout_above="@+id/cancelrequest"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="59dp" />
-
-    <TextView
-        android:text="Driver:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Driver"
-        android:textSize="18sp"
-        android:layout_above="@+id/car"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="43dp" />
-
-    <TextView
         android:text="Date:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -150,5 +130,43 @@
         android:textSize="20sp"
         android:layout_toEndOf="@+id/Driver"
         android:layout_alignStart="@+id/DestAddress" />
+
+    <TextView
+        android:text="Status:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp"
+        android:id="@+id/status"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/status"
+        android:id="@+id/StatusInfo"
+        android:textSize="20sp"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/status" />
+
+    <TextView
+        android:text="Driver:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Driver"
+        android:textSize="18sp"
+        android:layout_below="@+id/status"
+        android:layout_marginTop="25dp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Driver's vehicle:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/car"
+        android:textSize="18sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

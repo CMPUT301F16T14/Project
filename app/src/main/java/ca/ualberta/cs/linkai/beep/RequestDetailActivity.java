@@ -78,6 +78,13 @@ public class RequestDetailActivity extends Activity {
                 finish();
             }
         });
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: handle confirm and pay
+            }
+        });
     }
 
     @Override
