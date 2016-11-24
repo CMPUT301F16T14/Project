@@ -75,17 +75,19 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
     private CharSequence sourceLocation;
     private CharSequence destLocation;
-    private String SourceAddress;
-    private String DestAddress;
+    public static String SourceAddress;
+    public static String DestAddress;
     private Request myRequest;
     List<Address> startAddress = null;
     List<Address> endAddress = null;
     Address start;
     Address end;
-    final MarkerOptions OriginMarker = new MarkerOptions();
-    final MarkerOptions StartMarker = new MarkerOptions();
-    final MarkerOptions EndMarker = new MarkerOptions();
-    Marker marker;
+    private Marker OriginMarker;
+    private Marker StartMarker;
+    private Marker EndMarker;
+    Account currentAccount = RuntimeAccount.getInstance().myAccount;
+    private PlaceAutocompleteFragment SourceAutocompleteFragment;
+    private PlaceAutocompleteFragment DestinationAutocompleteFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +101,9 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
          * Code from:
          * https://github.com/googlesamples/android-play-places/tree/master/PlaceCompleteActivity
          */
-        PlaceAutocompleteFragment SourceAutocompleteFragment = (PlaceAutocompleteFragment)
+        SourceAutocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_source);
-        PlaceAutocompleteFragment DestinationAutocompleteFragment = (PlaceAutocompleteFragment)
+        DestinationAutocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_destination);
         /**
          * Sets the hint text to display in the search input field when there is no text entered.
@@ -138,14 +140,14 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
                 if(!sourceLocation.toString().isEmpty()) {
                     try {
-                        startAddress = geocoder.getFromLocationName(sourceLocation.toString(), 1);
+                        startAddress = geocoder.getFromLocationName(sourceLocation.toString(), 5);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     start = startAddress.get(0);
                     SourceAddress = start.getLocality();
                     startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
-                    marker.remove();
+                    OriginMarker.remove();
                 }
                 /**
                  * add start marker
@@ -155,7 +157,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                 BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.src);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-                mMap.addMarker(StartMarker
+                StartMarker = mMap.addMarker(new MarkerOptions()
                         .position(startLatLng)
                         .title("start")
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
@@ -186,7 +188,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                 destLocation = place.getAddress();
                 if(!destLocation.toString().isEmpty()) {
                     try {
-                        endAddress = geocoder.getFromLocationName(destLocation.toString(), 1);
+                        endAddress = geocoder.getFromLocationName(destLocation.toString(), 5);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -202,7 +204,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                 BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.des);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-                mMap.addMarker(EndMarker
+                EndMarker = mMap.addMarker(new MarkerOptions()
                         .position(endLatLng)
                         .title("end")
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
@@ -275,7 +277,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             lng = mLastLocation.getLongitude();
 
             LatLng loc = new LatLng(lat, lng);
-            marker = mMap.addMarker(OriginMarker.position(loc).title("My Current Location"));
+            OriginMarker = mMap.addMarker(new MarkerOptions().position(loc).title("My Current Location"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
 
         }
@@ -290,13 +292,36 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
      */
     public void onPlaceRequest(View view) {
 
-        myRequest = new Request(RuntimeAccount.getInstance().myAccount, SourceAddress, DestAddress);
-        ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
-        addRequestTask.execute(myRequest);
+        if(SourceAddress.isEmpty()) {
+            Toast.makeText(RiderMainActivity.this, "Empty Source Location!", Toast.LENGTH_SHORT).show();
+        } else if(DestAddress.isEmpty()) {
+            Toast.makeText(RiderMainActivity.this, "Empty Destination!", Toast.LENGTH_SHORT).show();
+        } else if(SourceAddress.isEmpty() && DestAddress.isEmpty()) {
+            Toast.makeText(RiderMainActivity.this, "Please Enter Two Locations", Toast.LENGTH_SHORT).show();
+        } else {
+            myRequest = new Request(RuntimeAccount.getInstance().myAccount, SourceAddress, DestAddress);
+            ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
+            addRequestTask.execute(myRequest);
+            // add request to request list
+            RequestsListActivity.requestsList.add(myRequest);
 
-        RequestsListActivity.requestsList.add(myRequest);
+            // change the number of requests the current user has
+            currentAccount.setRequestNum(RuntimeAccount.getInstance().myAccount.getRequestNum() + 1);
+            // update to the elastic search server
+            ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
+            addAccountTask.execute(currentAccount);
 
-        Toast.makeText(RiderMainActivity.this, "Request has been sent, please wait for drivers to accept.", Toast.LENGTH_SHORT).show();
+            /**
+             * remove the content of autocomplete fragment and maker when ...
+             */
+            //TODO: what's the next page after place request???
+            //SourceAutocompleteFragment.setText("");
+            //DestinationAutocompleteFragment.setText("");
+            StartMarker.remove();
+            EndMarker.remove();
+
+            Toast.makeText(RiderMainActivity.this, "Request has been sent, please wait for drivers to accept.", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

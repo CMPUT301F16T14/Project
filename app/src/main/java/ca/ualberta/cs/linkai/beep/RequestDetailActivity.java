@@ -50,8 +50,12 @@ public class RequestDetailActivity extends Activity {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
         if(bundle != null) {
-            flag = bundle.getInt("senPosition");
-            mRequest = RequestsListActivity.requestsList.getRequest().get(flag);
+            flag = bundle.getInt("sendPosition");
+            if(RiderMainActivity.SourceAddress.isEmpty()) {
+                mRequest = RequestsListActivity.requestsList.getRequest().get(flag);
+            } else {
+                mRequest = RequestsListActivity.requestsList.getRequest().get(flag+RuntimeAccount.getInstance().myAccount.getRequestNum()-1);
+            }
         }
 
         start.setText(mRequest.getStartLocation());

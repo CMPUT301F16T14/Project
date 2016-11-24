@@ -82,7 +82,7 @@ public class SignUpActivity extends Activity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // TODO elastic search
-                            Account myAccount = new Account(name, phone, email);
+                            Account myAccount = new Account(name, phone, email, 0);
 
                             ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
                             addAccountTask.execute(myAccount);

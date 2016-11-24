@@ -25,6 +25,7 @@ public class Account {
     private String username;
     private String phone;
     private String email;
+    private int RequestNum;
 
     /**
      * This method is a constructor which initialize the account
@@ -32,10 +33,11 @@ public class Account {
      * @param phone
      * @param email
      */
-    public Account(String username, String phone, String email){
+    public Account(String username, String phone, String email, int requestNum){
         this.username = username;
         this.phone = phone;
         this.email = email;
+        this.RequestNum = requestNum;
     }
 
     public String getUsername(){
@@ -56,6 +58,13 @@ public class Account {
 
     public String getEmail() {
         return email;
+    }
+
+    public int getRequestNum() {
+        return RequestNum;
+    }
+    public void setRequestNum(int num) {
+        this.RequestNum = num;
     }
 
     //getter and setter about JestId
