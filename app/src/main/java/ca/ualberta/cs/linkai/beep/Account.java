@@ -1,5 +1,7 @@
 package ca.ualberta.cs.linkai.beep;
 
+import java.util.ArrayList;
+
 import io.searchbox.annotations.JestId;
 
 /**
@@ -27,6 +29,9 @@ public class Account {
     private String email;
     private int RequestNum;
 
+    public static ArrayList<Request> myRequests = new ArrayList<Request>();
+    public static RequestsList requestsList = new RequestsList();
+
     /**
      * This method is a constructor which initialize the account
      * @param username
@@ -39,6 +44,19 @@ public class Account {
         this.email = email;
         this.RequestNum = requestNum;
     }
+
+    public static ArrayList<Request> getMyRequests() {
+        return myRequests;
+    }
+
+    public static void setMyRequests(ArrayList<Request> myRequests) {
+        Account.myRequests = myRequests;
+    }
+
+    public static RequestsList getRequestsList() {
+        return requestsList;
+    }
+
 
     public String getUsername(){
         return username;

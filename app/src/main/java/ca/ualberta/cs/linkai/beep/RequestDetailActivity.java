@@ -51,11 +51,9 @@ public class RequestDetailActivity extends Activity {
 
         if(bundle != null) {
             flag = bundle.getInt("sendPosition");
-            if(RiderMainActivity.SourceAddress == null) {
-                mRequest = RequestsListActivity.requestsList.getRequest().get(flag);
-            } else {
-                mRequest = RequestsListActivity.requestsList.getRequest().get(flag+RuntimeAccount.getInstance().myAccount.getRequestNum()-1);
-            }
+
+            mRequest = RiderMainActivity.currentAccount.requestsList.getRequest().get(flag);
+
         }
 
         start.setText(mRequest.getStartLocation());
@@ -77,7 +75,7 @@ public class RequestDetailActivity extends Activity {
             public void onClick(View view) {
                 setResult(RESULT_OK);
                 Toast.makeText(RequestDetailActivity.this, "Request has been canceled", Toast.LENGTH_SHORT).show();
-                RequestsListActivity.requestsList.delete(mRequest);
+                RiderMainActivity.currentAccount.requestsList.delete(mRequest);
                 //TODO: save the cancel change in elastic search server
                 finish();
             }

@@ -42,6 +42,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.R.attr.data;
@@ -302,9 +303,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             myRequest = new Request(currentAccount, SourceAddress, DestAddress);
 
             /**
-             * remove the content of autocomplete fragment and maker when ...
+             * remove the content of autocomplete fragment and maker when change page
              */
-            //TODO: what's the next page after place request???
             SourceAutocompleteFragment.setText("");
             DestinationAutocompleteFragment.setText("");
             StartMarker.remove();

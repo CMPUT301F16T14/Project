@@ -85,7 +85,7 @@ public class Request {
 
 
     public String getDate(){
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
         datestring = dateFormat.format(date);
         return datestring;
     }

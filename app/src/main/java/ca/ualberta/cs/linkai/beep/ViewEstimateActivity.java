@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * @see RiderMainActivity
+ */
+
 public class ViewEstimateActivity extends Activity {
 
     private TextView currentEstimate;
@@ -39,8 +43,9 @@ public class ViewEstimateActivity extends Activity {
                 //TODO
                 ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
                 addRequestTask.execute(RiderMainActivity.myRequest);
+
                 // add request to request list
-                RequestsListActivity.requestsList.add(RiderMainActivity.myRequest);
+                RiderMainActivity.currentAccount.requestsList.add(RiderMainActivity.myRequest);
 
                 // change the number of requests the current user has
                 RiderMainActivity.currentAccount.setRequestNum(RiderMainActivity.currentAccount.getRequestNum() + 1);

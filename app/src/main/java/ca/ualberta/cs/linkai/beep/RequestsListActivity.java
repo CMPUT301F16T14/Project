@@ -32,8 +32,6 @@ public class RequestsListActivity extends Activity {
 
     public static RequestsAdapter myAdapter;
     private ListView myRequestsList;
-    private ArrayList<Request> myRequests = new ArrayList<Request>();
-    public static RequestsList requestsList = new RequestsList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +40,7 @@ public class RequestsListActivity extends Activity {
 
         myRequestsList = (ListView) findViewById(R.id.requestsListView);
 
-        myAdapter = new RequestsAdapter(this, myRequests);
+        myAdapter = new RequestsAdapter(this, RiderMainActivity.currentAccount.myRequests);
         myRequestsList.setAdapter(myAdapter);
 
         myRequestsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,7 +57,7 @@ public class RequestsListActivity extends Activity {
     protected void onResume(){
         super.onResume();
 
-        myRequests.clear();
+        RiderMainActivity.currentAccount.myRequests.clear();
 
         // Search Requests by initiator
         ElasticsearchRequestController.GetRequestByInitiatorTask getRequestByInitiatorTask =
@@ -67,7 +65,7 @@ public class RequestsListActivity extends Activity {
         getRequestByInitiatorTask.execute(RuntimeAccount.getInstance().myAccount);
 
         try {
-            myRequests = getRequestByInitiatorTask.get();
+            RiderMainActivity.currentAccount.myRequests = getRequestByInitiatorTask.get();
         }
         catch (Exception e) {
             Log.i("Error", "Failed to get the Requests out of the async object.");
@@ -82,7 +80,7 @@ public class RequestsListActivity extends Activity {
         */
 
         myAdapter.clear();
-        myAdapter.addAll(myRequests);
+        myAdapter.addAll(RiderMainActivity.currentAccount.myRequests);
         myAdapter.notifyDataSetChanged();
     }
 
