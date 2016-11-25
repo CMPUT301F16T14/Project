@@ -125,9 +125,9 @@ public class SignUpActivity extends Activity {
                                 if(Rider.isChecked()) {
                                     myAccount.setUserType(3);
                                 }
-                                else {
-                                    myAccount.setUserType(2);
-                                }
+                            }
+                            if(Rider.isChecked()) {
+                                myAccount.setUserType(2);
                             }
 
 
