@@ -54,7 +54,7 @@ public class RequestsListActivity extends Activity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onStart(){
         super.onResume();
 
         RiderMainActivity.currentAccount.myRequests.clear();

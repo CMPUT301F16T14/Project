@@ -30,7 +30,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="How's your rider? "
+        android:text="How's your ride? "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rate"
