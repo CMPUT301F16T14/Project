@@ -78,7 +78,7 @@ public class WelcomeActivity extends Activity {
 
         if(resultAccounts.isEmpty()){
             Toast.makeText(WelcomeActivity.this, "Username not found", Toast.LENGTH_SHORT).show();
-        } else if(SignUpActivity.IsDriver==0) {
+        } else if(resultAccounts.get(0).getUserType() != 1 && resultAccounts.get(0).getUserType() != 3) {
             Toast.makeText(WelcomeActivity.this, "This is not a driver account!", Toast.LENGTH_SHORT).show();
         } else {
             logInAccount = resultAccounts.get(0);
@@ -104,10 +104,9 @@ public class WelcomeActivity extends Activity {
 
         if(resultAccounts.isEmpty()){
             Toast.makeText(WelcomeActivity.this, "Username not found", Toast.LENGTH_SHORT).show();
-        } else if (SignUpActivity.IsRider==0) {
+        } else if (resultAccounts.get(0).getUserType() != 2 && resultAccounts.get(0).getUserType() != 3) {
             Toast.makeText(WelcomeActivity.this, "This is not a rider account!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             logInAccount = resultAccounts.get(0);
             Intent intent = new Intent(this, RiderMainActivity.class);
             startActivity(intent);

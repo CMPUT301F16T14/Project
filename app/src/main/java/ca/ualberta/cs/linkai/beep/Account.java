@@ -28,6 +28,13 @@ public class Account {
     private String phone;
     private String email;
     private int RequestNum;
+    /**
+     * Define the user type
+     * "1" to be a driver
+     * "2" to be a rider
+     * "3" to be both a rider or driver
+     */
+    private int UserType;
 
     public static ArrayList<Request> myRequests = new ArrayList<Request>();
     public static RequestsList requestsList = new RequestsList();
@@ -38,11 +45,11 @@ public class Account {
      * @param phone
      * @param email
      */
-    public Account(String username, String phone, String email, int requestNum){
+    public Account(String username, String phone, String email, int AccountType){
         this.username = username;
         this.phone = phone;
         this.email = email;
-        this.RequestNum = requestNum;
+        this.UserType = AccountType;
     }
 
     public static ArrayList<Request> getMyRequests() {
@@ -57,6 +64,14 @@ public class Account {
         return requestsList;
     }
 
+
+    public int getUserType() {
+        return UserType;
+    }
+
+    public void setUserType(int userType) {
+        UserType = userType;
+    }
 
     public String getUsername(){
         return username;

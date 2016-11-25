@@ -120,6 +120,18 @@ public class SignUpActivity extends Activity {
                             // TODO elastic search
                             Account myAccount = new Account(name, phone, email, 0);
 
+                            if(Driver.isChecked()) {
+                                myAccount.setUserType(1);
+                                if(Rider.isChecked()) {
+                                    myAccount.setUserType(3);
+                                }
+                                else {
+                                    myAccount.setUserType(2);
+                                }
+                            }
+
+
+
                             ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
                             addAccountTask.execute(myAccount);
 
