@@ -38,13 +38,13 @@ public class ViewEstimateActivity extends Activity {
         DecimalFormat numberFormat = new DecimalFormat("#.00");
         currentEstimate.setHint(numberFormat.format(RiderMainActivity.myRequest.getEstimate()));
 
-
         //reach here when user click the placeRequest button
         placeRequestButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
                 //TODO
+                RiderMainActivity.myRequest.setFare(Double.parseDouble(currentEstimate.getText().toString()));
                 ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
                 addRequestTask.execute(RiderMainActivity.myRequest);
 

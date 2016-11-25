@@ -40,6 +40,7 @@ public class Request {
     private String end;
     private String reason;
     private Double estimate;
+    private Double fare;
     private Double distance;
     private Payment payment;
     private ArrayList<Account> acceptances = new ArrayList<Account>();
@@ -137,6 +138,13 @@ public class Request {
         distance = Radius * Math.sqrt(dLat*dLat + (Math.cos(mLat)*dLng*Math.cos(mLat)*dLng));
 
         return distance;
+    }
+
+    public void setFare(Double fare) {
+        this.fare = fare;
+    }
+    public Double getFare() {
+        return fare;
     }
 
     public Integer getStatus() {
