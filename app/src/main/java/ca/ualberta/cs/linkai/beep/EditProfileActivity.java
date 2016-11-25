@@ -65,7 +65,6 @@ public class EditProfileActivity extends Activity {
         /**
          * Reach here when user click the finishChange button
          * This is the button function which use to save the modified value into the cloud
-         * @author Ting Wang
          * @see DriverMainActivity
          * @see RiderMainActivity
          */
