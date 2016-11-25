@@ -157,6 +157,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         SourceAddress = start.getLocality();
                         startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
                         StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                        // Set Camera position
+                        mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
                     } else {
                         start = new Address(Locale.CANADA);
                         start.setLatitude(53.523219);
@@ -164,6 +166,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         SourceAddress = start.getLocality();
                         startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
                         StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                        // Set Camera position
+                        mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
                     }
                 }
                 /**
