@@ -1,6 +1,9 @@
 package ca.ualberta.cs.linkai.beep;
 
+import android.util.Log;
+
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.phenotype.Flag;
 
 import org.json.JSONArray;
@@ -36,7 +39,8 @@ public class Request {
     private String start;
     private String end;
     private String reason;
-    private Float estimate;
+    private Double estimate;
+    private Double distance;
     private Payment payment;
     private ArrayList<Account> acceptances = new ArrayList<Account>();
     private Account confirmedDriver;
@@ -45,6 +49,7 @@ public class Request {
     private DateFormat dateFormat;
     private String datestring;
     private float mRating;
+    private static final String TAG = Request.class.getSimpleName();
 
     /**
      * Constructor initialize the request
@@ -95,12 +100,43 @@ public class Request {
         return mRating;
     }
 
-    public Float getEstimate() {
+
+    public void EstimateByDistance(LatLng start, LatLng end) {
+
+        Double distance = getDistance(start,end);
+
+        if(distance <= 3) {
+            this.estimate = 2.25; // Base price is CAD2.25 first 3 km
+        } else if(distance > 3) {
+            this.estimate = 2.25 + distance * 1.48; // After first 3 km, cost CAD1.48 per km
+        } else {
+            Log.i(TAG, "Not a valid request");
+        }
+    }
+    public Double getEstimate() {
         return estimate;
     }
 
-    public void setEstimate(Float estimate) {
-        this.estimate = estimate;
+    /**
+     * reference: https://en.wikipedia.org/wiki/Geographical_distance
+     *
+     * @param start
+     * @param end
+     * @return
+     */
+    public Double getDistance(LatLng start, LatLng end) {
+        int Radius = 6371; // km
+        Double startLat = start.latitude;
+        Double startLng = start.longitude;
+        Double endLat = end.latitude;
+        Double endLng = end.longitude;
+        Double dLat = Math.toRadians(startLat-endLat);
+        Double dLng = Math.toRadians(startLng-endLng);
+        Double mLat = (startLat+endLat)/2;
+
+        distance = Radius * Math.sqrt(dLat*dLat + (Math.cos(mLat)*dLng*Math.cos(mLat)*dLng));
+
+        return distance;
     }
 
     public Integer getStatus() {

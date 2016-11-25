@@ -354,7 +354,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         } else if(SourceAddress.isEmpty() && DestAddress.isEmpty()) {
             Toast.makeText(RiderMainActivity.this, "Please Enter Two Locations", Toast.LENGTH_SHORT).show();
         } else {
-            myRequest = new Request(currentAccount, SourceAddress, DestAddress);
+            myRequest = new Request(currentAccount, startLatLng, endLatLng);
+            myRequest.EstimateByDistance(startLatLng,endLatLng);
 
             /**
              * remove the content of autocomplete fragment and maker when change page

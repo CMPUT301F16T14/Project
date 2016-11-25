@@ -8,13 +8,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 /**
  * @see RiderMainActivity
  */
 
 public class ViewEstimateActivity extends Activity {
 
-    private TextView currentEstimate;
+    private EditText currentEstimate;
     private EditText userKeyword;
     private Button placeRequestButton;
 
@@ -28,12 +30,14 @@ public class ViewEstimateActivity extends Activity {
     protected void onStart() {
         super.onStart();
 
-        currentEstimate = (TextView) findViewById(R.id.currentEstimate);
+        currentEstimate = (EditText) findViewById(R.id.currentEstimate);
         userKeyword = (EditText) findViewById(R.id.userKeyword);
         placeRequestButton = (Button) findViewById(R.id.placeRequestButton);
 
         //TODO: change text to current estimate!
-        currentEstimate.setText("");
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        currentEstimate.setHint(numberFormat.format(RiderMainActivity.myRequest.getEstimate()));
+
 
         //reach here when user click the placeRequest button
         placeRequestButton.setOnClickListener(new View.OnClickListener() {
