@@ -83,4 +83,47 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
 
+    <CheckBox
+        android:text="driver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/driver"
+        android:textSize="18sp"
+        android:onClick="onCheckboxClicked"/>
+
+    <CheckBox
+        android:text="rider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/driver"
+        android:layout_alignEnd="@+id/NameEditText"
+        android:id="@+id/rider"
+        android:textSize="18sp"
+        android:onClick="onCheckboxClicked"/>
+
+    <TextView
+        android:text="Describe your vehicle:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CarDescription"
+        android:layout_below="@+id/driver"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:textSize="16sp"
+        android:visibility="gone"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/CarDescription"
+        android:layout_alignStart="@+id/CarDescription"
+        android:id="@+id/description"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"/>
+
 </RelativeLayout>
