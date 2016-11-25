@@ -24,7 +24,7 @@ import io.searchbox.core.SearchResult;
 public class ElasticsearchAccountController {
     private static JestDroidClient client;
 
-    // Here is a function that gets account information!
+    // TODO:Here is a function that gets account information!
     public static class GetAccountTask extends AsyncTask<String, Void, ArrayList<Account>> {
         @Override
         protected ArrayList<Account> doInBackground(String... search_parameters) {
@@ -58,7 +58,7 @@ public class ElasticsearchAccountController {
     }
 
 
-    // Here is a function adding an account!
+    //TODO: Here is a function adding an account!
     public static class AddAccountTask extends AsyncTask<Account, Void, Void> {
 
         @Override
