@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,11 +28,44 @@ public class SignUpActivity extends Activity {
     private String name;
     private String email;
     private ArrayList<Account> resultAccounts;
+    private CheckBox Driver;
+    private CheckBox Rider;
+    private TextView CarInfo;
+    private EditText Description;
+    public static int IsDriver = 0;
+    public static int IsRider = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        Driver = (CheckBox) findViewById(R.id.driver);
+        Rider = (CheckBox) findViewById(R.id.rider);
+        CarInfo = (TextView) findViewById(R.id.CarDescription);
+        Description = (EditText) findViewById(R.id.description);
+
+    }
+
+    // Deal with the driver or rider sign up
+    public void onCheckboxClicked(View view) {
+
+        if (Driver.isChecked()) {
+            IsDriver = 1;
+            CarInfo.setVisibility(View.VISIBLE);
+            Description.setVisibility(View.VISIBLE);
+        }
+        if (!Driver.isChecked()) {
+            IsDriver = 0;
+            CarInfo.setVisibility(View.INVISIBLE);
+            Description.setVisibility(View.INVISIBLE);
+        }
+        if (Rider.isChecked()) {
+            IsRider = 1;
+        }
+        if (!Rider.isChecked()) {
+            IsRider = 0;
+        }
     }
 
     @Override
@@ -41,6 +76,7 @@ public class SignUpActivity extends Activity {
         userPhone = (EditText) findViewById(R.id.PhoneEditText);
         userEmail = (EditText) findViewById(R.id.EmailEditText);
         finishButton = (Button) findViewById(R.id.finishSignUpbutton);
+
 
         //reach here when user click the finish button
         finishButton.setOnClickListener(new View.OnClickListener() {
