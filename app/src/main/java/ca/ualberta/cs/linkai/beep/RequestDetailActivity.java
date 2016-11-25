@@ -17,6 +17,9 @@ import android.widget.Toast;
  * @since 22/11/16
  * @see RequestsListActivity
  *
+ * This activity is showing the detail infomation about the riders requests. 
+ * It includes the start and end location,
+ * who takes the request and other detailed information 
  */
 public class RequestDetailActivity extends Activity {
 

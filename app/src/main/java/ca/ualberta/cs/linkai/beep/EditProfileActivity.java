@@ -62,7 +62,12 @@ public class EditProfileActivity extends Activity {
             newPhone.setText(currentAccount.getPhone());
         }
 
-        //reach here when user click the finishChange button
+        /**
+         * Reach here when user click the finishChange button
+         * This is the button function which use to save the modified value into the cloud
+         * @see DriverMainActivity
+         * @see RiderMainActivity
+         */
         finishChangeButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -84,8 +89,8 @@ public class EditProfileActivity extends Activity {
                     Toast.makeText(EditProfileActivity.this, "Contact information fields cannot be both empty",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    //TODO: save newPhone and newEmail to elasticSearch
-                    //ToDO: update to cloud
+                    //Save newPhone and newEmail to elasticSearch
+                    //Update to cloud
                     currentAccount.setEmail(userEmail);
                     currentAccount.setPhone(userPhone);
                     ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
