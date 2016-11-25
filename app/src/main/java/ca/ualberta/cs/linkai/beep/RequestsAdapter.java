@@ -32,8 +32,8 @@ public class RequestsAdapter extends ArrayAdapter<Request>{
         TextView myDesView = (TextView) convertView.findViewById(R.id.Des);
         // Populate the data into the template view using the data object
 
-        mySrcView.setText(mRequest.getStartLocation());
-        myDesView.setText(mRequest.getEndLocation());
+        mySrcView.setText(RiderMainActivity.SourceAddress);
+        myDesView.setText(RiderMainActivity.DestAddress);
         // Return the completed view to render on screen
         return convertView;
     }

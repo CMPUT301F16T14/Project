@@ -59,8 +59,8 @@ public class RequestDetailActivity extends Activity {
 
         }
 
-        start.setText(mRequest.getStartLocation());
-        end.setText(mRequest.getEndLocation());
+        start.setText(RiderMainActivity.SourceAddress);
+        end.setText(RiderMainActivity.DestAddress);
         date.setText(mRequest.getDate());
 
         // Set a listener for changes to RatingBar
