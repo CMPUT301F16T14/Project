@@ -31,6 +31,7 @@ import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -58,7 +59,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         ActivityCompat.OnRequestPermissionsResultCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-    public static final int DIVIDE_BY_TWO = 2;
+    //public static final int DIVIDE_BY_TWO = 2;
     public static final int BITMAP_SIZE = 100;
     int width = BITMAP_SIZE;
     int height = BITMAP_SIZE;
@@ -210,11 +211,21 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         .title("end")
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                 );
-                LatLng avgLatLng = new LatLng((start.getLatitude() + end.getLatitude()) / DIVIDE_BY_TWO,
-                        (start.getLongitude() + end.getLongitude()) / DIVIDE_BY_TWO);
+                //LatLng avgLatLng = new LatLng((start.getLatitude() + end.getLatitude()) / DIVIDE_BY_TWO,
+                       // (start.getLongitude() + end.getLongitude()) / DIVIDE_BY_TWO);
 
                 // Set Camera position
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(avgLatLng));
+                //mMap.animateCamera(CameraUpdateFactory.newLatLng(avgLatLng));
+
+                //reference: http://stackoverflow.com/questions/14828217/android-map-v2-zoom-to-show-all-the-markers
+                //first calculate the bounds of both two markers
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                builder.include(StartMarker.getPosition());
+                builder.include(EndMarker.getPosition());
+                LatLngBounds bounds = builder.build();
+                int padding = 0; // offset from edges of the map in pixels
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+                mMap.animateCamera(cameraUpdate);
 
             }
             /**
