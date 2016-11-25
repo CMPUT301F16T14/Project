@@ -21,7 +21,8 @@ import java.util.Date;
 import io.searchbox.annotations.JestId;
 
 /**
- * This is activity deal with request
+ * This is class deal with request.
+ * It contains all information the request needs
  * @author Linkai, Jinzhu
  */
 
@@ -60,8 +61,7 @@ public class Request {
     }
 
     /**
-     * Constructor for request, using autocomplete fragment
-     *
+     * Constructor for request. It contains all information about request.
      * @param initiator
      * @param start
      * @param end
