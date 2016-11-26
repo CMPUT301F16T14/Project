@@ -41,7 +41,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:id="@+id/resultList"
-        android:layout_below="@+id/search" />
+        android:layout_below="@+id/search"/>
 
     <EditText
         android:layout_height="wrap_content"

@@ -97,7 +97,7 @@ public class ElasticsearchRequestController {
     }
 
     // TODO
-    public static class GetRequestByKeywordTask extends AsyncTask<Account, Void, ArrayList<Request>> {
+    public static class GetRequestByKeywordTask extends AsyncTask<Account, String, ArrayList<Request>> {
         @Override
         protected ArrayList<Request> doInBackground(Account... search_parameters) {
             verifySettings();
@@ -155,8 +155,6 @@ public class ElasticsearchRequestController {
             return null;
         }
     }
-
-    //TODO: make this a cancel from elastic search server
 
 
     private static void verifySettings() {
