@@ -163,7 +163,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         start = new Address(Locale.CANADA);
                         start.setLatitude(53.523219);
                         start.setLongitude(-113.526354);
-                        SourceAddress = start.getAddressLine(0);
+                        SourceAddress = start.getLocality();
                         startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
                         StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
                         // Set Camera position

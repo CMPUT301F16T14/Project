@@ -2,6 +2,7 @@ package ca.ualberta.cs.linkai.beep;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,20 +47,19 @@ public class ViewEstimateActivity extends Activity {
 
                 String keyword;
                 Double fare;
-                Double distance = RiderMainActivity.myRequest.getDistance(RiderMainActivity.myRequest.getStartLatLng(),
-                        RiderMainActivity.myRequest.getEndLatLng());
 
-                try {
-                    fare = Double.parseDouble(currentEstimate.getText().toString());
-                    RiderMainActivity.myRequest.setFare(fare);
-                    RiderMainActivity.myRequest.setUnitPrice(fare, distance);
+                if (currentEstimate.getText().toString().isEmpty()){
+                    Toast.makeText(ViewEstimateActivity.this, "Please enter fare you willing to offer", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        fare = Double.parseDouble(currentEstimate.getText().toString());
+                        RiderMainActivity.myRequest.setFare(fare);
 
+                        keyword = userKeyword.getText().toString();
+                        if(keyword.isEmpty()) {
+                            keyword = "The rider doesn't left any info";
+                        }
 
-                    keyword = userKeyword.getText().toString();
-                    if(keyword.isEmpty()) {
-                        Toast.makeText(ViewEstimateActivity.this, "Please enter keyword of your request", Toast.LENGTH_SHORT).show();
-                    } else {
-                        RiderMainActivity.myRequest.setKeyword(keyword);
                         RiderMainActivity.myRequest.setKeyword(keyword);
 
                         ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
@@ -79,14 +79,12 @@ public class ViewEstimateActivity extends Activity {
                         Toast.makeText(ViewEstimateActivity.this, "Request has been sent, please wait for drivers to accept.", Toast.LENGTH_SHORT).show();
                         //destroy this page, return to last page
                         finish();
+
+
+                    } catch (Exception e) {
+                        Log.e("Error", "Something was wrong when we placed the request!");
                     }
-
-                } catch (Exception e) {
-                    Toast.makeText(ViewEstimateActivity.this, "Please enter fare you willing to offer", Toast.LENGTH_SHORT).show();
                 }
-
-
-
             }
         });
     }
