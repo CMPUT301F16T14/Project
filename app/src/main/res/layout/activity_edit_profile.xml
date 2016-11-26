@@ -86,4 +86,24 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
 
+    <RadioButton
+        android:text="Become a driver as well"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/driver"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <RadioButton
+        android:text="Become a rider as well"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/driver"
+        android:layout_alignParentStart="true"
+        android:id="@+id/rider"
+        android:textSize="18sp"
+        android:visibility="gone"/>
+
 </RelativeLayout>

@@ -347,11 +347,13 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     public void onViewEstimate(View view) {
 
         if(startAddress == null) {
-            Toast.makeText(RiderMainActivity.this, "Empty Source Location!", Toast.LENGTH_SHORT).show();
+            if(endAddress == null) {
+                Toast.makeText(RiderMainActivity.this, "Please Enter Two Locations", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(RiderMainActivity.this, "Empty Source Location!", Toast.LENGTH_SHORT).show();
+            }
         } else if(endAddress == null) {
             Toast.makeText(RiderMainActivity.this, "Empty Destination!", Toast.LENGTH_SHORT).show();
-        } else if(startAddress == null && endAddress == null) {
-            Toast.makeText(RiderMainActivity.this, "Please Enter Two Locations", Toast.LENGTH_SHORT).show();
         } else {
             myRequest = new Request(currentAccount, startLatLng, endLatLng);
             myRequest.EstimateByDistance(startLatLng,endLatLng);

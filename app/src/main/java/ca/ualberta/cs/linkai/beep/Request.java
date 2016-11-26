@@ -38,9 +38,10 @@ public class Request {
     private LatLng endLocation;
     private String start;
     private String end;
-    private String reason;
+    private String keyword;
     private Double estimate;
     private Double fare;
+    private Double unitPrice;
     private Double distance;
     private Payment payment;
     private ArrayList<Account> acceptances = new ArrayList<Account>();
@@ -123,7 +124,7 @@ public class Request {
      *
      * @param start
      * @param end
-     * @return
+     * @return distance between two location
      */
     public Double getDistance(LatLng start, LatLng end) {
         int Radius = 6371; // km
@@ -138,6 +139,20 @@ public class Request {
         distance = Radius * Math.sqrt(dLat*dLat + (Math.cos(mLat)*dLng*Math.cos(mLat)*dLng));
 
         return distance;
+    }
+
+    /**
+     * calculate the price per km
+     *
+     * @param fare
+     * @param distance
+     * @return price per km
+     */
+    public void setUnitPrice(Double fare, Double distance) {
+        this.unitPrice = fare/distance;
+    }
+    public Double getUnitPrice() {
+        return unitPrice;
     }
 
     public void setFare(Double fare) {
@@ -179,12 +194,12 @@ public class Request {
         this.confirmedDriver = confirmedDriver;
     }
 
-    public String getReason() {
-        return reason;
+    public String getKeyword() {
+        return keyword;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setKeyword(String reason) {
+        this.keyword = reason;
     }
 
     public Account getInitiator() {
@@ -199,6 +214,13 @@ public class Request {
         this.startLocation = startLocation;
     }
 
+    public LatLng getStartLatLng() {
+        return startLocation;
+    }
+
+    public LatLng getEndLatLng() {
+        return endLocation;
+    }
 
     public void setEndLocation(LatLng endLocation) {
         this.endLocation = endLocation;

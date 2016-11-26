@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ public class EditProfileActivity extends Activity {
     private EditText newPhone;
     private EditText newEmail;
     private Button finishChangeButton;
+    private Button driver;
+    private Button rider;
     private String userPhone;
     private String userEmail;
     Account currentAccount;
@@ -43,6 +46,8 @@ public class EditProfileActivity extends Activity {
         userName = (TextView) findViewById(R.id.currentNameTextView);
         newPhone = (EditText) findViewById(R.id.newPhoneEditText);
         newEmail = (EditText) findViewById(R.id.newEmailEditText);
+        driver = (RadioButton) findViewById(R.id.driver);
+        rider = (RadioButton) findViewById(R.id.rider);
         finishChangeButton = (Button) findViewById(R.id.finishChangeButton);
 
         //change text to current user profile!
@@ -93,6 +98,16 @@ public class EditProfileActivity extends Activity {
                     //Update to cloud
                     currentAccount.setEmail(userEmail);
                     currentAccount.setPhone(userPhone);
+
+                    //modify user type information
+                    if(RuntimeAccount.getInstance().myAccount.getUserType() == 1) { //if a driver wants also be a rider
+                        rider.setVisibility(View.VISIBLE);
+                    } else if(RuntimeAccount.getInstance().myAccount.getUserType() == 2){ //if a rider wants also be driver
+                        driver.setVisibility(View.VISIBLE);
+                    }
+
+
+
                     ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
                     addAccountTask.execute(currentAccount);
                     //destroy this page, return to last page
