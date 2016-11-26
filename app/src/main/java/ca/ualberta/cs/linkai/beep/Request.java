@@ -49,9 +49,15 @@ public class Request {
     private Date date;
     private Integer status;
     private DateFormat dateFormat;
-    private String datestring;
+    private String dateString;
     private float mRating;
     private static final String TAG = Request.class.getSimpleName();
+
+    // status variable
+    private final static int OPEN_REQUEST = 0;
+    private final static int CONFIRMED = 1;
+    private final static int PAID = 2;
+
 
     /**
      * Constructor initialize the request
@@ -64,7 +70,7 @@ public class Request {
         this.startLocation = start;
         this.endLocation = end;
         this.date = new Date();
-        this.status = 0;
+        this.status = OPEN_REQUEST;
     }
 
     /**
@@ -78,7 +84,7 @@ public class Request {
         this.start = start;
         this.end = end;
         this.date = new Date();
-        this.status = 0;
+        this.status = OPEN_REQUEST;
     }
 
     public String getStartLocation() {
@@ -93,8 +99,8 @@ public class Request {
 
     public String getDate(){
         dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
-        datestring = dateFormat.format(date);
-        return datestring;
+        dateString = dateFormat.format(date);
+        return dateString;
     }
 
     public Float setRating (Float rating) {
@@ -104,13 +110,11 @@ public class Request {
 
 
     public void EstimateByDistance(LatLng start, LatLng end) {
-
-        Double distance = getDistance(start,end);
-
-        if(distance <= 3) {
+        getDistance(start, end);
+        if(this.distance <= 3) {
             this.estimate = 2.25; // Base price is CAD2.25 first 3 km
-        } else if(distance > 3) {
-            this.estimate = 2.25 + distance * 1.48; // After first 3 km, cost CAD1.48 per km
+        } else if(this.distance > 3) {
+            this.estimate = 2.25 + (this.distance - 3) * 1.48; // After first 3 km, cost CAD1.48 per km
         } else {
             Log.i(TAG, "Not a valid request");
         }
@@ -126,7 +130,7 @@ public class Request {
      * @param end
      * @return distance between two location
      */
-    public Double getDistance(LatLng start, LatLng end) {
+    public void getDistance(LatLng start, LatLng end) {
         int Radius = 6371; // km
         Double startLat = start.latitude;
         Double startLng = start.longitude;
@@ -136,28 +140,24 @@ public class Request {
         Double dLng = Math.toRadians(startLng-endLng);
         Double mLat = (startLat+endLat)/2;
 
-        distance = Radius * Math.sqrt(dLat*dLat + (Math.cos(mLat)*dLng*Math.cos(mLat)*dLng));
-
-        return distance;
+        this.distance = Radius * Math.sqrt(dLat*dLat + (Math.cos(mLat)*dLng*Math.cos(mLat)*dLng));
     }
 
-    /**
-     * calculate the price per km
-     *
-     * @param fare
-     * @param distance
-     * @return price per km
-     */
-    public void setUnitPrice(Double fare, Double distance) {
-        this.unitPrice = fare/distance;
-    }
+
     public Double getUnitPrice() {
         return unitPrice;
     }
 
+    /**
+     * calculate the price per km
+     * set Fate
+     * @param fare
+     */
     public void setFare(Double fare) {
         this.fare = fare;
+        this.unitPrice = fare / this.distance;
     }
+
     public Double getFare() {
         return fare;
     }
