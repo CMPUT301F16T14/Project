@@ -5,18 +5,50 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 /**
  * This is the class to deal with driver main activity
+ *
+ * @author Jinzhu
  * @see EditProfileActivity
  * @see RequestsListActivity
  */
 public class DriverMainActivity extends Activity {
 
+    Button searchByLocation;
+    Button searchByPrice;
+    Button searchByKeyword;
+    Button searchByAddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_main);
+
+        searchByLocation = (Button) findViewById(R.id.search1);
+        searchByKeyword = (Button) findViewById(R.id.search2);
+        searchByPrice = (Button) findViewById(R.id.search3);
+        searchByAddress = (Button) findViewById(R.id.search4);
+
+    }
+
+    public void SearchByLocation(View view) {
+        Intent intent = new Intent(this, SearchByLocationActivity.class);
+        startActivity(intent);
+    }
+    public void SearchByPrice(View view) {
+        Intent intent = new Intent(this, SearchByPriceActivity.class);
+        startActivity(intent);
+    }
+    public void SearchByKeyword(View view) {
+        Intent intent = new Intent(this, SearchByKeywordActivity.class);
+        startActivity(intent);
+    }
+    public void SearchByAddress(View view) {
+        Intent intent = new Intent(this, SearchByAddressActivity.class);
+        startActivity(intent);
     }
 
     /* Following two classes deal with hamburger buttons */

@@ -13,7 +13,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -51,6 +50,14 @@
             android:name=".RiderMainActivity"
             android:label="@string/title_activity_rider_main" />
         <activity android:name=".EditProfileActivity" />
+        <activity
+            android:name=".SearchByLocationActivity"
+            android:label="@string/title_activity_search_by_location" />
+        <activity android:name=".SearchByKeywordActivity" />
+        <activity
+            android:name=".SearchByPriceActivity"
+            android:label="@string/title_activity_search_by_price" />
+        <activity android:name=".SearchByAddressActivity"></activity>
     </application>
 
 </manifest>
