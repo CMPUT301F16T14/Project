@@ -51,8 +51,11 @@ public class ViewEstimateActivity extends Activity {
                 // add request to request list
                 RiderMainActivity.currentAccount.requestsList.add(RiderMainActivity.myRequest);
 
+                // change request status to "sent"
+                RuntimeAccount.getInstance().myAccount.setStatus(1);
+
                 // change the number of requests the current user has
-                RiderMainActivity.currentAccount.setRequestNum(RiderMainActivity.currentAccount.getRequestNum() + 1);
+                //RiderMainActivity.currentAccount.setRequestNum(RiderMainActivity.currentAccount.getRequestNum() + 1);
                 // update to the elastic search server
                 ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
                 addAccountTask.execute(RiderMainActivity.currentAccount);

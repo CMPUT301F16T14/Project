@@ -101,7 +101,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         /**
          * Retrieve the PlaceAutocompleteFragment.
          *
-         * Code from:
+         * Reference from:
          * https://github.com/googlesamples/android-play-places/tree/master/PlaceCompleteActivity
          */
         SourceAutocompleteFragment = (PlaceAutocompleteFragment)
@@ -163,7 +163,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         start = new Address(Locale.CANADA);
                         start.setLatitude(53.523219);
                         start.setLongitude(-113.526354);
-                        SourceAddress = start.getLocality();
+                        SourceAddress = start.getAddressLine(0);
                         startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
                         StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
                         // Set Camera position
@@ -340,18 +340,17 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     }
 
 
-
     /**
      * call when click on the PlaceRequest button
      * @param view
      */
     public void onViewEstimate(View view) {
 
-        if(SourceAddress.isEmpty()) {
+        if(startAddress == null) {
             Toast.makeText(RiderMainActivity.this, "Empty Source Location!", Toast.LENGTH_SHORT).show();
-        } else if(DestAddress.isEmpty()) {
+        } else if(endAddress == null) {
             Toast.makeText(RiderMainActivity.this, "Empty Destination!", Toast.LENGTH_SHORT).show();
-        } else if(SourceAddress.isEmpty() && DestAddress.isEmpty()) {
+        } else if(startAddress == null && endAddress == null) {
             Toast.makeText(RiderMainActivity.this, "Please Enter Two Locations", Toast.LENGTH_SHORT).show();
         } else {
             myRequest = new Request(currentAccount, startLatLng, endLatLng);

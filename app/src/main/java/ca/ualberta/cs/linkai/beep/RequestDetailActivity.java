@@ -28,6 +28,7 @@ public class RequestDetailActivity extends Activity {
     TextView driver;
     TextView vehicle;
     TextView date;
+    TextView status;
     Button cancel;
     Button confirm;
     RatingBar ratingBar;
@@ -48,6 +49,7 @@ public class RequestDetailActivity extends Activity {
         driver = (TextView) findViewById(R.id.DriverInfo);
         vehicle = (TextView) findViewById(R.id.CarInfo);
         date = (TextView) findViewById(R.id.DateInfo);
+        status = (TextView) findViewById(R.id.StatusInfo);
         cancel = (Button) findViewById(R.id.cancelrequest);
         confirm = (Button) findViewById(R.id.confirm);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -55,13 +57,22 @@ public class RequestDetailActivity extends Activity {
         if(bundle != null) {
             flag = bundle.getInt("sendPosition");
 
-            mRequest = RiderMainActivity.currentAccount.requestsList.getRequest().get(flag);
+            mRequest = RuntimeAccount.getInstance().myAccount.requestsList.getRequest().get(flag);
 
         }
 
         start.setText(RiderMainActivity.SourceAddress);
         end.setText(RiderMainActivity.DestAddress);
         date.setText(mRequest.getDate());
+        if(RuntimeAccount.getInstance().myAccount.getStatus() == 1) {
+            status.setText("Request sent");
+        } else if(RuntimeAccount.getInstance().myAccount.getStatus() == 2) {
+            status.setText("Request accepted");
+        } else if(RuntimeAccount.getInstance().myAccount.getStatus() == 3) {
+            status.setText("Request cancelled");
+        } else if(RuntimeAccount.getInstance().myAccount.getStatus() == 4) {
+            status.setText("Request complete");
+        }
 
         // Set a listener for changes to RatingBar
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -80,6 +91,7 @@ public class RequestDetailActivity extends Activity {
                 Toast.makeText(RequestDetailActivity.this, "Request has been canceled", Toast.LENGTH_SHORT).show();
                 RiderMainActivity.currentAccount.requestsList.delete(mRequest);
                 //TODO: save the cancel change in elastic search server
+                RuntimeAccount.getInstance().myAccount.setStatus(3);
                 finish();
             }
         });
@@ -87,7 +99,16 @@ public class RequestDetailActivity extends Activity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: handle confirm and pay
+                // /TODO: handle confirm and pay
+                setResult(RESULT_OK);
+                if(RuntimeAccount.getInstance().myAccount.getStatus() != 2) {
+                    Toast.makeText(RequestDetailActivity.this, "Request has not been accepted yet.", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(RequestDetailActivity.this, "Request has been complete", Toast.LENGTH_SHORT).show();
+                    //TODO: save the cancel change in elastic search server
+                    RuntimeAccount.getInstance().myAccount.setStatus(4);
+                    finish();
+                }
             }
         });
     }

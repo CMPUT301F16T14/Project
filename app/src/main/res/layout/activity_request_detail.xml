@@ -132,7 +132,7 @@
         android:layout_alignStart="@+id/DestAddress" />
 
     <TextView
-        android:text="Status:"
+        android:text="Status:  "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/date"
