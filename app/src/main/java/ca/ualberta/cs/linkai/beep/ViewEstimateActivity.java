@@ -2,6 +2,7 @@ package ca.ualberta.cs.linkai.beep;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,42 +48,43 @@ public class ViewEstimateActivity extends Activity {
                 String keyword;
                 Double fare;
 
-                try {
-                    fare = Double.parseDouble(currentEstimate.getText().toString());
-                    RiderMainActivity.myRequest.setFare(fare);
-
-                    keyword = userKeyword.getText().toString();
-                    if(keyword.isEmpty()) {
-                        keyword = "The rider doesn't left any info";
-                    }
-
-                    RiderMainActivity.myRequest.setKeyword(keyword);
-
-                    ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
-                    addRequestTask.execute(RiderMainActivity.myRequest);
-
-                    // add request to request list
-                    RiderMainActivity.currentAccount.requestsList.add(RiderMainActivity.myRequest);
-
-                    // change request status to "sent"
-                    RuntimeAccount.getInstance().myAccount.setStatus(1);
-
-                    // change the number of requests the current user has
-                    //RiderMainActivity.currentAccount.setRequestNum(RiderMainActivity.currentAccount.getRequestNum() + 1);
-                    // update to the elastic search server
-                    ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
-                    addAccountTask.execute(RiderMainActivity.currentAccount);
-                    Toast.makeText(ViewEstimateActivity.this, "Request has been sent, please wait for drivers to accept.", Toast.LENGTH_SHORT).show();
-                    //destroy this page, return to last page
-                    finish();
-
-
-                } catch (Exception e) {
+                if (currentEstimate.getText().toString().isEmpty()){
                     Toast.makeText(ViewEstimateActivity.this, "Please enter fare you willing to offer", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        fare = Double.parseDouble(currentEstimate.getText().toString());
+                        RiderMainActivity.myRequest.setFare(fare);
+
+                        keyword = userKeyword.getText().toString();
+                        if(keyword.isEmpty()) {
+                            keyword = "The rider doesn't left any info";
+                        }
+
+                        RiderMainActivity.myRequest.setKeyword(keyword);
+
+                        ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
+                        addRequestTask.execute(RiderMainActivity.myRequest);
+
+                        // add request to request list
+                        RiderMainActivity.currentAccount.requestsList.add(RiderMainActivity.myRequest);
+
+                        // change request status to "sent"
+                        RuntimeAccount.getInstance().myAccount.setStatus(1);
+
+                        // change the number of requests the current user has
+                        //RiderMainActivity.currentAccount.setRequestNum(RiderMainActivity.currentAccount.getRequestNum() + 1);
+                        // update to the elastic search server
+                        ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
+                        addAccountTask.execute(RiderMainActivity.currentAccount);
+                        Toast.makeText(ViewEstimateActivity.this, "Request has been sent, please wait for drivers to accept.", Toast.LENGTH_SHORT).show();
+                        //destroy this page, return to last page
+                        finish();
+
+
+                    } catch (Exception e) {
+                        Log.e("Error", "Something was wrong when we placed the request!");
+                    }
                 }
-
-
-
             }
         });
     }
