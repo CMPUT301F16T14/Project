@@ -63,7 +63,6 @@ public class WelcomeActivity extends Activity {
     /* Call when the user click on the SignIn as Driver button */
     public void signInDriver (View view) {
         username = usernameEditText.getText().toString();
-        usernameEditText.setText("");
 
         ElasticsearchAccountController.GetAccountTask getAccountTask = new ElasticsearchAccountController.GetAccountTask();
         getAccountTask.execute(username.toLowerCase());

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 /**
  * This is the activity for user to edit profile
- * @author Ting Wang
+ * @author Ting Wang, Jinzhu
  * @see DriverMainActivity
  * @see RiderMainActivity
  */
@@ -37,10 +37,10 @@ public class EditProfileActivity extends Activity {
     protected void onStart() {
         super.onStart();
 
-        //currentAccount = WelcomeActivity.logInAccount;
-        currentAccount = RuntimeAccount.getInstance().myAccount;
+        currentAccount = WelcomeActivity.logInAccount;
+        //currentAccount = RuntimeAccount.getInstance().myAccount;
 
-        Toast.makeText(EditProfileActivity.this, currentAccount.getUsername(),
+        Toast.makeText(EditProfileActivity.this, "Hello " + currentAccount.getUsername(),
                 Toast.LENGTH_SHORT).show();
 
         userName = (TextView) findViewById(R.id.currentNameTextView);
@@ -52,6 +52,15 @@ public class EditProfileActivity extends Activity {
 
         //change text to current user profile!
         userName.setText(currentAccount.getUsername());
+
+        //modify user type information
+        if(RuntimeAccount.getInstance().myAccount.getUserType() == 1) { //if a driver wants also be a rider
+            rider.setVisibility(View.VISIBLE);
+            currentAccount.setUserType(3);
+        } else if(RuntimeAccount.getInstance().myAccount.getUserType() == 2){ //if a rider wants also be driver
+            driver.setVisibility(View.VISIBLE);
+            currentAccount.setUserType(3);
+        }
 
         if (currentAccount.getEmail().equals("No email info")){
             //if user does not have email information before, leave the editText blank, wait for change
@@ -98,15 +107,6 @@ public class EditProfileActivity extends Activity {
                     //Update to cloud
                     currentAccount.setEmail(userEmail);
                     currentAccount.setPhone(userPhone);
-
-                    //modify user type information
-                    if(RuntimeAccount.getInstance().myAccount.getUserType() == 1) { //if a driver wants also be a rider
-                        rider.setVisibility(View.VISIBLE);
-                    } else if(RuntimeAccount.getInstance().myAccount.getUserType() == 2){ //if a rider wants also be driver
-                        driver.setVisibility(View.VISIBLE);
-                    }
-
-
 
                     ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
                     addAccountTask.execute(currentAccount);
