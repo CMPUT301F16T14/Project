@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+/**
+ * @author Jinzhu
+ */
 public class SearchByKeywordActivity extends Activity {
 
     EditText keyword;

@@ -10,4 +10,76 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.ualberta.cs.linkai.beep.SearchByPriceActivity">
 
+    <RadioButton
+        android:text="Search by price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/searchPrice" />
+
+    <RadioButton
+        android:text="Search by price per km"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchPrice"
+        android:layout_alignParentStart="true"
+        android:id="@+id/searchUnitPrice" />
+
+    <TextView
+        android:text="Minimal Price:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/minimal"
+        android:textSize="16sp"
+        android:layout_below="@+id/searchUnitPrice"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:id="@+id/resultList"
+        android:layout_below="@+id/search" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/Min"
+        android:textSize="14sp"
+        android:layout_width="150dp"
+        android:layout_below="@+id/minimal"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/minimal" />
+
+    <TextView
+        android:text="Maximal Price:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/maximal"
+        android:textSize="16sp"
+        android:layout_alignBaseline="@+id/minimal"
+        android:layout_alignBottom="@+id/minimal"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/Max"
+        android:textSize="14sp"
+        android:layout_below="@+id/maximal"
+        android:layout_alignStart="@+id/maximal"
+        android:layout_alignEnd="@+id/maximal" />
+
+    <Button
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/search"
+        android:layout_alignTop="@+id/maximal"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
