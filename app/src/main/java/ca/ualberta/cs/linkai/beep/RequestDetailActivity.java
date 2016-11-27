@@ -65,7 +65,7 @@ public class RequestDetailActivity extends Activity {
         driver = (TextView) findViewById(R.id.DriverInfo);
         vehicle = (TextView) findViewById(R.id.CarInfo);
         date = (TextView) findViewById(R.id.DateInfo);
-        status = (TextView) findViewById(R.id.StatusInfo);
+        //status = (TextView) findViewById(R.id.StatusInfo);
         rate = (TextView) findViewById(R.id.rate) ;
         cancel = (Button) findViewById(R.id.cancelrequest);
         confirm = (Button) findViewById(R.id.confirm);
@@ -88,6 +88,7 @@ public class RequestDetailActivity extends Activity {
         start.setText(from.get(0).getLocality());
         end.setText(to.get(0).getLocality());
         date.setText(mRequest.getDate().toString());
+        // TODO: get driver's name and vehicle info
 
         if(mRequest.getStatus() == OPEN_REQUEST) {
             status.setText("Open Request");
