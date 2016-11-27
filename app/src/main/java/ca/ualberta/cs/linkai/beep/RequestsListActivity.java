@@ -57,7 +57,7 @@ public class RequestsListActivity extends Activity {
     protected void onResume(){
         super.onResume();
 
-        Toast.makeText(RequestsListActivity.this, String.valueOf(RuntimeRequestList.getInstance().myRequestList.size()), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(RequestsListActivity.this, String.valueOf(RuntimeRequestList.getInstance().myRequestList.size()), Toast.LENGTH_SHORT).show();
 
         //myRequests.clear();
         //myAdapter.clear();
