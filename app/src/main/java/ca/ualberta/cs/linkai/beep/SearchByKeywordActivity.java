@@ -36,6 +36,7 @@ public class SearchByKeywordActivity extends Activity {
         resultList = (ListView) findViewById(R.id.resultList);
 
         adapter = new RequestsAdapter(this, requestsList);
+        adapter.clear();
         resultList.setAdapter(adapter);
 
         // click on the search button to view browse request list
@@ -80,7 +81,7 @@ public class SearchByKeywordActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(SearchByKeywordActivity.this, RequestDetailAndAcceptActivity.class);
-                intent.putExtra("request_detail",i);
+                intent.putExtra("request_Detail",i);
                 startActivity(intent);
             }
         });

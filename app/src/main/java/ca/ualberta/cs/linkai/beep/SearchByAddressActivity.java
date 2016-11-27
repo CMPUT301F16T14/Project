@@ -112,7 +112,7 @@ public class SearchByAddressActivity extends Activity {
 
 
                 Intent intent = new Intent(SearchByAddressActivity.this, RequestDetailAndAcceptActivity.class);
-                intent.putExtra("request_detail",i);
+                intent.putExtra("request_Detail",i);
 
                 startActivity(intent);
 
