@@ -10,25 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.ualberta.cs.linkai.beep.RequestDetailActivity">
 
-    <Button
-        android:text="Confirm and Pay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/confirm"
-        android:layout_marginBottom="88dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Cancel Request"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancelrequest"
-        android:layout_above="@+id/confirm"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="How's your ride? "
         android:layout_width="wrap_content"
@@ -152,5 +133,22 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="43dp"
         android:layout_marginBottom="17dp" />
+
+    <Button
+        android:text="Cancel Request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelrequest"
+        android:layout_above="@+id/rate"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Confirm and Pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm"
+        android:layout_alignBaseline="@+id/cancelrequest"
+        android:layout_alignBottom="@+id/cancelrequest"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
