@@ -36,6 +36,7 @@ public class SearchByKeywordActivity extends Activity {
         resultList = (ListView) findViewById(R.id.resultList);
 
         adapter = new RequestsAdapter(this, requestsList);
+        adapter.clear();
         resultList.setAdapter(adapter);
 
         // click on the search button to view browse request list
