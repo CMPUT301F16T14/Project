@@ -73,7 +73,7 @@
         android:textSize="18sp"
         android:layout_alignParentRight="true"
         android:layout_toEndOf="@+id/to"
-        android:clickable="true"/>
+        android:contextClickable="true"/>
 
     <TextView
         android:layout_width="wrap_content"

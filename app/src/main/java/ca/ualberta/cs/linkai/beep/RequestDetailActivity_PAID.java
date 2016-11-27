@@ -83,6 +83,13 @@ public class RequestDetailActivity_PAID extends Activity {
         date.setText(mRequest.getDate().toString());
         driver.setText(mRequest.getConfirmedDriver().getUsername());
         vehicle.setText(mRequest.getConfirmedDriver().getVehicleInfo());
+        driver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RequestDetailActivity_PAID.this, ViewProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         status.setText("Request complete");
         /*if(mRequest.getStatus() == OPEN_REQUEST) {
