@@ -1,9 +1,11 @@
 package ca.ualberta.cs.linkai.beep;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +36,7 @@ public class SearchByPriceActivity extends Activity {
 
     private RequestsAdapter adapter;
     private Integer type = 10;
-    private ArrayList<Request> resultRequests = new ArrayList<Request>();
+    public static ArrayList<Request> resultRequests = new ArrayList<Request>();
     private Integer flag = 0;
 
 
@@ -138,6 +140,18 @@ public class SearchByPriceActivity extends Activity {
 
             }
         });
+
+        resultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(SearchByPriceActivity.this, RequestDetailAndAcceptActivity.class);
+                intent.putExtra("request_detail",i);
+
+                startActivity(intent);
+
+            }
+        });
+
     }
 
 }

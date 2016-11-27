@@ -57,7 +57,8 @@
         <activity
             android:name=".SearchByPriceActivity"
             android:label="@string/title_activity_search_by_price" />
-        <activity android:name=".SearchByAddressActivity"></activity>
+        <activity android:name=".SearchByAddressActivity" />
+        <activity android:name=".RequestDetailAndAcceptActivity"></activity>
     </application>
 
 </manifest>
