@@ -33,6 +33,13 @@ public class RequestsListActivity extends Activity {
     private RequestsAdapter myAdapter;
     private ListView myRequestsList;
 
+    // status variable
+    private final static int CREATED = 0;
+    private final static int OPEN_REQUEST = 1;
+    private final static int CONFIRMED = 2;
+    private final static int PAID = 3;
+    private final static int CANCELLED = 4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +53,20 @@ public class RequestsListActivity extends Activity {
         myRequestsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity.class);
-                intent.putExtra("sendPosition", position);
-                startActivity(intent);
+                if (RuntimeRequestList.getInstance().myRequestList.get(position).getStatus() == OPEN_REQUEST) {
+                    Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity_OPEN.class);
+                    intent.putExtra("sendPosition", position);
+                    startActivity(intent);
+                }else if (RuntimeRequestList.getInstance().myRequestList.get(position).getStatus() == PAID) {
+                    Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity_PAID.class);
+                    intent.putExtra("sendPosition", position);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity.class);
+                    intent.putExtra("sendPosition", position);
+                    startActivity(intent);
+                }
+
             }
         });
     }
