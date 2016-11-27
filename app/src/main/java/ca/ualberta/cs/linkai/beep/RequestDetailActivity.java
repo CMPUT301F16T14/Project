@@ -34,6 +34,7 @@ public class RequestDetailActivity extends Activity {
     TextView vehicle;
     TextView date;
     TextView status;
+    TextView rate;
     Button cancel;
     Button confirm;
     RatingBar ratingBar;
@@ -65,6 +66,7 @@ public class RequestDetailActivity extends Activity {
         vehicle = (TextView) findViewById(R.id.CarInfo);
         date = (TextView) findViewById(R.id.DateInfo);
         status = (TextView) findViewById(R.id.StatusInfo);
+        rate = (TextView) findViewById(R.id.rate) ;
         cancel = (Button) findViewById(R.id.cancelrequest);
         confirm = (Button) findViewById(R.id.confirm);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -93,6 +95,9 @@ public class RequestDetailActivity extends Activity {
             status.setText("Request accepted");
         } else if(mRequest.getStatus() == PAID) {
             status.setText("Request complete");
+            //only show rating bar when status is PAID
+            ratingBar.setVisibility(View.VISIBLE);
+            rate.setVisibility(View.VISIBLE);
         } else if(mRequest.getStatus() == CANCELLED) {
             status.setText("Request cancelled");
         }

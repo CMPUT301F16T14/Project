@@ -36,14 +36,16 @@
         android:id="@+id/rate"
         android:textSize="18sp"
         android:layout_above="@+id/ratingBar"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"/>
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingBar"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
 
     <TextView
         android:text="From:  "
