@@ -1,5 +1,7 @@
 package ca.ualberta.cs.linkai.beep;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -20,6 +22,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import io.searchbox.annotations.JestId;
 
@@ -50,6 +54,13 @@ public class Request {
     private String dateString;
     private float mRating;
     private static final String TAG = Request.class.getSimpleName();
+
+    // variables used to get string address
+    private String startAddress;
+    private String endAddress;
+    Geocoder geocoder;
+    List<Address> start;
+    List<Address> end;
 
     // status variable
     private final static int CREATED = 0;
@@ -115,11 +126,6 @@ public class Request {
         Double mLat = (startLat+endLat)/2;
 
         this.distance = Radius * Math.sqrt(dLat*dLat + (Math.cos(mLat)*dLng*Math.cos(mLat)*dLng));
-    }
-
-
-    public Double getUnitPrice() {
-        return unitPrice;
     }
 
     /**
