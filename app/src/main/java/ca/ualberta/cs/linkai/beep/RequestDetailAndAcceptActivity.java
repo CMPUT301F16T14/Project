@@ -52,6 +52,7 @@ public class RequestDetailAndAcceptActivity extends Activity {
         totalPrice = (TextView) findViewById(R.id.textView15);
 
         riderName.setText(request.getInitiator().getUsername());
+        riderName.setBackgroundResource(R.color.orange);
         riderName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

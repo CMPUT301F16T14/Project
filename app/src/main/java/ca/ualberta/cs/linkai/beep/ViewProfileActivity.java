@@ -64,7 +64,6 @@ public class ViewProfileActivity extends Activity {
 
         //TODO: change text to current user profile!
         currentUserName.setText(RequestDetailAndAcceptActivity.request.getInitiator().getUsername());
-        currentUserEmail.setBackgroundResource(R.color.orange);
         currentUserPhone.setText(RequestDetailAndAcceptActivity.request.getInitiator().getUsername());
         currentUserEmail.setText(RequestDetailAndAcceptActivity.request.getInitiator().getEmail());
 
@@ -76,17 +75,13 @@ public class ViewProfileActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String phoneNumber = RequestDetailAndAcceptActivity.request.getInitiator().getPhone();
-                if(phoneNumber.equals("No email info")) {
-                    Toast.makeText(ViewProfileActivity.this, "Unable to contact by phone", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel:+" + phoneNumber.trim()));
-                    if (ActivityCompat.checkSelfPermission(ViewProfileActivity.this,
-                            Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                        return;
-                    }
-                    startActivity(callIntent);
-                }
+                currentUserPhone.setBackgroundResource(R.color.green);
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:+" + phoneNumber.trim()));
+                if (ActivityCompat.checkSelfPermission(ViewProfileActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }startActivity(callIntent);
 
             }
         });
@@ -98,28 +93,25 @@ public class ViewProfileActivity extends Activity {
             public void onClick(View v) {
                 Log.i("Send email", "");
                 String[] TO = {RequestDetailAndAcceptActivity.request.getInitiator().getEmail()};
-                if(TO.equals("No email info")) {
-                    Toast.makeText(ViewProfileActivity.this, "Unable to contact by email", Toast.LENGTH_SHORT).show();
-                } else {
-                    String[] CC = {""};
-                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                    emailIntent.setData(Uri.parse("mailto:"));
-                    emailIntent.setType("text/plain");
-                    emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-                    emailIntent.putExtra(Intent.EXTRA_CC, CC);
-                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+                String[] CC = {""};
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.setType("text/plain");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+                emailIntent.putExtra(Intent.EXTRA_CC, CC);
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
 
-                    try {
-                        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                        finish();
-                        Log.i("Finished sending email", "");
-                    } catch (android.content.ActivityNotFoundException ex) {
-                        Toast.makeText(ViewProfileActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-                    }
+                try {
+                    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                    finish();
+                    Log.i("Finished sending email", "");
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(ViewProfileActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
                 }
-
             }
+
+
         });
 
         //reach here when user click the finish button
