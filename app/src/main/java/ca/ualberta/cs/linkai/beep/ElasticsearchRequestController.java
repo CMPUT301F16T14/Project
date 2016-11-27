@@ -3,6 +3,7 @@ package ca.ualberta.cs.linkai.beep;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;
@@ -107,6 +108,57 @@ public class ElasticsearchRequestController {
             ArrayList<Request> myRequests = new ArrayList<Request>();
 
             String search_string = "{\"query\" : {\"term\" : {\"keyword\":\"" + search_parameters[0] + "\" }}}";
+            // assume that search_parameters[0] is the only search term we are interested in using
+            Search search = new Search.Builder(search_string)
+                    .addIndex("f16t14")
+                    .addType("Request")
+                    .build();
+
+            try {
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()) {
+                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
+                    myRequests.addAll(foundRequests);
+                }
+                else {
+                    Log.i("Error", "The search query failed to find any request that matched.");
+                }
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+
+            return myRequests;
+        }
+    }
+
+    /**
+     * Search based on an input address
+     */
+    public static class GetRequestByAddressTask extends AsyncTask<ArrayList<Double>, Void, ArrayList<Request>> {
+        @Override
+        protected ArrayList<Request> doInBackground(ArrayList<Double> ... search_parameters) {
+            verifySettings();
+
+            ArrayList<Request> myRequests = new ArrayList<Request>();
+
+            Double start = search_parameters[0].get(0);
+            Double end = search_parameters[0].get(1);
+
+            String search_string = "{ \n" +
+                    "  \"query\": {\n" +
+                    "      \"should\": [\n" +
+                    "               {\"startLocation\": {\n" +
+                    "                   { \"latitude\": \"" + start + ",\"} + \n" +
+                    "                   { \"longitude\": \"" + end + "\" }},\n" +
+                    "               {\"endLocation\": {\n" +
+                    "                   { \"latitude\": \"" + start + ",\" } + \n" +
+                    "                   { \"longitude\": \"" + end + "\" }}\n" +
+                    "      ],\n" +
+                    "      \"minimum_should_match\": \"1\"\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "}";
             // assume that search_parameters[0] is the only search term we are interested in using
             Search search = new Search.Builder(search_string)
                     .addIndex("f16t14")
