@@ -16,17 +16,16 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
-
 /**
- * @author Jinzhu
+ * @author Ting
  * @since 22/11/16
  * @see RequestsListActivity
  *
- * This activity is showing the detail infomation about the riders requests. 
- * It includes the start and end location,
- * who takes the request and other detailed information 
+ * This activity is showing the detail infomation about the riders requests whose status is PAID.
+ * It includes the start, end location, and other detailed information
+ * The rider can rate the driver at this activity
  */
-public class RequestDetailActivity extends Activity {
+public class RequestDetailActivity_PAID extends Activity {
 
     TextView start;
     TextView end;
@@ -34,9 +33,6 @@ public class RequestDetailActivity extends Activity {
     TextView vehicle;
     TextView date;
     TextView status;
-    TextView rate;
-    Button cancel;
-    Button confirm;
     RatingBar ratingBar;
     int flag;
     Request mRequest;
@@ -55,20 +51,17 @@ public class RequestDetailActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_detail);
+        setContentView(R.layout.activity_request_detail__paid);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
         start = (TextView) findViewById(R.id.StartAddress);
         end = (TextView) findViewById(R.id.DestAddress);
-        driver = (TextView) findViewById(R.id.DriverInfo);
+        driver = (TextView) findViewById(R.id.DriverName);
         vehicle = (TextView) findViewById(R.id.CarInfo);
         date = (TextView) findViewById(R.id.DateInfo);
-        //status = (TextView) findViewById(R.id.StatusInfo);
-        rate = (TextView) findViewById(R.id.rate) ;
-        cancel = (Button) findViewById(R.id.cancelrequest);
-        confirm = (Button) findViewById(R.id.confirm);
+        status = (TextView) findViewById(R.id.StatusInfo);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
         if(bundle != null) {
@@ -77,7 +70,7 @@ public class RequestDetailActivity extends Activity {
             mRequest = RuntimeRequestList.getInstance().myRequestList.get(flag);
         }
 
-        Geocoder geocoder = new Geocoder(RequestDetailActivity.this);
+        Geocoder geocoder = new Geocoder(RequestDetailActivity_PAID.this);
         try {
             from = geocoder.getFromLocation(mRequest.getStartLatLng().latitude, mRequest.getStartLatLng().longitude, 1);
             to = geocoder.getFromLocation(mRequest.getEndLatLng().latitude, mRequest.getEndLatLng().longitude, 1);
@@ -88,61 +81,37 @@ public class RequestDetailActivity extends Activity {
         start.setText(from.get(0).getLocality());
         end.setText(to.get(0).getLocality());
         date.setText(mRequest.getDate().toString());
-        // TODO: get driver's name and vehicle info
+        driver.setText(mRequest.getConfirmedDriver().getUsername());
+        vehicle.setText(mRequest.getConfirmedDriver().getVehicleInfo());
+        driver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RequestDetailActivity_PAID.this, ViewProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        if(mRequest.getStatus() == OPEN_REQUEST) {
+        status.setText("Request complete");
+        /*if(mRequest.getStatus() == OPEN_REQUEST) {
             status.setText("Open Request");
         } else if(mRequest.getStatus() == CONFIRMED) {
             status.setText("Request accepted");
         } else if(mRequest.getStatus() == PAID) {
             status.setText("Request complete");
-            //only show rating bar when status is PAID
-            ratingBar.setVisibility(View.VISIBLE);
-            rate.setVisibility(View.VISIBLE);
         } else if(mRequest.getStatus() == CANCELLED) {
             status.setText("Request cancelled");
-        }
+        }*/
 
         // Set a listener for changes to RatingBar
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             // Call when the user swipes the RatingBar
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                Toast.makeText(RequestDetailActivity.this, "Thank you for rating!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RequestDetailActivity_PAID.this, "Thank you for rating!", Toast.LENGTH_SHORT).show();
                 RuntimeRequestList.getInstance().myRequestList.get(flag).setRating(v);
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setResult(RESULT_OK);
-                Toast.makeText(RequestDetailActivity.this, "Request has been canceled", Toast.LENGTH_SHORT).show();
-
-                RuntimeRequestList.getInstance().myRequestList.get(flag).setStatus(CANCELLED);
-                ElasticsearchRequestController.AddRequestListTask addRequestListTask = new ElasticsearchRequestController.AddRequestListTask();
-                addRequestListTask.execute(RuntimeRequestList.getInstance().myRequestList);
-                
-                finish();
-
-            }
-        });
-
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // /TODO: handle confirm and pay
-                setResult(RESULT_OK);
-                if(mRequest.getStatus() != CONFIRMED) {
-                    Toast.makeText(RequestDetailActivity.this, "Request has not been accepted yet.", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(RequestDetailActivity.this, "Request has been complete", Toast.LENGTH_SHORT).show();
-                    //TODO: save the cancel change in elastic search server
-                    RuntimeRequestList.getInstance().myRequestList.get(flag).setStatus(PAID);
-                    finish();
-                }
-            }
-        });
     }
 
     @Override
@@ -171,3 +140,4 @@ public class RequestDetailActivity extends Activity {
     }
 
 }
+

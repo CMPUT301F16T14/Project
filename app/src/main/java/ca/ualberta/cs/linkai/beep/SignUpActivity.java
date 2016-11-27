@@ -117,23 +117,28 @@ public class SignUpActivity extends Activity {
                             Toast.makeText(SignUpActivity.this, "Contact information fields cannot be both empty",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            // TODO elastic search
                             Account myAccount = new Account(name, phone, email, 0);
 
-                            if(Driver.isChecked()) {
+                            if(IsDriver == 1) {
                                 myAccount.setUserType(1);
-                                if(Rider.isChecked()) {
+                                if(IsRider == 1) {
                                     myAccount.setUserType(3);
                                 }
                             }
-                            else if(Rider.isChecked()) {
+                            else if(IsRider == 1) {
                                 myAccount.setUserType(2);
-                                if(Driver.isChecked()) {
+                                if(IsDriver == 1) {
                                     myAccount.setUserType(3);
                                 }
                             }
-
-
+                            //get vehicleInfo only when user signed up as Driver
+                            if (IsDriver == 1) {
+                                String vehicleInfo = Description.getText().toString();
+                                if (vehicleInfo.isEmpty()) {
+                                    vehicleInfo = "The driver didn't provide any information about his vehicle ";
+                                }
+                                myAccount.setVehicleInfo(vehicleInfo);
+                            }
 
                             ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
                             addAccountTask.execute(myAccount);
@@ -146,6 +151,8 @@ public class SignUpActivity extends Activity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
+
+
             }
         });
     }

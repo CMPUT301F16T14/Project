@@ -11,24 +11,6 @@
     tools:context="ca.ualberta.cs.linkai.beep.RequestDetailActivity">
 
     <TextView
-        android:text="How's your ride? "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rate"
-        android:textSize="18sp"
-        android:layout_above="@+id/ratingBar"
-        android:layout_alignParentStart="true"
-        android:visibility="invisible"/>
-
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"/>
-
-    <TextView
         android:text="From:  "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,15 +50,6 @@
         android:layout_alignParentRight="true" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/car"
-        android:layout_toEndOf="@+id/car"
-        android:id="@+id/CarInfo"
-        android:textSize="18sp"
-        android:layout_alignParentRight="true" />
-
-    <TextView
         android:text="Date:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,62 +57,43 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="15dp"
         android:id="@+id/date"
-        android:textSize="20sp"
-        android:layout_above="@+id/Driver" />
-
-    <TextView
-        android:text="Driver's vehicle:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/car"
-        android:textSize="18sp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Driver:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Driver"
-        android:textSize="18sp"
-        android:layout_alignBottom="@+id/DriverName" />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/DriverName"
-        android:textSize="18sp"
-        android:clickable="true"
-        android:layout_marginBottom="23dp"
-        android:layout_above="@+id/DriverInfo"
+        android:layout_alignBottom="@+id/date"
+        android:id="@+id/DateInfo"
         android:layout_alignParentEnd="true"
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/Driver"
         android:layout_alignStart="@+id/DestAddress" />
 
     <TextView
+        android:text="Status:  "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/DateInfo"
-        android:textSize="20sp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/DestAddress"
-        android:layout_above="@+id/Driver"
-        android:layout_alignTop="@+id/date" />
+        android:layout_below="@+id/date"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp"
+        android:id="@+id/status"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/DriverInfo"
-        android:layout_above="@+id/CarInfo"
+        android:layout_alignBottom="@+id/status"
+        android:id="@+id/StatusInfo"
+        android:textSize="20sp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="43dp"
-        android:layout_marginBottom="17dp" />
+        android:layout_toEndOf="@+id/status" />
 
     <Button
         android:text="Cancel Request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cancelrequest"
-        android:layout_above="@+id/rate"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
     <Button
@@ -147,8 +101,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/confirm"
-        android:layout_alignBaseline="@+id/cancelrequest"
-        android:layout_alignBottom="@+id/cancelrequest"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/status"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/cancelrequest"
+        android:id="@+id/acceptanceList" />
 
 </RelativeLayout>

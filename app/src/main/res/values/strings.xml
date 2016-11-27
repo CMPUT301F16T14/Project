@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Beep</string>
     <string name="title_activity_rider_main">Map</string>
-    <string name="title_activity_search_by_location">SearchByLocation</string>
-    <string name="title_activity_search_by_price">SearchByPrice</string>
+    <string name="title_activity_search_by_location">Search By Location</string>
+    <string name="title_activity_edit_profile">Edit Profile</string>
+    <string name="title_activity_search_by_price">Search By Price</string>
+    <string name="title_activity_search_by_keyword">Search By Keyword</string>
+    <string name="title_activity_search_by_address">Search By Address</string>
+    <string name="title_activity_request_detail_and_accept">Accept request</string>
+    <string name="title_activity_request_detail_open">Request Detail -- OPEN</string>
+    <string name="title_activity_request_detail_paid">Request Detail -- PAID</string>
 </resources>
