@@ -2,6 +2,8 @@ package ca.ualberta.cs.linkai.beep;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +13,9 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Jinzhu
@@ -35,6 +40,16 @@ public class RequestDetailActivity extends Activity {
     int flag;
     Request mRequest;
 
+    List<Address> from;
+    List<Address> to;
+
+    // status variable
+    private final static int CREATED = 0;
+    private final static int OPEN_REQUEST = 1;
+    private final static int CONFIRMED = 2;
+    private final static int PAID = 3;
+    private final static int CANCELLED = 4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,21 +72,29 @@ public class RequestDetailActivity extends Activity {
         if(bundle != null) {
             flag = bundle.getInt("sendPosition");
 
-            mRequest = RuntimeAccount.getInstance().myAccount.requestsList.getRequest().get(flag);
-
+            mRequest = RequestsListActivity.myRequests.get(flag);
         }
 
-        start.setText(RiderMainActivity.SourceAddress);
-        end.setText(RiderMainActivity.DestAddress);
-        date.setText(mRequest.getDate());
-        if(RuntimeAccount.getInstance().myAccount.getStatus() == 1) {
-            status.setText("Request sent");
-        } else if(RuntimeAccount.getInstance().myAccount.getStatus() == 2) {
+        Geocoder geocoder = new Geocoder(RequestDetailActivity.this);
+        try {
+            from = geocoder.getFromLocation(mRequest.getStartLatLng().latitude, mRequest.getStartLatLng().longitude, 1);
+            to = geocoder.getFromLocation(mRequest.getEndLatLng().latitude, mRequest.getEndLatLng().longitude, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        start.setText(from.get(0).getLocality());
+        end.setText(to.get(0).getLocality());
+        date.setText(mRequest.getDate().toString());
+
+        if(mRequest.getStatus() == OPEN_REQUEST) {
+            status.setText("Open Request");
+        } else if(mRequest.getStatus() == CONFIRMED) {
             status.setText("Request accepted");
-        } else if(RuntimeAccount.getInstance().myAccount.getStatus() == 3) {
-            status.setText("Request cancelled");
-        } else if(RuntimeAccount.getInstance().myAccount.getStatus() == 4) {
+        } else if(mRequest.getStatus() == PAID) {
             status.setText("Request complete");
+        } else if(mRequest.getStatus() == CANCELLED) {
+            status.setText("Request cancelled");
         }
 
         // Set a listener for changes to RatingBar
@@ -89,9 +112,11 @@ public class RequestDetailActivity extends Activity {
             public void onClick(View view) {
                 setResult(RESULT_OK);
                 Toast.makeText(RequestDetailActivity.this, "Request has been canceled", Toast.LENGTH_SHORT).show();
-                RiderMainActivity.currentAccount.requestsList.delete(mRequest);
-                //TODO: save the cancel change in elastic search server
-                RuntimeAccount.getInstance().myAccount.setStatus(3);
+
+                mRequest.setStatus(CANCELLED);
+                ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
+                addRequestTask.execute(mRequest);
+                
                 finish();
             }
         });
@@ -101,12 +126,12 @@ public class RequestDetailActivity extends Activity {
             public void onClick(View view) {
                 // /TODO: handle confirm and pay
                 setResult(RESULT_OK);
-                if(RuntimeAccount.getInstance().myAccount.getStatus() != 2) {
+                if(mRequest.getStatus() != CONFIRMED) {
                     Toast.makeText(RequestDetailActivity.this, "Request has not been accepted yet.", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(RequestDetailActivity.this, "Request has been complete", Toast.LENGTH_SHORT).show();
                     //TODO: save the cancel change in elastic search server
-                    RuntimeAccount.getInstance().myAccount.setStatus(4);
+                    mRequest.setStatus(PAID);
                     finish();
                 }
             }

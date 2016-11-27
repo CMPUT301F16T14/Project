@@ -4,24 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:weightSum="7">
+    android:weightSum="3">
 
     <TextView
-        android:id="@+id/Src"
+        android:id="@+id/current_status"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="3" />
-
-    <ImageView
-        android:id="@+id/arrow"
-        android:src="@drawable/arrow"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textSize="25sp"/>
 
     <TextView
-        android:id="@+id/Des"
+        android:id="@+id/created_date"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="3" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/created_time"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="25sp"/>
+
+
+
+
 </LinearLayout>

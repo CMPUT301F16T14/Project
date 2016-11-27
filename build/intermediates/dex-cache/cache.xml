@@ -97,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="5653971576ddfe131e1b236e0ebeb9a0aa54b5b1">
+        sha1="6829fca90b474498af55ea8fe716142d33c845d5">
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e2a32a12ce53b8c51839cbef70319e8226962b33/classes.dex" />
     </item>
     <item
@@ -187,7 +187,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="1afce88d2fa95f851c6e42de5ae38977c5294f53">
+        sha1="542f4f90bfa403716b1e49d9cb7ff62a71f26fef">
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_a13049d23ca83bd3f329a97a13384df8f69bc10a/classes.dex" />
     </item>
     <item

@@ -36,8 +36,6 @@ public class Request {
     private Account initiator;
     private LatLng startLocation;
     private LatLng endLocation;
-    private String start;
-    private String end;
     private String keyword;
     private Double estimate;
     private Double fare;
@@ -54,9 +52,11 @@ public class Request {
     private static final String TAG = Request.class.getSimpleName();
 
     // status variable
-    private final static int OPEN_REQUEST = 0;
-    private final static int CONFIRMED = 1;
-    private final static int PAID = 2;
+    private final static int CREATED = 0;
+    private final static int OPEN_REQUEST = 1;
+    private final static int CONFIRMED = 2;
+    private final static int PAID = 3;
+    private final static int CANCELLED = 4;
 
 
     /**
@@ -70,37 +70,11 @@ public class Request {
         this.startLocation = start;
         this.endLocation = end;
         this.date = new Date();
-        this.status = OPEN_REQUEST;
+        this.status = CREATED;
     }
 
-    /**
-     * Constructor for request. It contains all information about request.
-     * @param initiator
-     * @param start
-     * @param end
-     */
-    public Request(Account initiator, String start, String end) {
-        this.initiator = initiator;
-        this.start = start;
-        this.end = end;
-        this.date = new Date();
-        this.status = OPEN_REQUEST;
-    }
-
-    public String getStartLocation() {
-        return start;
-    }
-
-    public String getEndLocation() {
-        return end;
-    }
-
-
-
-    public String getDate(){
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
-        dateString = dateFormat.format(date);
-        return dateString;
+    public Date getDate(){
+        return this.date;
     }
 
     public Float setRating (Float rating) {
@@ -151,11 +125,14 @@ public class Request {
     /**
      * calculate the price per km
      * set Fate
+     * set status to OPEN_REQUEST
      * @param fare
      */
     public void setFare(Double fare) {
         this.fare = fare;
         this.unitPrice = fare / this.distance;
+        this.status = OPEN_REQUEST;
+
     }
 
     public Double getFare() {
