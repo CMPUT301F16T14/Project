@@ -7,9 +7,12 @@ import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
+import java.nio.BufferUnderflowException;
 import java.util.List;
 
 public class RequestDetailAndAcceptActivity extends Activity {
@@ -21,6 +24,7 @@ public class RequestDetailAndAcceptActivity extends Activity {
     private TextView start;
     private TextView end;
     private TextView totalPrice;
+    private Button acceptRequest;
 
     private List<Address> from;
     private List<Address> to;
@@ -43,6 +47,8 @@ public class RequestDetailAndAcceptActivity extends Activity {
                 request = SearchByPriceActivity.resultRequests.get(i);
             } else if(DriverMainActivity.searchType == DriverMainActivity.SEARCH_BY_KEYWORD) {
                 request = SearchByKeywordActivity.requestsList.get(i);
+            }else if(DriverMainActivity.searchType == DriverMainActivity.SEARCH_BY_ADDRESS){
+                request = SearchByAddressActivity.requestList.get(i);
             }
         }
 
@@ -50,6 +56,7 @@ public class RequestDetailAndAcceptActivity extends Activity {
         start      = (TextView) findViewById(R.id.textView11);
         end        = (TextView) findViewById(R.id.textView13);
         totalPrice = (TextView) findViewById(R.id.textView15);
+        acceptRequest = (Button) findViewById(R.id.AcceptButton) ;
 
         riderName.setText(request.getInitiator().getUsername());
         riderName.setBackgroundResource(R.color.orange);
@@ -60,7 +67,13 @@ public class RequestDetailAndAcceptActivity extends Activity {
                 startActivity(intent);
             }
         });
-
+        acceptRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(RequestDetailAndAcceptActivity.this, "Congratulation! Your acceptance has added to waiting list.", Toast.LENGTH_SHORT).show();
+                request.addAcceptance(RuntimeAccount.getInstance().myAccount);
+            }
+        });
 
         Geocoder geocoder = new Geocoder(RequestDetailAndAcceptActivity.this);
         try {

@@ -32,7 +32,7 @@ public class SearchByAddressActivity extends Activity {
     EditText address;
     ListView resultList;
     private RequestsAdapter adapter;
-    private ArrayList<Request> requestList = new ArrayList<>();
+    public static ArrayList<Request> requestList = new ArrayList<>();
     int flag;
     CharSequence Address;
     List<Address> addr;
