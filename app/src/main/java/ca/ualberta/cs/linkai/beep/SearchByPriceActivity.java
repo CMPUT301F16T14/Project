@@ -55,6 +55,7 @@ public class SearchByPriceActivity extends Activity {
 
 
         adapter = new RequestsAdapter(this, resultRequests);
+        adapter.clear();
         resultList.setAdapter(adapter);
 
 
@@ -145,9 +146,8 @@ public class SearchByPriceActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
                 Intent intent = new Intent(SearchByPriceActivity.this, RequestDetailAndAcceptActivity.class);
-                intent.putExtra("request_detail",i);
+                intent.putExtra("request_Detail",i);
 
                 startActivity(intent);
 
@@ -155,5 +155,6 @@ public class SearchByPriceActivity extends Activity {
         });
 
     }
+
 
 }

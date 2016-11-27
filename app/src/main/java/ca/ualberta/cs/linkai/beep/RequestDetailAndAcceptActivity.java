@@ -75,6 +75,7 @@ public class RequestDetailAndAcceptActivity extends Activity {
             }
         });
 
+
         Geocoder geocoder = new Geocoder(RequestDetailAndAcceptActivity.this);
         try {
             from = geocoder.getFromLocation(request.getStartLatLng().latitude, request.getStartLatLng().longitude, 1);
@@ -88,6 +89,14 @@ public class RequestDetailAndAcceptActivity extends Activity {
 
         totalPrice.setText(request.getFare().toString());
 
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();  // Always call the superclass method first
+
+        finish();
     }
 
 }
