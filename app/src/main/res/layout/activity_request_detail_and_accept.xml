@@ -10,4 +10,85 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.ualberta.cs.linkai.beep.RequestDetailAndAcceptActivity">
 
+    <TextView
+        android:text="Rider Name: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView8" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/textView9"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView8"
+        android:clickable="true" />
+
+    <TextView
+        android:text="Start:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView8"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="31dp"
+        android:id="@+id/textView10" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView10"
+        android:id="@+id/textView11"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView10" />
+
+    <TextView
+        android:text="End:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView10"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="22dp"
+        android:id="@+id/textView12" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView12"
+        android:id="@+id/textView13"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView12" />
+
+    <TextView
+        android:text="Total Price:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView12"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp"
+        android:id="@+id/textView14" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView14"
+        android:id="@+id/textView15"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView14" />
+
+    <Button
+        android:text="Accept This Request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp"
+        android:id="@+id/button4"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

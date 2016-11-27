@@ -144,6 +144,8 @@ public class SearchByPriceActivity extends Activity {
         resultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
                 Intent intent = new Intent(SearchByPriceActivity.this, RequestDetailAndAcceptActivity.class);
                 intent.putExtra("request_detail",i);
 
