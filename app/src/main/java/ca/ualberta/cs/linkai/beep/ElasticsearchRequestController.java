@@ -159,6 +159,36 @@ public class ElasticsearchRequestController {
     }
 
 
+
+    public static class AddRequestListTask extends AsyncTask<ArrayList<Request>, Void, Void> {
+
+        @Override
+        protected Void doInBackground(ArrayList<Request>... newRequests) {
+            verifySettings();
+
+            ArrayList<Request> requests = newRequests[0];
+            for (Request request : requests){
+                Index index = new Index.Builder(request).index("f16t14").type("Request").build();
+
+                try {
+                    DocumentResult result = client.execute(index);
+                    if (result.isSucceeded()) {
+                        request.setId(result.getId());
+                    }
+                    else {
+                        Log.i("Error", "Elastic search was not able to add the request.");
+                    }
+                }
+                catch (Exception e) {
+                    Log.i("Error", "We failed to add the request to elastic search!");
+                    e.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+    }
+
     private static void verifySettings() {
         // if the client hasn't been initialized then we should make it!
         if (client == null) {

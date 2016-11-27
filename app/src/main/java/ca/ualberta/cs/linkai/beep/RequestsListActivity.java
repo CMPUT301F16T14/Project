@@ -32,7 +32,6 @@ public class RequestsListActivity extends Activity {
 
     private RequestsAdapter myAdapter;
     private ListView myRequestsList;
-    public static ArrayList<Request> myRequests= new ArrayList<Request>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class RequestsListActivity extends Activity {
 
         myRequestsList = (ListView) findViewById(R.id.requestsListView);
 
-        myAdapter = new RequestsAdapter(this, myRequests);
+        myAdapter = new RequestsAdapter(this, RuntimeRequestList.getInstance().myRequestList);
         myRequestsList.setAdapter(myAdapter);
 
         myRequestsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -58,20 +57,28 @@ public class RequestsListActivity extends Activity {
     protected void onResume(){
         super.onResume();
 
-        myRequests.clear();
+        Toast.makeText(RequestsListActivity.this, String.valueOf(RuntimeRequestList.getInstance().myRequestList.size()), Toast.LENGTH_SHORT).show();
+
+        //myRequests.clear();
+        //myAdapter.clear();
+        //myAdapter.addAll(RuntimeRequestList.getInstance().myRequestList);
+        myAdapter.notifyDataSetChanged();
+
 
         // Search Requests by initiator
+        /*
         ElasticsearchRequestController.GetRequestByInitiatorTask getRequestByInitiatorTask =
                 new ElasticsearchRequestController.GetRequestByInitiatorTask();
         getRequestByInitiatorTask.execute(RuntimeAccount.getInstance().myAccount);
 
         try {
-            myRequests = getRequestByInitiatorTask.get();
+            RuntimeRequestList.getInstance().myRequestList = getRequestByInitiatorTask.get();
         }
         catch (Exception e) {
             Log.i("Error", "Failed to get the Requests out of the async object.");
             Toast.makeText(RequestsListActivity.this, "Unable to find Requests by elastic search", Toast.LENGTH_SHORT).show();
         }
+        */
 
         /*
         if(RuntimeAccount.getInstance().myAccount.equals(WelcomeActivity.logInAccount)){
@@ -79,10 +86,6 @@ public class RequestsListActivity extends Activity {
         }
         Toast.makeText(RequestsListActivity.this, String.valueOf(myRequests.size()), Toast.LENGTH_SHORT).show();
         */
-
-        myAdapter.clear();
-        myAdapter.addAll(myRequests);
-        myAdapter.notifyDataSetChanged();
     }
 
 

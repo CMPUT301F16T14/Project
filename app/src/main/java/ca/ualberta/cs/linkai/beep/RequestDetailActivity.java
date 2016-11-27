@@ -72,7 +72,7 @@ public class RequestDetailActivity extends Activity {
         if(bundle != null) {
             flag = bundle.getInt("sendPosition");
 
-            mRequest = RequestsListActivity.myRequests.get(flag);
+            mRequest = RuntimeRequestList.getInstance().myRequestList.get(flag);
         }
 
         Geocoder geocoder = new Geocoder(RequestDetailActivity.this);
@@ -103,7 +103,7 @@ public class RequestDetailActivity extends Activity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 Toast.makeText(RequestDetailActivity.this, "Thank you for rating!", Toast.LENGTH_SHORT).show();
-                mRequest.setRating(v);
+                RuntimeRequestList.getInstance().myRequestList.get(flag).setRating(v);
             }
         });
 
@@ -113,11 +113,12 @@ public class RequestDetailActivity extends Activity {
                 setResult(RESULT_OK);
                 Toast.makeText(RequestDetailActivity.this, "Request has been canceled", Toast.LENGTH_SHORT).show();
 
-                mRequest.setStatus(CANCELLED);
-                ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
-                addRequestTask.execute(mRequest);
+                RuntimeRequestList.getInstance().myRequestList.get(flag).setStatus(CANCELLED);
+                ElasticsearchRequestController.AddRequestListTask addRequestListTask = new ElasticsearchRequestController.AddRequestListTask();
+                addRequestListTask.execute(RuntimeRequestList.getInstance().myRequestList);
                 
                 finish();
+
             }
         });
 
@@ -131,7 +132,7 @@ public class RequestDetailActivity extends Activity {
                 } else {
                     Toast.makeText(RequestDetailActivity.this, "Request has been complete", Toast.LENGTH_SHORT).show();
                     //TODO: save the cancel change in elastic search server
-                    mRequest.setStatus(PAID);
+                    RuntimeRequestList.getInstance().myRequestList.get(flag).setStatus(PAID);
                     finish();
                 }
             }

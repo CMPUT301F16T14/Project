@@ -62,8 +62,10 @@ public class ViewEstimateActivity extends Activity {
 
                         RiderMainActivity.myRequest.setKeyword(keyword);
 
-                        ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
-                        addRequestTask.execute(RiderMainActivity.myRequest);
+                        RuntimeRequestList.getInstance().myRequestList.add(RiderMainActivity.myRequest);
+
+                        ElasticsearchRequestController.AddRequestListTask addRequestListTask = new ElasticsearchRequestController.AddRequestListTask();
+                        addRequestListTask.execute(RuntimeRequestList.getInstance().myRequestList);
 
                         // add request to request list
                         //RiderMainActivity.currentAccount.requestsList.add(RiderMainActivity.myRequest);

@@ -60,6 +60,9 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         ActivityCompat.OnRequestPermissionsResultCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    // set a requestList which created by the logInAccount
+    public static ArrayList<Request> myRequestList = new ArrayList<Request>();
+
     //public static final int DIVIDE_BY_TWO = 2;
     public static final int BITMAP_SIZE = 100;
     int width = BITMAP_SIZE;
@@ -419,6 +422,19 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+
+        // Search Requests by initiator
+        ElasticsearchRequestController.GetRequestByInitiatorTask getRequestByInitiatorTask =
+                new ElasticsearchRequestController.GetRequestByInitiatorTask();
+        getRequestByInitiatorTask.execute(RuntimeAccount.getInstance().myAccount);
+
+        try {
+            RuntimeRequestList.getInstance().myRequestList = getRequestByInitiatorTask.get();
+        }
+        catch (Exception e) {
+            Log.i("Error", "Failed to get the Requests out of the async object.");
+            Toast.makeText(RiderMainActivity.this, "Unable to find Requests by elastic search", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
