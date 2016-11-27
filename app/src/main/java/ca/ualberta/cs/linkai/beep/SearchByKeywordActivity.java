@@ -3,11 +3,13 @@ package ca.ualberta.cs.linkai.beep;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,7 @@ public class SearchByKeywordActivity extends Activity {
         keyword = (EditText) findViewById(R.id.keywordSearch);
         search = (Button) findViewById(R.id.search);
         resultList = (ListView) findViewById(R.id.resultList);
+        resultList.setAdapter(adapter);
 
         // click on the search button to view browse request list
         search.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +43,21 @@ public class SearchByKeywordActivity extends Activity {
                 //TODO: get satisfied requests from elastic search server
                 String KeyWord = keyword.getText().toString();
                 ElasticsearchRequestController.GetRequestByKeywordTask getRequestByKeywordTask = new ElasticsearchRequestController.GetRequestByKeywordTask();
+                getRequestByKeywordTask.execute(KeyWord);
+
+                try {
+                    requestsList = getRequestByKeywordTask.get();
+
+                } catch (Exception e) {
+                    Log.i("Error", "Failed to get result.");
+                }
+
+                if(requestsList.isEmpty()) {
+                    Toast.makeText(SearchByKeywordActivity.this, "No request has keyword" + " '" + KeyWord + "' ", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(SearchByKeywordActivity.this, "keyword found", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -48,6 +66,6 @@ public class SearchByKeywordActivity extends Activity {
     public void onStart() {
         super.onStart();
         adapter = new ArrayAdapter<Request>(this, R.layout.list_item, requestsList);
-        resultList.setAdapter(adapter);
+        //resultList.setAdapter(adapter);
     }
 }

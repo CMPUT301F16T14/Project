@@ -26,7 +26,7 @@ public class SearchByPriceActivity extends Activity {
     EditText maximal;
     ListView resultList;
     private RequestsAdapter adapter;
-    private Integer type;
+    private Integer type = 10;
     private ArrayList<Request> resultRequests = new ArrayList<Request>();
     private Integer flag = 0;
 
@@ -43,7 +43,7 @@ public class SearchByPriceActivity extends Activity {
                 if (checked)
                     return type = 1;
         }
-        return null;
+        return type;
     }
 
     @Override
@@ -94,6 +94,9 @@ public class SearchByPriceActivity extends Activity {
 
                 if(resultRequests.isEmpty() && flag == 0){
                     Toast.makeText(SearchByPriceActivity.this, "No request find", Toast.LENGTH_SHORT).show();
+                    adapter.clear();
+                    adapter.addAll(resultRequests);
+                    adapter.notifyDataSetChanged();
                 } else {
                     // = resultRmyAdapter.clear();
                     adapter.clear();

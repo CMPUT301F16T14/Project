@@ -71,7 +71,7 @@ public class ElasticsearchRequestController {
 
             ArrayList<Request> myRequests = new ArrayList<Request>();
 
-            String search_string = "{\"from\" : 0, \"size\" : 1000, \"query\" : {\"term\" : {\"initiator\":\"" + search_parameters[0] + "\" }}}";
+            String search_string = "{\"from\" : 0, \"size\" : 1000, \"query\" : {\"term\" : {\"keyword\":\"" + search_parameters[0] + "\" }}}";
             // assume that search_parameters[0] is the only search term we are interested in using
             Search search = new Search.Builder(search_string)
                     .addIndex("f16t14")
@@ -96,15 +96,17 @@ public class ElasticsearchRequestController {
         }
     }
 
-    // TODO
-    public static class GetRequestByKeywordTask extends AsyncTask<Account, String, ArrayList<Request>> {
+    /**
+     * Search based on a string type keyword
+     */
+    public static class GetRequestByKeywordTask extends AsyncTask<String, Void, ArrayList<Request>> {
         @Override
-        protected ArrayList<Request> doInBackground(Account... search_parameters) {
+        protected ArrayList<Request> doInBackground(String... search_parameters) {
             verifySettings();
 
             ArrayList<Request> myRequests = new ArrayList<Request>();
 
-            String search_string = "{\"from\" : 0, \"size\" : 1000, \"query\" : {\"term\" : {\"initiator\":\"" + search_parameters[0] + "\" }}}";
+            String search_string = "{\"query\" : {\"term\" : {\"keyword\":\"" + search_parameters[0] + "\" }}}";
             // assume that search_parameters[0] is the only search term we are interested in using
             Search search = new Search.Builder(search_string)
                     .addIndex("f16t14")
@@ -131,6 +133,51 @@ public class ElasticsearchRequestController {
 
     //here is a function to get the rider requests by different price
     public static class GetRequestByTotalPrice extends AsyncTask<ArrayList<Double>, Void, ArrayList<Request>> {
+        @Override
+        protected ArrayList<Request> doInBackground(ArrayList<Double>... search_parameters) {
+            verifySettings();
+
+            ArrayList<Request> myRequests = new ArrayList<Request>();
+
+            Double min = search_parameters[0].get(0);
+            Double max = search_parameters[0].get(1);
+
+            String search_string = "{\n" +
+                    "    \"query\": {\n" +
+                    "        \"range\" : {\n" +
+                    "            \"estimate\" : {\n" +
+                    "                \"gte\" : " + min + ",\n" +
+                    "                \"lte\" : " + max + "\n" +
+                    "            }\n" +
+                    "        }\n" +
+                    "    }\n" +
+                    "}";
+            // assume that search_parameters[0], search_parameters[1] are the only search terms we are interested in using
+            Search search = new Search.Builder(search_string)
+                    .addIndex("f16t14")
+                    .addType("Request")
+                    .build();
+
+            try {
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()) {
+                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
+                    myRequests.addAll(foundRequests);
+                }
+                else {
+                    Log.i("Error", "The search query failed to find any request that matched.");
+                }
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+
+            return myRequests;
+        }
+    }
+
+    //here is a function to get the rider requests by different price
+    public static class GetRequestByUnitPrice extends AsyncTask<ArrayList<Double>, Void, ArrayList<Request>> {
         @Override
         protected ArrayList<Request> doInBackground(ArrayList<Double>... search_parameters) {
             verifySettings();

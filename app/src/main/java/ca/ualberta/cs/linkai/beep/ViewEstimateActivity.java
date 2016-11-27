@@ -66,16 +66,13 @@ public class ViewEstimateActivity extends Activity {
                         addRequestTask.execute(RiderMainActivity.myRequest);
 
                         // add request to request list
-                        RiderMainActivity.currentAccount.requestsList.add(RiderMainActivity.myRequest);
-
-                        // change request status to "sent"
-                        RuntimeAccount.getInstance().myAccount.setStatus(1);
+                        //RiderMainActivity.currentAccount.requestsList.add(RiderMainActivity.myRequest);
 
                         // change the number of requests the current user has
                         //RiderMainActivity.currentAccount.setRequestNum(RiderMainActivity.currentAccount.getRequestNum() + 1);
                         // update to the elastic search server
-                        ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
-                        addAccountTask.execute(RiderMainActivity.currentAccount);
+                        //ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
+                        //addAccountTask.execute(RiderMainActivity.currentAccount);
                         Toast.makeText(ViewEstimateActivity.this, "Request has been sent, please wait for drivers to accept.", Toast.LENGTH_SHORT).show();
                         //destroy this page, return to last page
                         finish();

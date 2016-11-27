@@ -25,13 +25,14 @@ import java.util.concurrent.Exchanger;
 import static ca.ualberta.cs.linkai.beep.R.styleable.View;
 
 /**
- * Request list to store and show cuurent user requests
+ * Request list to store and show current user requests
  */
 
 public class RequestsListActivity extends Activity {
 
-    public static RequestsAdapter myAdapter;
+    private RequestsAdapter myAdapter;
     private ListView myRequestsList;
+    public static ArrayList<Request> myRequests= new ArrayList<Request>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class RequestsListActivity extends Activity {
 
         myRequestsList = (ListView) findViewById(R.id.requestsListView);
 
-        myAdapter = new RequestsAdapter(this, RiderMainActivity.currentAccount.myRequests);
+        myAdapter = new RequestsAdapter(this, myRequests);
         myRequestsList.setAdapter(myAdapter);
 
         myRequestsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -54,10 +55,10 @@ public class RequestsListActivity extends Activity {
     }
 
     @Override
-    protected void onStart(){
+    protected void onResume(){
         super.onResume();
 
-        RiderMainActivity.currentAccount.myRequests.clear();
+        myRequests.clear();
 
         // Search Requests by initiator
         ElasticsearchRequestController.GetRequestByInitiatorTask getRequestByInitiatorTask =
@@ -65,7 +66,7 @@ public class RequestsListActivity extends Activity {
         getRequestByInitiatorTask.execute(RuntimeAccount.getInstance().myAccount);
 
         try {
-            RiderMainActivity.currentAccount.myRequests = getRequestByInitiatorTask.get();
+            myRequests = getRequestByInitiatorTask.get();
         }
         catch (Exception e) {
             Log.i("Error", "Failed to get the Requests out of the async object.");
@@ -80,7 +81,7 @@ public class RequestsListActivity extends Activity {
         */
 
         myAdapter.clear();
-        myAdapter.addAll(RiderMainActivity.currentAccount.myRequests);
+        myAdapter.addAll(myRequests);
         myAdapter.notifyDataSetChanged();
     }
 
