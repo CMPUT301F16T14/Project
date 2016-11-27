@@ -43,7 +43,7 @@ public class SearchByKeywordActivity extends Activity {
                 //TODO: get satisfied requests from elastic search server
                 String KeyWord = keyword.getText().toString();
                 ElasticsearchRequestController.GetRequestByKeywordTask getRequestByKeywordTask = new ElasticsearchRequestController.GetRequestByKeywordTask();
-                getRequestByKeywordTask.execute("calgary");
+                getRequestByKeywordTask.execute(KeyWord);
 
                 try {
                     requestsList = getRequestByKeywordTask.get();
