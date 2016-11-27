@@ -21,8 +21,8 @@ public class SearchByKeywordActivity extends Activity {
     EditText keyword;
     Button search;
     ListView resultList;
-    private ArrayList<Request> requestsList;
-    private ArrayAdapter<Request> adapter;
+    private ArrayList<Request> requestsList = new ArrayList<Request>();
+    private RequestsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,8 @@ public class SearchByKeywordActivity extends Activity {
         keyword = (EditText) findViewById(R.id.keywordSearch);
         search = (Button) findViewById(R.id.search);
         resultList = (ListView) findViewById(R.id.resultList);
+
+        adapter = new RequestsAdapter(this, requestsList);
         resultList.setAdapter(adapter);
 
         // click on the search button to view browse request list
@@ -40,8 +42,14 @@ public class SearchByKeywordActivity extends Activity {
             public void onClick(View view) {
                 setResult(RESULT_OK);
 
+                String KeyWord = null;
                 //TODO: get satisfied requests from elastic search server
-                String KeyWord = keyword.getText().toString();
+                if(keyword.getText().toString().isEmpty()) {
+                    Toast.makeText(SearchByKeywordActivity.this, "Keyword cannot be empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    KeyWord = keyword.getText().toString();
+
+                }
                 ElasticsearchRequestController.GetRequestByKeywordTask getRequestByKeywordTask = new ElasticsearchRequestController.GetRequestByKeywordTask();
                 getRequestByKeywordTask.execute(KeyWord);
 
@@ -55,17 +63,14 @@ public class SearchByKeywordActivity extends Activity {
                 if(requestsList.isEmpty()) {
                     Toast.makeText(SearchByKeywordActivity.this, "No request has keyword" + " '" + KeyWord + "' ", Toast.LENGTH_SHORT).show();
                 } else {
+                    adapter.clear();
+                    adapter.addAll(requestsList);
                     adapter.notifyDataSetChanged();
                     Toast.makeText(SearchByKeywordActivity.this, "keyword found", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter = new ArrayAdapter<Request>(this, R.layout.list_item, requestsList);
-        //resultList.setAdapter(adapter);
-    }
 }

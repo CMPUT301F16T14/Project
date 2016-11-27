@@ -281,6 +281,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                 Log.e(TAG, "onError: Status = " + status.toString());
             }
         });
+
+
     }
 
     private void buildGoogleApiClient() {
@@ -316,6 +318,19 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
 
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+
+                StartMarker.remove();
+                startLatLng = new LatLng(latLng.latitude, latLng.longitude);
+                StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                // Set Camera position
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
+
+            }
+        });
+
     }
 
 
@@ -338,6 +353,9 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         }
 
     }
+
+
+
 
 
     /**
