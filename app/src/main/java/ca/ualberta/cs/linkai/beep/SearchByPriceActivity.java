@@ -103,20 +103,39 @@ public class SearchByPriceActivity extends Activity {
                         adapter.addAll(resultRequests);
                         adapter.notifyDataSetChanged();
                     } else {
-                        // = resultRmyAdapter.clear();
                         adapter.clear();
                         adapter.addAll(resultRequests);
                         adapter.notifyDataSetChanged();
 
                     }
                 } else if (type == 1) {
+                    ElasticsearchRequestController.GetRequestByUnitPrice getRequestByUnitPrice = new ElasticsearchRequestController.GetRequestByUnitPrice();
+                    getRequestByUnitPrice.execute(maxMinList);
+
+                    try {
+                        resultRequests = getRequestByUnitPrice.get();
+                    } catch (Exception e) {
+                        Log.i("Error", "Failed to get the Accounts out of the async object.");
+                        Toast.makeText(SearchByPriceActivity.this, "Unable to find the Account by elastic search", Toast.LENGTH_SHORT).show();
+                    }
+
+                    if (resultRequests.isEmpty() && flag == 0) {
+                        Toast.makeText(SearchByPriceActivity.this, "No request find", Toast.LENGTH_SHORT).show();
+                        adapter.clear();
+                        adapter.addAll(resultRequests);
+                        adapter.notifyDataSetChanged();
+                    } else {
+                        adapter.clear();
+                        adapter.addAll(resultRequests);
+                        adapter.notifyDataSetChanged();
+
+                    }
 
                 }
                 else {
                     Toast.makeText(SearchByPriceActivity.this, "Please select search bu Unit Price or Total Price", Toast.LENGTH_SHORT).show();
                 }
 
-                //TODO: get requests whose price between "min" and "max" from server
             }
         });
     }
