@@ -322,7 +322,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             @Override
             public void onMapClick(LatLng latLng) {
 
-                StartMarker.remove();
+                //StartMarker.remove();
                 startLatLng = new LatLng(latLng.latitude, latLng.longitude);
                 StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
                 // Set Camera position
