@@ -61,12 +61,12 @@ public class ViewProfileActivity extends Activity {
         currentUserPhone = (TextView) findViewById(R.id.phoneTextView);
         currentUserEmail = (TextView) findViewById(R.id.emailTextView);
         finishButton = (Button) findViewById(R.id.finishViewProfileButton);
-/*
+
         //TODO: change text to current user profile!
-        currentUserName.setText("");
-        currentUserPhone.setText("");
-        currentUserEmail.setText("");
-*/
+        currentUserName.setText(RequestDetailAndAcceptActivity.request.getInitiator().getUsername());
+        currentUserPhone.setText(RequestDetailAndAcceptActivity.request.getInitiator().getUsername());
+        currentUserEmail.setText(RequestDetailAndAcceptActivity.request.getInitiator().getEmail());
+
 
         //http://stackoverflow.com/questions/8599657/dialing-a-phone-call-on-click-of-textview-in-android
         // Make a call when click on phone number
@@ -74,15 +74,18 @@ public class ViewProfileActivity extends Activity {
         currentUserPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentUserPhone.setText("123456");
-                String phoneNumber = "123456";
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:+" + phoneNumber.trim()));
-                if (ActivityCompat.checkSelfPermission(ViewProfileActivity.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
+                String phoneNumber = RequestDetailAndAcceptActivity.request.getInitiator().getPhone();
+                if(phoneNumber.equals("No email info")) {
+                    Toast.makeText(ViewProfileActivity.this, "Unable to contact by phone", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:+" + phoneNumber.trim()));
+                    if (ActivityCompat.checkSelfPermission(ViewProfileActivity.this,
+                            Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    startActivity(callIntent);
                 }
-                startActivity(callIntent);
 
             }
         });
@@ -93,22 +96,26 @@ public class ViewProfileActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.i("Send email", "");
-                String[] TO = {"301@ualberta.ca"};
-                String[] CC = {""};
-                Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.setData(Uri.parse("mailto:"));
-                emailIntent.setType("text/plain");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-                emailIntent.putExtra(Intent.EXTRA_CC, CC);
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+                String[] TO = {RequestDetailAndAcceptActivity.request.getInitiator().getEmail()};
+                if(TO.equals("No email info")) {
+                    Toast.makeText(ViewProfileActivity.this, "Unable to contact by email", Toast.LENGTH_SHORT).show();
+                } else {
+                    String[] CC = {""};
+                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                    emailIntent.setData(Uri.parse("mailto:"));
+                    emailIntent.setType("text/plain");
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+                    emailIntent.putExtra(Intent.EXTRA_CC, CC);
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
 
-                try {
-                    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                    finish();
-                    Log.i("Finished sending email", "");
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(ViewProfileActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                    try {
+                        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                        finish();
+                        Log.i("Finished sending email", "");
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        Toast.makeText(ViewProfileActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }

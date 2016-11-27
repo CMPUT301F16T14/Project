@@ -17,7 +17,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="73dp"
         android:layout_alignParentEnd="true"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:visibility="visible"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,7 +31,8 @@
         android:layout_alignStart="@+id/nameTextView"
         android:layout_alignEnd="@+id/nameTextView"
         android:clickable="true"
-        android:autoLink="phone"/>
+        android:autoLink="phone"
+        android:visibility="visible"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,7 +45,8 @@
         android:textSize="30dp"
         android:layout_alignEnd="@+id/phoneTextView"
         android:clickable="true"
-        android:autoLink="email"/>
+        android:autoLink="email"
+        android:visibility="visible"/>
 
     <ImageView
         android:layout_width="wrap_content"

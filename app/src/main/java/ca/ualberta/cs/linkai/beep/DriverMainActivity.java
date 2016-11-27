@@ -22,6 +22,13 @@ public class DriverMainActivity extends Activity {
     Button searchByKeyword;
     Button searchByAddress;
 
+    public static int searchType;
+    // define different search type
+    public final static int SEARCH_BY_LOCATION = 1;
+    public final static int SEARCH_BY_KEYWORD = 2;
+    public final static int SEARCH_BY_PRICE = 3;
+    public final static int SEARCH_BY_ADDRESS = 4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +42,22 @@ public class DriverMainActivity extends Activity {
     }
 
     public void SearchByLocation(View view) {
+        searchType = SEARCH_BY_LOCATION;
         Intent intent = new Intent(this, SearchByLocationActivity.class);
         startActivity(intent);
     }
     public void SearchByPrice(View view) {
+        searchType = SEARCH_BY_PRICE;
         Intent intent = new Intent(this, SearchByPriceActivity.class);
         startActivity(intent);
     }
     public void SearchByKeyword(View view) {
+        searchType = SEARCH_BY_KEYWORD;
         Intent intent = new Intent(this, SearchByKeywordActivity.class);
         startActivity(intent);
     }
     public void SearchByAddress(View view) {
+        searchType = SEARCH_BY_ADDRESS;
         Intent intent = new Intent(this, SearchByAddressActivity.class);
         startActivity(intent);
     }

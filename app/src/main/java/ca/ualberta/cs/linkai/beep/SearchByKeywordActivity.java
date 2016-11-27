@@ -1,10 +1,12 @@
 package ca.ualberta.cs.linkai.beep;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +23,7 @@ public class SearchByKeywordActivity extends Activity {
     EditText keyword;
     Button search;
     ListView resultList;
-    private ArrayList<Request> requestsList = new ArrayList<Request>();
+    public static ArrayList<Request> requestsList = new ArrayList<Request>();
     private RequestsAdapter adapter;
 
     @Override
@@ -69,6 +71,17 @@ public class SearchByKeywordActivity extends Activity {
                     Toast.makeText(SearchByKeywordActivity.this, "keyword found", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+
+        // click on each request to view request detail and accept
+        resultList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(SearchByKeywordActivity.this, RequestDetailAndAcceptActivity.class);
+                intent.putExtra("request_detail",i);
+                startActivity(intent);
             }
         });
     }

@@ -31,7 +31,7 @@ public class SearchByPriceActivity extends Activity {
     EditText maximal;
     ListView resultList;
     RadioGroup radioGroup;
-    RadioButton searchToalPrice;
+    RadioButton searchTotalPrice;
     RadioButton searchUnitPrice;
 
     private RequestsAdapter adapter;
@@ -50,7 +50,7 @@ public class SearchByPriceActivity extends Activity {
         maximal = (EditText) findViewById(R.id.Max);
         resultList = (ListView) findViewById(R.id.resultList);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        searchToalPrice = (RadioButton) findViewById(R.id.searchPrice);
+        searchTotalPrice = (RadioButton) findViewById(R.id.searchPrice);
         searchUnitPrice = (RadioButton) findViewById(R.id.searchUnitPrice);
 
 
@@ -65,7 +65,7 @@ public class SearchByPriceActivity extends Activity {
                 type = 10;
                 flag = 0;
 
-                if (searchToalPrice.isChecked()){
+                if (searchTotalPrice.isChecked()){
                     type = 0;
                 }
                 if (searchUnitPrice.isChecked()){
