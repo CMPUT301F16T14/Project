@@ -26,8 +26,12 @@ public class Account {
     private String id;
     private String username;
     private String phone;
+
+
+
     private String email;
     private int RequestNum;
+    private String vehicleInfo;
     /**
      * Define the user type
      * "1" to be a driver
@@ -106,6 +110,13 @@ public class Account {
         this.RequestNum = num;
     }
 
+    public String getVehicleInfo() {
+        return vehicleInfo;
+    }
+
+    public void setVehicleInfo(String vehicleInfo) {
+        this.vehicleInfo = vehicleInfo;
+    }
     //getter and setter about JestId
     public String getId(){
         return id;

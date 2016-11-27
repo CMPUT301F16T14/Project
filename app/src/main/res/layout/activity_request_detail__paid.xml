@@ -17,16 +17,14 @@
         android:id="@+id/rate"
         android:textSize="18sp"
         android:layout_above="@+id/ratingBar"
-        android:layout_alignParentStart="true"
-        android:visibility="invisible"/>
+        android:layout_alignParentStart="true" />
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingBar"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"/>
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="From:  "
@@ -70,11 +68,30 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Driver"
+        android:id="@+id/DriverName"
+        android:textSize="18sp"
+        android:layout_alignParentRight="true"
+        android:layout_toEndOf="@+id/to"
+        android:contextClickable="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/car"
         android:layout_toEndOf="@+id/car"
         android:id="@+id/CarInfo"
         android:textSize="18sp"
         android:layout_alignParentRight="true" />
+
+    <TextView
+        android:text="(Click name to see driver profile)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/DriverInfo"
+        android:layout_marginEnd="39dp"
+        android:layout_below="@+id/DriverName"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="Date:"
@@ -84,8 +101,46 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="15dp"
         android:id="@+id/date"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/date"
+        android:id="@+id/DateInfo"
+        android:layout_alignParentEnd="true"
         android:textSize="20sp"
-        android:layout_above="@+id/Driver" />
+        android:layout_toEndOf="@+id/Driver"
+        android:layout_alignStart="@+id/DestAddress" />
+
+    <TextView
+        android:text="Status:  "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp"
+        android:id="@+id/status"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/status"
+        android:id="@+id/StatusInfo"
+        android:textSize="20sp"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/status" />
+
+    <TextView
+        android:text="Driver:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Driver"
+        android:textSize="18sp"
+        android:layout_below="@+id/status"
+        android:layout_marginTop="25dp"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Driver's vehicle:"
@@ -95,60 +150,5 @@
         android:textSize="18sp"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Driver:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Driver"
-        android:textSize="18sp"
-        android:layout_alignBottom="@+id/DriverName" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/DriverName"
-        android:textSize="18sp"
-        android:clickable="true"
-        android:layout_marginBottom="23dp"
-        android:layout_above="@+id/DriverInfo"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/DestAddress" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/DateInfo"
-        android:textSize="20sp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/DestAddress"
-        android:layout_above="@+id/Driver"
-        android:layout_alignTop="@+id/date" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/DriverInfo"
-        android:layout_above="@+id/CarInfo"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="43dp"
-        android:layout_marginBottom="17dp" />
-
-    <Button
-        android:text="Cancel Request"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancelrequest"
-        android:layout_above="@+id/rate"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Confirm and Pay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/confirm"
-        android:layout_alignBaseline="@+id/cancelrequest"
-        android:layout_alignBottom="@+id/cancelrequest"
-        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

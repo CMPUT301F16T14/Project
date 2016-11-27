@@ -49,16 +49,30 @@
         <activity
             android:name=".RiderMainActivity"
             android:label="@string/title_activity_rider_main" />
-        <activity android:name=".EditProfileActivity" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:label="@string/title_activity_edit_profile"/>
         <activity
             android:name=".SearchByLocationActivity"
             android:label="@string/title_activity_search_by_location" />
-        <activity android:name=".SearchByKeywordActivity" />
+        <activity
+            android:name=".SearchByKeywordActivity"
+            android:label="@string/title_activity_search_by_keyword"/>
         <activity
             android:name=".SearchByPriceActivity"
             android:label="@string/title_activity_search_by_price" />
-        <activity android:name=".SearchByAddressActivity" />
-        <activity android:name=".RequestDetailAndAcceptActivity"></activity>
+        <activity
+            android:name=".SearchByAddressActivity"
+            android:label="@string/title_activity_search_by_address"/>
+        <activity
+            android:name=".RequestDetailAndAcceptActivity"
+            android:label="@string/title_activity_request_detail_and_accept" />
+        <activity
+            android:name=".RequestDetailActivity_OPEN"
+            android:label="@string/title_activity_request_detail_open"/>
+        <activity
+            android:name=".RequestDetailActivity_PAID"
+            android:label="@string/title_activity_request_detail_paid"></activity>
     </application>
 
 </manifest>
