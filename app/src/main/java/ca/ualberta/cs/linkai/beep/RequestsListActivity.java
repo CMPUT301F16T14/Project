@@ -50,7 +50,7 @@ public class RequestsListActivity extends Activity {
                     intent.putExtra("sendPosition", position);
                     startActivity(intent);
                 }else if (RuntimeRequestList.getInstance().myRequestList.get(position).getStatus() == CANCELLED) {
-                    Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity_CANCLE.class);
+                    Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity_CANCEL.class);
                     intent.putExtra("sendPosition", position);
                     startActivity(intent);
                 }else if (RuntimeRequestList.getInstance().myRequestList.get(position).getStatus() == CONFIRMED){
