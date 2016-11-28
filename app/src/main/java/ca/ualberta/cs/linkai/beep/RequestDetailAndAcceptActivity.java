@@ -74,6 +74,7 @@ public class RequestDetailAndAcceptActivity extends Activity {
                 request.addAcceptance(RuntimeAccount.getInstance().myAccount);
                 ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
                 addRequestTask.execute(request);
+
             }
         });
 

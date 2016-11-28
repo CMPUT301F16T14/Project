@@ -107,6 +107,7 @@ public class ElasticsearchRequestController {
 
             ArrayList<Request> myRequests = new ArrayList<Request>();
 
+            int status = 1;
             String search_string = "{\"query\" : {\"term\" : {\"keyword\":\"" + search_parameters[0] + "\" }}}";
             // assume that search_parameters[0] is the only search term we are interested in using
             Search search = new Search.Builder(search_string)
