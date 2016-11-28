@@ -19,6 +19,8 @@ public class ProfileTest {
     Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca", 3);
     // rider2 (with the same name as rider1)
     Account rider2 = new Account("testRiderName1", "7807101331", "CMPUT321@ualberta.ca", 3);
+    //driver1
+    Account driver = new Account("testDriverName1", "7807101331", "CMPUT321@ualberta.ca", 1);
 
     /**
      * Test for UC-P01 (US03.01.01)
@@ -152,5 +154,37 @@ public class ProfileTest {
         assertTrue("username doesn't display correctly", username.equals("testUserName"));
         assertTrue("phone number doesn't display correctly", phoneNumber.equals("7807109999"));
         assertTrue("email doesn't edited display", email.equals("CMPUT301@ualberta.ca"));
+    }
+
+    /**
+     * Test for UC-P02-01 (US03.04.01)
+     */
+    @Test
+    public void testEditProfileAboutVehicle(){
+        ArrayList<Account> resultAccounts = new ArrayList<Account>();
+        Account resultAccount;
+        String vehicleInfo = "test vehicle info";
+        String resultInfo;
+
+        // add the account to the elastic search server
+        ElasticsearchAccountController.AddAccountTask addAccountTask =
+                new ElasticsearchAccountController.AddAccountTask();
+        addAccountTask.execute(driver);
+
+        // test if the profile is created
+        ElasticsearchAccountController.GetAccountTask getAccountTask =
+                new ElasticsearchAccountController.GetAccountTask();
+        getAccountTask.execute("testDriverName1");
+        try {
+            resultAccounts = getAccountTask.get();
+        }
+        catch (Exception e) {
+            assertTrue("Cannot get accounts from the elastic search", false);
+        }
+        resultAccount = resultAccounts.get(0);
+        resultAccount.setVehicleInfo(vehicleInfo);
+        resultInfo = resultAccount.getUsername();
+        assertTrue("vehicle info should be the same", resultInfo.equals(vehicleInfo));
+
     }
 }
