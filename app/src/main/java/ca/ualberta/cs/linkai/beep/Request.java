@@ -30,7 +30,9 @@ import io.searchbox.annotations.JestId;
 /**
  * This is class deal with request.
  * It contains all information the request needs
+ *
  * @author Linkai, Jinzhu
+ *
  */
 
 public class Request {
@@ -72,9 +74,9 @@ public class Request {
 
     /**
      * Constructor initialize the request
-      * @param initiator
-     * @param start
-     * @param end
+      * @param initiator initiator indicate the current user
+     * @param start represent the start location of the ride
+     * @param end represent the destination of the ride
      */
     public Request(Account initiator, LatLng start, LatLng end) {
         this.initiator = initiator;
@@ -94,6 +96,13 @@ public class Request {
     }
 
 
+    /**
+     * Calculate the estimation by Beep automatically
+     * as a reference for the rider
+     *
+     * @param start start location
+     * @param end destination
+     */
     public void EstimateByDistance(LatLng start, LatLng end) {
         getDistance(start, end);
         if(this.distance <= 3) {
@@ -111,9 +120,8 @@ public class Request {
     /**
      * reference: https://en.wikipedia.org/wiki/Geographical_distance
      *
-     * @param start
-     * @param end
-     * @return distance between two location
+     * @param start start location
+     * @param end destination
      */
     public void getDistance(LatLng start, LatLng end) {
         int Radius = 6371; // km
@@ -132,7 +140,8 @@ public class Request {
      * calculate the price per km
      * set Fate
      * set status to OPEN_REQUEST
-     * @param fare
+     *
+     * @param fare the fare is from the rider input which represents the price rider willing to offer
      */
     public void setFare(Double fare) {
         this.fare = fare;

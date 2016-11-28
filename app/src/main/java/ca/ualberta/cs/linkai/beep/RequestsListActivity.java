@@ -26,12 +26,16 @@ import static ca.ualberta.cs.linkai.beep.R.styleable.View;
 
 /**
  * Request list to store and show current user requests
+ *
+ * @see RequestsAdapter
+ * @see RequestDetailActivity
+ *
  */
 
 public class RequestsListActivity extends Activity {
 
     private RequestsAdapter myAdapter;
-    private ListView myRequestsList;
+    ListView myRequestsList;
 
     // status variable
     private final static int CREATED = 0;

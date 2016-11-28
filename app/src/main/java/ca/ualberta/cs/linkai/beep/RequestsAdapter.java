@@ -15,7 +15,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by lincolnqi on 2016-11-13.
+ * Create a new adapter to deal with request list
+ *
+ * @author Linkai, Jinzhu
+ * @see RequestDetailActivity
+ * @see RequestsListActivity
+ * @see RequestsList
+ * @since 13/11/2016
+ *
  */
 
 public class RequestsAdapter extends ArrayAdapter<Request>{

@@ -15,16 +15,28 @@ import java.io.IOException;
 import java.nio.BufferUnderflowException;
 import java.util.List;
 
+/**
+ * This activity enables driver to view the detail of the request
+ * and decide whether or not to accept the request
+ *
+ * @author xizi, Jinzhu
+ * @see DriverMainActivity
+ * @see SearchByAddressActivity
+ * @see SearchByKeywordActivity
+ * @see SearchByPriceActivity
+ * @since 26/11/2016
+ *
+ */
 public class RequestDetailAndAcceptActivity extends Activity {
 
-    private Bundle bundle;
+    Bundle bundle;
     public static Request request;
 
-    private TextView riderName;
-    private TextView start;
-    private TextView end;
-    private TextView totalPrice;
-    private Button acceptRequest;
+    TextView riderName;
+    TextView start;
+    TextView end;
+    TextView totalPrice;
+    Button acceptRequest;
 
     private List<Address> from;
     private List<Address> to;

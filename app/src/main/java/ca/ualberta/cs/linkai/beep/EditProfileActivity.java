@@ -17,13 +17,13 @@ import android.widget.Toast;
  * @see RiderMainActivity
  */
 public class EditProfileActivity extends Activity {
-    private TextView userName;
+    TextView userName;
     private EditText newPhone;
     private EditText newEmail;
-    private Button finishChangeButton;
-    private Button driver;
-    private Button rider;
-    private String userPhone;
+    Button finishChangeButton;
+    Button driver;
+    Button rider;
+    String userPhone;
     private String userEmail;
     Account currentAccount;
 
@@ -38,7 +38,6 @@ public class EditProfileActivity extends Activity {
         super.onStart();
 
         currentAccount = WelcomeActivity.logInAccount;
-        //currentAccount = RuntimeAccount.getInstance().myAccount;
 
         Toast.makeText(EditProfileActivity.this, "Hello " + currentAccount.getUsername(),
                 Toast.LENGTH_SHORT).show();
@@ -79,6 +78,7 @@ public class EditProfileActivity extends Activity {
         /**
          * Reach here when user click the finishChange button
          * This is the button function which use to save the modified value into the cloud
+         *
          * @see DriverMainActivity
          * @see RiderMainActivity
          */

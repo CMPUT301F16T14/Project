@@ -20,10 +20,12 @@ import java.util.List;
  * @author Ting
  * @since 22/11/16
  * @see RequestsListActivity
+ * @see RequestDetailActivity
  *
  * This activity is showing the detail infomation about the riders requests whose status is OPEN.
  * It includes the start and end location,
  * the accepances' name and carInfo and other detailed information
+ *
  */
 public class RequestDetailActivity_OPEN extends Activity {
 

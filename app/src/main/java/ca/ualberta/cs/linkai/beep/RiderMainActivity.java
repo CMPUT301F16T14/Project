@@ -51,14 +51,17 @@ import static android.R.attr.data;
 
 /**
  * Rider main activity to view map and place requests between two locations
+ * use google map, you can enter the address or click on the map
+ *
  * @author Jinzhu, Linkai
  * @see EditProfileActivity
  * @see RequestsListActivity
+ *
  */
 
 public class RiderMainActivity extends FragmentActivity implements OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, GoogleMap.OnInfoWindowClickListener {
 
     // set a requestList which created by the logInAccount
     public static ArrayList<Request> myRequestList = new ArrayList<Request>();
@@ -78,6 +81,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     double lng = 0;
     LatLng startLatLng;
     LatLng endLatLng;
+    LatLng latLng;
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
     private CharSequence sourceLocation;
     private CharSequence destLocation;
@@ -91,6 +95,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private Marker OriginMarker;
     private Marker StartMarker;
     private Marker EndMarker;
+    private Marker Marker;
     public static Account currentAccount = RuntimeAccount.getInstance().myAccount;
     private PlaceAutocompleteFragment SourceAutocompleteFragment;
     private PlaceAutocompleteFragment DestinationAutocompleteFragment;
@@ -159,7 +164,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         start = startAddress.get(0);
                         SourceAddress = start.getLocality();
                         startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
-                        StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                        StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From").draggable(true));
                         // Set Camera position
                         mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
                     } else {
@@ -168,7 +173,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         start.setLongitude(-113.526354);
                         SourceAddress = start.getLocality();
                         startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
-                        StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                        StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From").draggable(true));
                         // Set Camera position
                         mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
                     }
@@ -229,7 +234,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         end = endAddress.get(0);
                         DestAddress = end.getLocality();
                         endLatLng = new LatLng(end.getLatitude(), end.getLongitude());
-                        EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To"));
+                        EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To").draggable(true));
 
                     } else {
                         end = new Address(Locale.CANADA);
@@ -237,7 +242,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         end.setLongitude(-113.526354);
                         DestAddress = end.getLocality();
                         endLatLng = new LatLng(end.getLatitude(), end.getLongitude());
-                        EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To"));
+                        EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To").draggable(true));
                     }
                 }
                 /**
@@ -326,14 +331,22 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             public void onMapClick(LatLng latLng) {
 
                 //StartMarker.remove();
-                startLatLng = new LatLng(latLng.latitude, latLng.longitude);
-                StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                latLng = new LatLng(latLng.latitude, latLng.longitude);
+                Marker = mMap.addMarker(new MarkerOptions().position(latLng).title(String.valueOf(latLng.latitude) +
+                        " , " + String.valueOf(latLng.longitude)).draggable(true));
                 // Set Camera position
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
             }
         });
+        // Set a listener for info window events.
+        mMap.setOnInfoWindowClickListener(this);
+    }
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this, "Info window clicked",
+                Toast.LENGTH_SHORT).show();
     }
 
 
