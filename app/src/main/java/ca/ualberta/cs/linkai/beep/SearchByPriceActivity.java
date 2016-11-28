@@ -23,6 +23,8 @@ import static android.R.attr.checked;
 
 /**
  *@author Jinzhu
+ *
+ * Here is the function to search the request by price interval
  */
 public class SearchByPriceActivity extends Activity {
 
@@ -66,14 +68,17 @@ public class SearchByPriceActivity extends Activity {
                 type = 10;
                 flag = 0;
 
+                /*search by total price*/
                 if (searchTotalPrice.isChecked()){
                     type = 0;
                 }
+                /*search by unit price*/
                 if (searchUnitPrice.isChecked()){
                     type = 1;
                 }
 
 
+                /*see if user provide the max and min*/
                 Double min = 0.00;
                 Double max = 0.00;
                 if (minimal.getText().toString().isEmpty() || maximal.getText().toString().isEmpty()){
@@ -90,6 +95,7 @@ public class SearchByPriceActivity extends Activity {
                 maxMinList.add(max);
 
                 if (type == 0) {
+                    /*search*/
                     ElasticsearchRequestController.GetRequestByTotalPrice getRequestByTotalPrice = new ElasticsearchRequestController.GetRequestByTotalPrice();
                     getRequestByTotalPrice.execute(maxMinList);
 
@@ -112,6 +118,7 @@ public class SearchByPriceActivity extends Activity {
 
                     }
                 } else if (type == 1) {
+                    /*search*/
                     ElasticsearchRequestController.GetRequestByUnitPrice getRequestByUnitPrice = new ElasticsearchRequestController.GetRequestByUnitPrice();
                     getRequestByUnitPrice.execute(maxMinList);
 
@@ -142,6 +149,7 @@ public class SearchByPriceActivity extends Activity {
             }
         });
 
+        /*After search, here is the result list which is clickable for user to see the request*/
         resultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
