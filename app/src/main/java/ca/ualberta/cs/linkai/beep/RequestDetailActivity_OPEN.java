@@ -4,17 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.RatingBar;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 /**
  * @author Ting
@@ -29,26 +30,23 @@ import java.util.List;
  */
 public class RequestDetailActivity_OPEN extends Activity {
 
-    TextView start;
-    TextView end;
-    TextView driver;
-    TextView vehicle;
-    TextView date;
-    TextView status;
-    TextView rate;
-    Button cancel;
-    Button confirm;
-    int flag;
-    Request mRequest;
+    private TextView start;
+    private TextView end;
+    private TextView date;
+    private TextView status;
+    private Button cancel;
+    private int flag;
 
-    List<Address> from;
-    List<Address> to;
+    public static Request mRequest;
+    private ListView allAcceptance;
+    private AcceptanceAdapter myAdapter;
+    private ArrayList<Account> acceptances;
+    public static Account currentAcceptance;
+
+    private List<Address> from;
+    private List<Address> to;
 
     // status variable
-    private final static int CREATED = 0;
-    private final static int OPEN_REQUEST = 1;
-    private final static int CONFIRMED = 2;
-    private final static int PAID = 3;
     private final static int CANCELLED = 4;
 
 
@@ -62,18 +60,15 @@ public class RequestDetailActivity_OPEN extends Activity {
 
         start = (TextView) findViewById(R.id.StartAddress);
         end = (TextView) findViewById(R.id.DestAddress);
-        driver = (TextView) findViewById(R.id.DriverInfo);
-        vehicle = (TextView) findViewById(R.id.CarInfo);
         date = (TextView) findViewById(R.id.DateInfo);
         status = (TextView) findViewById(R.id.StatusInfo);
-        rate = (TextView) findViewById(R.id.rate) ;
         cancel = (Button) findViewById(R.id.cancelrequest);
-        confirm = (Button) findViewById(R.id.confirm);
+        allAcceptance = (ListView) findViewById(R.id.acceptanceList);
 
         if(bundle != null) {
             flag = bundle.getInt("sendPosition");
-
             mRequest = RuntimeRequestList.getInstance().myRequestList.get(flag);
+            acceptances = mRequest.getAcceptances();
         }
 
         Geocoder geocoder = new Geocoder(RequestDetailActivity_OPEN.this);
@@ -88,16 +83,23 @@ public class RequestDetailActivity_OPEN extends Activity {
         end.setText(to.get(0).getLocality());
         date.setText(mRequest.getDate().toString());
 
-        status.setText("Open Request");
-        /*if(mRequest.getStatus() == OPEN_REQUEST) {
-            status.setText("Open Request");
-        } else if(mRequest.getStatus() == CONFIRMED) {
+        if (ViewAcceptanceProfileActivity.confirmOrNot){
             status.setText("Request accepted");
-        } else if(mRequest.getStatus() == PAID) {
-            status.setText("Request complete");
-        } else if(mRequest.getStatus() == CANCELLED) {
-            status.setText("Request cancelled");
-        }*/
+        }else {
+            status.setText("Open Request");
+        }
+
+        myAdapter = new AcceptanceAdapter(this, acceptances);
+        allAcceptance.setAdapter(myAdapter);
+
+        allAcceptance.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                currentAcceptance = acceptances.get(position);
+                Intent intent = new Intent(RequestDetailActivity_OPEN.this, ViewAcceptanceProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,23 +113,6 @@ public class RequestDetailActivity_OPEN extends Activity {
 
                 finish();
 
-            }
-        });
-
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setResult(RESULT_OK);
-                if(mRequest.getStatus() != CONFIRMED) {
-                    Toast.makeText(RequestDetailActivity_OPEN.this, "Request has not been accepted yet.", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(RequestDetailActivity_OPEN.this, "Request has been complete", Toast.LENGTH_SHORT).show();
-                    RuntimeRequestList.getInstance().myRequestList.get(flag).setStatus(PAID);
-                    ElasticsearchRequestController.AddRequestListTask addRequestListTask = new ElasticsearchRequestController.AddRequestListTask();
-                    addRequestListTask.execute(RuntimeRequestList.getInstance().myRequestList);
-
-                    finish();
-                }
             }
         });
     }

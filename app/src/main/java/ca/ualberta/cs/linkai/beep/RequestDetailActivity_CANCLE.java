@@ -25,15 +25,15 @@ import java.util.List;
  */
 public class RequestDetailActivity_CANCLE extends Activity {
 
-    TextView start;
-    TextView end;
-    TextView date;
-    TextView status;
-    int flag;
-    Request mRequest;
+    private TextView start;
+    private TextView end;
+    private TextView date;
+    private TextView status;
+    private int flag;
+    private Request mRequest;
 
-    List<Address> from;
-    List<Address> to;
+    private List<Address> from;
+    private List<Address> to;
 
     // status variable
     private final static int CREATED = 0;

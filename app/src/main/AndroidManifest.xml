@@ -75,7 +75,8 @@
             android:label="@string/title_activity_request_detail_paid" />
         <activity
             android:name=".RequestDetailActivity_CANCLE"
-            android:label="@string/title_activity_request_detail_cancle"></activity>
+            android:label="@string/title_activity_request_detail_cancle" />
+        <activity android:name=".ViewAcceptanceProfileActivity"></activity>
     </application>
 
 </manifest>
