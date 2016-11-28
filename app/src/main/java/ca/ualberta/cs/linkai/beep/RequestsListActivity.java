@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Request list to store and show current user requests
  *
@@ -32,6 +37,12 @@ public class RequestsListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requests_list);
+        /**
+         * add timer for checking notification condition here
+         * per 3 seconds with a delay of 1 second
+         */
+        Timer timer = new Timer();
+        timer.schedule(new NotifyTask() ,1000,3000);
 
         myRequestsList = (ListView) findViewById(R.id.requestsListView);
 
@@ -98,6 +109,36 @@ public class RequestsListActivity extends Activity {
         }
         Toast.makeText(RequestsListActivity.this, String.valueOf(myRequests.size()), Toast.LENGTH_SHORT).show();
         */
+    }
+
+
+    /**
+     * This method is to implement a TImerTask that will response whenever a reqeust is accepted
+     */
+
+    public class NotifyTask extends TimerTask {
+        public ArrayList<Request> realtimeRequests = new ArrayList<>();
+
+        @Override
+        public void run(){
+            // get the initiator's real time requests per 3 seconds
+            ElasticsearchRequestController.GetRequestByInitiatorTask getRequestByInitiatorTask =
+                    new ElasticsearchRequestController.GetRequestByInitiatorTask();
+            getRequestByInitiatorTask.execute(RuntimeAccount.getInstance().myAccount);
+            try {
+                realtimeRequests = getRequestByInitiatorTask.get();
+            } catch (Exception e) {
+                Log.i("Error", "Failed to get result.");
+            }
+            //2 iteratively checking rider_requests accepted, occur notification, if not nothing.
+            Iterator it = realtimeRequests.iterator();
+            while (it.hasNext()) {
+                Request request = (Request) it.next();
+                if (request.getAcceptances().size() >= 0) {
+                    RequestNotification.notify(RequestsListActivity.this.getApplicationContext(), "Your Rider Request is accepted", 1);
+                }
+            }
+        }
     }
 
 

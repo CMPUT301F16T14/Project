@@ -343,4 +343,42 @@ public class ElasticsearchRequestController {
             client = (JestDroidClient) factory.getObject();
         }
     }
+
+
+    /**
+     * Search all requests for monitor acceptions
+     * added by Xingqi
+     */
+    public static class GetAllReqeusts extends AsyncTask<String, Void, ArrayList<Request>> {
+        @Override
+        protected ArrayList<Request> doInBackground(String... search_parameters) {
+            verifySettings();
+
+            ArrayList<Request> GetAllReqeusts = new ArrayList<Request>();
+
+            int status = 1;
+            String search_string = "{\"query\" : {*:*}";
+            // assume that search_parameters[0] is the only search term we are interested in using
+            Search search = new Search.Builder(search_string)
+                    .addIndex("f16t14")
+                    .addType("Request")
+                    .build();
+
+            try {
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()) {
+                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
+                    GetAllReqeusts.addAll(foundRequests);
+                }
+                else {
+                    Log.i("Error", "The search query failed to find any request that matched.");
+                }
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+
+            return GetAllReqeusts;
+        }
+    }
 }
