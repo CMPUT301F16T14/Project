@@ -21,6 +21,7 @@ import java.text.DecimalFormat;
 import java.io.FileInputStream;
 
 /**
+ * @author Ting
  * @see RiderMainActivity
  */
 

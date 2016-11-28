@@ -18,6 +18,10 @@ import android.widget.Toast;
 import static ca.ualberta.cs.linkai.beep.R.id.phoneTextView;
 import static ca.ualberta.cs.linkai.beep.R.id.textView;
 
+/**
+ * @author Ting
+ * @see RequestDetailAndAcceptActivity
+ */
 public class ViewProfileActivity extends Activity {
 
     private TextView currentUserName;

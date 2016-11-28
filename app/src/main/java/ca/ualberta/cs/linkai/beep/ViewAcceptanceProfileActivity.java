@@ -16,6 +16,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * @author Ting
+ * @see RequestDetailActivity_OPEN
+ */
 public class ViewAcceptanceProfileActivity extends Activity {
 
     private TextView currentUserName;

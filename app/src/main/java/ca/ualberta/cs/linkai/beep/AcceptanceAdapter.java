@@ -14,10 +14,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by User on 2016/11/27.
  * <p>
+ *     Create a new adapter to deal with acceptance list
  *     Include Adapter Pattern
  * </p>
+ *
+ *
+ * @author Ting
+ * @see RequestDetailActivity_OPEN
+ * @see RequestsListActivity
+ * @since 22/11/2016
+ *
  */
 
 public class AcceptanceAdapter extends ArrayAdapter<Account> {

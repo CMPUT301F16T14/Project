@@ -17,14 +17,14 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * @author Jinzhu
+ * @author Linkai
  * @since 22/11/16
  * @see RequestsListActivity
  *
  * <P>
- *     This activity is showing the detail infomation about the riders requests.
- * It includes the start and end location,
- * who takes the request and other detailed information
+ *     This activity is showing the detail infomation about the riders requests whose status is CONFIRMED.
+ * It includes the start, end location, and other detailed information
+ * The rider can make the payment to the driver at this activity
  * </P>
  *
  */
