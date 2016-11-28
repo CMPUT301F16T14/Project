@@ -197,7 +197,7 @@ public class ElasticsearchRequestController {
             String search_string = "{\n" +
                     "    \"query\": {\n" +
                     "        \"range\" : {\n" +
-                    "            \"estimate\" : {\n" +
+                    "            \"fare\" : {\n" +
                     "                \"gte\" : " + min + ",\n" +
                     "                \"lte\" : " + max + "\n" +
                     "            }\n" +
