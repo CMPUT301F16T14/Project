@@ -37,7 +37,7 @@ public class RequestDetailActivity_CONFIRMED extends Activity {
     Button cancel;
     Button arriveAndPayButton;
     RatingBar ratingBar;
-    int flag;
+    public static  int flag;
     Request mRequest;
 
     List<Address> from;
@@ -85,17 +85,6 @@ public class RequestDetailActivity_CONFIRMED extends Activity {
         start.setText(from.get(0).getLocality());
         end.setText(to.get(0).getLocality());
         date.setText(mRequest.getDate().toString());
-        // TODO: get driver's name and vehicle info
-
-        if(mRequest.getStatus() == OPEN_REQUEST) {
-            status.setText("Open Request");
-        } else if(mRequest.getStatus() == CONFIRMED) {
-            status.setText("Request accepted");
-        } else if(mRequest.getStatus() == PAID) {
-            status.setText("Request complete");
-        } else if(mRequest.getStatus() == CANCELLED) {
-            status.setText("Request cancelled");
-        }
 
         driver.setText(mRequest.getConfirmedDriver().getUsername());
         vehicle.setText(mRequest.getConfirmedDriver().getVehicleInfo());

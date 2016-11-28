@@ -57,6 +57,9 @@ public class Request {
     private float mRating;
     private static final String TAG = Request.class.getSimpleName();
 
+    // For elastic search
+    private Double[] location = new Double[2];
+
     // variables used to get string address
     private String startAddress;
     private String endAddress;
@@ -84,6 +87,10 @@ public class Request {
         this.endLocation = end;
         this.date = new Date();
         this.status = CREATED;
+
+        // For elastic search
+        location[0] = start.longitude;
+        location[1] = start.latitude;
     }
 
     public Date getDate(){

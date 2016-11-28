@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 public class MakePaymentActivity extends Activity {
 
+    private final static int PAID = 3;
     Button payButton;
 
     @Override
@@ -21,7 +22,9 @@ public class MakePaymentActivity extends Activity {
             @Override
             public void onClick(View view) {
                 setResult(RESULT_OK);
+
                 Toast.makeText(MakePaymentActivity.this, "You have paid the driver", Toast.LENGTH_SHORT).show();
+                RuntimeRequestList.getInstance().myRequestList.get(RequestDetailActivity_CONFIRMED.flag).setStatus(PAID);
 
                 finish();
 

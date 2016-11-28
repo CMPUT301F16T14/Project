@@ -55,7 +55,7 @@
         android:layout_alignBottom="@+id/car"
         android:layout_toEndOf="@+id/car"
         android:id="@+id/CarInfo"
-        android:textSize="18sp"
+        android:textSize="25sp"
         android:layout_alignParentRight="true" />
 
     <TextView
@@ -85,17 +85,6 @@
         android:id="@+id/Driver"
         android:textSize="18sp"
         android:layout_alignBottom="@+id/DriverName" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/DriverName"
-        android:textSize="18sp"
-        android:clickable="true"
-        android:layout_marginBottom="23dp"
-        android:layout_above="@+id/DriverInfo"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/DestAddress" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -132,6 +121,16 @@
         android:id="@+id/cancelrequest"
         android:layout_above="@+id/arrive_pay"
         android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/DriverName"
+        android:textSize="25sp"
+        android:clickable="true"
+        android:layout_marginBottom="23dp"
+        android:layout_above="@+id/DriverInfo"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
