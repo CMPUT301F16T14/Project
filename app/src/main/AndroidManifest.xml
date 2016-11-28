@@ -74,9 +74,9 @@
             android:name=".RequestDetailActivity_PAID"
             android:label="@string/title_activity_request_detail_paid" />
         <activity
-            android:name=".RequestDetailActivity_CANCLE"
+            android:name=".RequestDetailActivity_CANCEL"
             android:label="@string/title_activity_request_detail_cancle" />
-        <activity android:name=".ViewAcceptanceProfileActivity">
+        <activity android:name=".ViewAcceptanceProfileActivity"/>
         <activity android:name=".MakePaymentActivity"></activity>
     </application>
 
