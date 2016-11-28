@@ -16,9 +16,9 @@ import static org.junit.Assert.assertTrue;
 public class ProfileTest {
 
     // rider1
-    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca");
+    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca", 3);
     // rider2 (with the same name as rider1)
-    Account rider2 = new Account("testRiderName1", "7807101331", "CMPUT321@ualberta.ca");
+    Account rider2 = new Account("testRiderName1", "7807101331", "CMPUT321@ualberta.ca", 3);
 
     /**
      * Test for UC-P01 (US03.01.01)

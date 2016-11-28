@@ -13,7 +13,7 @@ import static junit.framework.Assert.assertEquals;
 public class LocationTest {
 
     // rider
-    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca");
+    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca", 3);
 
     /**
      * Test for UC-L01 (US10.02.01)
@@ -25,9 +25,9 @@ public class LocationTest {
 
         // rider1 creates a request
         Request testRequest1 = new Request(rider1, startLocation1, endLocation1);
-        testRequest1.setReason("Reason: for test!");
-        assertEquals(testRequest1.getStartLocation(),startLocation1);
-        assertEquals(testRequest1.getEndLocation(),endLocation1);
+        testRequest1.setKeyword("Reason: for test!");
+        assertEquals(testRequest1.getStartLatLng(),startLocation1);
+        assertEquals(testRequest1.getEndLatLng(),endLocation1);
 
 
     }

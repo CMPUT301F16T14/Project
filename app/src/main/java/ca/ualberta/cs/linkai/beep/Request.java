@@ -60,7 +60,7 @@ public class Request {
     private static final String TAG = Request.class.getSimpleName();
 
     // For elastic search
-    private Double[] location = new Double[2];
+    private Double[] location;
 
     // variables used to get string address
     private String startAddress;
@@ -91,8 +91,9 @@ public class Request {
         this.status = CREATED;
 
         // For elastic search
-        location[0] = start.longitude;
-        location[1] = start.latitude;
+        this.location = new Double[2];
+        this.location[0] = start.longitude;
+        this.location[1] = start.latitude;
     }
 
     public Date getDate(){

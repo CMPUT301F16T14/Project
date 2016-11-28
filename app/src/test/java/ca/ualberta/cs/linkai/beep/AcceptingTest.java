@@ -17,17 +17,17 @@ import static org.junit.Assert.assertTrue;
 
 public class AcceptingTest {
     // rider1
-    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca");
+    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca", 3);
     LatLng startLocation1 = new LatLng(-34, 151);
     LatLng endLocation1 = new LatLng(-41, 139);
 
     // rider2
-    Account rider2 = new Account("testRiderName2", "7807102222", "CMPUT302@ualberta.ca");
+    Account rider2 = new Account("testRiderName2", "7807102222", "CMPUT302@ualberta.ca", 3);
     LatLng startLocation2 = new LatLng(-20, 93);
     LatLng endLocation2 = new LatLng(-21, 94);
 
     // driver
-    Account driver = new Account("testDriverName", "7807103333", "CMPUT303@ualberta.ca");
+    Account driver = new Account("testDriverName", "7807103333", "CMPUT303@ualberta.ca", 3);
 
     /**
      * Test for UC-A01 (US05.01.01 US01.03.01 US08.04.01)
@@ -40,7 +40,7 @@ public class AcceptingTest {
 
         // rider1 creates a request
         Request testRequest1 = new Request(rider1, startLocation1, endLocation1);
-        testRequest1.setReason("Reason: for test!");
+        testRequest1.setKeyword("Reason: for test!");
 
         // rider2 creates a request
         Request testRequest2 = new Request(rider2, startLocation2, endLocation2);
@@ -75,7 +75,7 @@ public class AcceptingTest {
         // TODO: not implement yet
         ElasticsearchRequestController.GetRequestByGeoTask getRequestByGeoTask =
                 new ElasticsearchRequestController.GetRequestByGeoTask();
-        getRequestByGeoTask.execute(startLocation2);
+        getRequestByGeoTask.execute();
 
         try {
             myRequestsGeo = getRequestByGeoTask.get();
@@ -128,7 +128,7 @@ public class AcceptingTest {
     public void testAcceptPayment(){
         // rider1 creates a request
         Request testRequest1 = new Request(rider1, startLocation1, endLocation1);
-        testRequest1.setReason("Reason: for test!");
+        testRequest1.setKeyword("Reason: for test!");
 
         // set the request1 is accepted by the tested driver
         testRequest1.setConfirmedDriver(driver);
@@ -139,7 +139,7 @@ public class AcceptingTest {
         Integer amount = 100;
         String paymentInformation = "this is test payment information";
         Date date = new Date();
-        Payment payment = new Payment(amount, date, paymentInformation);
+        Payment payment = new Payment();
 
         // set payment information
         testRequest1.setPayment(payment);
@@ -161,7 +161,7 @@ public class AcceptingTest {
     public void testViewPendingRequest(){
         // rider1 creates a request
         Request testRequest1 = new Request(rider1, startLocation1, endLocation1);
-        testRequest1.setReason("Reason: for test!");
+        testRequest1.setKeyword("Reason: for test!");
 
         // set the request1 is accepted by the tested driver
         testRequest1.setConfirmedDriver(driver);
@@ -182,7 +182,7 @@ public class AcceptingTest {
     public void testViewAcceptanceStatus(){
         // rider1 creates a request
         Request testRequest1 = new Request(rider1, startLocation1, endLocation1);
-        testRequest1.setReason("Reason: for test!");
+        testRequest1.setKeyword("Reason: for test!");
 
         // add acceptance and set status
         testRequest1.setConfirmedDriver(driver);

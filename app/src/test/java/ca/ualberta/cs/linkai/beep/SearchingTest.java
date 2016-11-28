@@ -16,17 +16,17 @@ import static org.junit.Assert.assertTrue;
 public class SearchingTest {
 
     // rider1
-    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca");
+    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca", 3);
     LatLng startLocation1 = new LatLng(-100, 200);
     LatLng endLocation1 = new LatLng(-41, 139);
 
     // rider2
-    Account rider2 = new Account("testRiderName2", "7807102222", "CMPUT302@ualberta.ca");
+    Account rider2 = new Account("testRiderName2", "7807102222", "CMPUT302@ualberta.ca", 3);
     LatLng startLocation2 = new LatLng(-150, 250);
     LatLng endLocation2 = new LatLng(-21, 94);
 
     // driver
-    Account driver = new Account("testDriverName", "7807103333", "CMPUT303@ualberta.ca");
+    Account driver = new Account("testDriverName", "7807103333", "CMPUT303@ualberta.ca", 3);
 
     /**
      * Test for UC-SE01 (US04.01.01 & US04.02.01)
@@ -38,7 +38,7 @@ public class SearchingTest {
 
         // rider1 creates a request
         Request testRequest1 = new Request(rider1, startLocation1, endLocation1);
-        testRequest1.setReason("Reason: for test!");
+        testRequest1.setKeyword("Reason: for test!");
 
         // rider2 creates a request
         Request testRequest2 = new Request(rider2, startLocation2, endLocation2);
@@ -53,7 +53,7 @@ public class SearchingTest {
         // TODO: not implement yet
         ElasticsearchRequestController.GetRequestByGeoTask getRequestByGeoTask =
                 new ElasticsearchRequestController.GetRequestByGeoTask();
-        getRequestByGeoTask.execute(testDriverLocation);
+        getRequestByGeoTask.execute();
 
         try {
             searchResult = getRequestByGeoTask.get();
@@ -74,11 +74,11 @@ public class SearchingTest {
 
         // rider1 creates a request
         Request testRequest1 = new Request(rider1, startLocation1, endLocation1);
-        testRequest1.setReason("Reason: for test!");
+        testRequest1.setKeyword("Reason: for test!");
 
         // rider2 creates a request
         Request testRequest2 = new Request(rider2, startLocation2, endLocation2);
-        testRequest2.setReason("Reason: for test!");
+        testRequest2.setKeyword("Reason: for test!");
 
         // add the request to the elastic search server
         ElasticsearchRequestController.AddRequestTask addRequestTask =

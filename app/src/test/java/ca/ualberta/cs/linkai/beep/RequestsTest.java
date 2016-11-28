@@ -20,9 +20,9 @@ import static org.junit.Assert.assertTrue;
 public class RequestsTest {
 
     //rider1
-    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca");
+    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca", 3);
     // driver
-    Account driver = new Account("testDriverName", "7807103333", "CMPUT303@ualberta.ca");
+    Account driver = new Account("testDriverName", "7807103333", "CMPUT303@ualberta.ca", 3);
 
     LatLng startLocation1 = new LatLng(-34, 151);
     LatLng endLocation1 = new LatLng(-41, 139);
@@ -37,8 +37,8 @@ public class RequestsTest {
 
         Request myRequest = new Request(rider1, startLocation1, endLocation1);
 
-        assertTrue("Cannot set start location", myRequest.getStartLocation().equals(startLocation1));
-        assertTrue("Cannot set end location", myRequest.getEndLocation().equals(endLocation1));
+        assertTrue("Cannot set start location", myRequest.getStartLatLng().equals(startLocation1));
+        assertTrue("Cannot set end location", myRequest.getEndLatLng().equals(endLocation1));
         assertTrue("Cannot set initiator", myRequest.getInitiator().equals(rider1));
 
         // add the request to the elastic search server
@@ -120,8 +120,8 @@ public class RequestsTest {
             assertTrue("Test request by location unsuccessful", Boolean.FALSE);
         }
 
-        assertTrue("Cannot set start location", myRequest.getStartLocation().equals(startLocation1));
-        assertTrue("Cannot set end location", myRequest.getEndLocation().equals(endLocation1));
+        assertTrue("Cannot set start location", myRequest.getStartLatLng().equals(startLocation1));
+        assertTrue("Cannot set end location", myRequest.getEndLatLng().equals(endLocation1));
     }
 
     /**
@@ -140,8 +140,8 @@ public class RequestsTest {
 
         // TODO: not implement yet
         // delete the request from server
-        ElasticsearchRequestController.DeleteRequestTask deleteRequestTask =
-                new ElasticsearchRequestController.DeleteRequestTask();
+        ElasticsearchRequestController.AddRequestTask deleteRequestTask =
+                new ElasticsearchRequestController.AddRequestTask();
         deleteRequestTask.execute(myRequest);
 
         // search the request which has just been deleted
@@ -187,7 +187,7 @@ public class RequestsTest {
     @Test
     public void testEstimateFare(){
         Request myRequest = new Request(rider1, startLocation1, endLocation1);
-        Float estimateValue = myRequest.getEstimate();
+        Double estimateValue = myRequest.getEstimate();
 
         // test if we get a fare estimate
         assertNotEquals("there should be a estimated value", estimateValue, 0);
@@ -208,7 +208,7 @@ public class RequestsTest {
         Integer amount = 100;
         String paymentInformation = "this is test payment information";
         Date date = new Date();
-        Payment payment = new Payment(amount, date, paymentInformation);
+        Payment payment = new Payment();
 
         // test if the request is paid
         myRequest.setPayment(payment);
