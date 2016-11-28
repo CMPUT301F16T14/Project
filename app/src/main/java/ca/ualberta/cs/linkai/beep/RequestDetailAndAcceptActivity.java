@@ -84,8 +84,6 @@ public class RequestDetailAndAcceptActivity extends Activity {
             public void onClick(View view) {
                 Toast.makeText(RequestDetailAndAcceptActivity.this, "Congratulation! Your acceptance has added to waiting list.", Toast.LENGTH_SHORT).show();
                 request.addAcceptance(RuntimeAccount.getInstance().myAccount);
-                request.setStatus(2);
-
                 ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
                 addRequestTask.execute(request);
 
