@@ -14,9 +14,9 @@ import static org.junit.Assert.assertTrue;
 
 public class StatusTest {
     //rider1
-    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca");
+    Account rider1 = new Account("testRiderName1", "7807101111", "CMPUT301@ualberta.ca", 3);
     // driver
-    Account driver = new Account("testDriverName", "7807103333", "CMPUT303@ualberta.ca");
+    Account driver = new Account("testDriverName", "7807103333", "CMPUT303@ualberta.ca", 3);
 
     LatLng startLocation1 = new LatLng(-34, 151);
     LatLng endLocation1 = new LatLng(-41, 139);
