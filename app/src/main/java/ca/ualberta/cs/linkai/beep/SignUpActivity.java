@@ -13,7 +13,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 /**
- * sign up activity for new user
+ * <p>
+ *     sign up activity for new user
+ * </p>
+ *
  * @author Jinzhu, Xizi
  * @see WelcomeActivity
  */

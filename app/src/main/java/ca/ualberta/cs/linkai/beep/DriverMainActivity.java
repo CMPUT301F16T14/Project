@@ -28,7 +28,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * This is the class to deal with driver main activity
+ * <p>
+ *     This is the class to deal with driver main activity
+ * </p>
  *
  * @author Jinzhu
  * @see EditProfileActivity

@@ -11,7 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This is the activity for user to edit profile
+ * <p>
+ *     This is the activity for user to edit profile
+ * </p>
  * @author Ting Wang, Jinzhu
  * @see DriverMainActivity
  * @see RiderMainActivity

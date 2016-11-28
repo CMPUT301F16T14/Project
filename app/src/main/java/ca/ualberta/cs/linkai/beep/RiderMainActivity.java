@@ -63,8 +63,11 @@ import java.util.Locale;
 import static android.R.attr.data;
 
 /**
- * Rider main activity to view map and place requests between two locations
- * use google map, you can enter the address or click on the map
+ * <p>
+ *     Rider main activity to view map and place requests between two locations
+ *      use google map, you can enter the address or click on the map
+ * </p>
+ *
  *
  * @author Jinzhu, Linkai
  * @see EditProfileActivity

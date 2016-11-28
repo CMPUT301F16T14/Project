@@ -16,8 +16,11 @@ import java.util.List;
  * @since 22/11/16
  * @see RequestsListActivity
  *
- * This activity is showing the detail infomation about the riders requests whose status is CANCLE.
+ * <p>
+ *     This activity is showing the detail infomation about the riders requests whose status is CANCLE.
  * It includes the start, end location, and other detailed information
+ * </p>
+ *
  */
 public class RequestDetailActivity_CANCEL extends Activity {
 

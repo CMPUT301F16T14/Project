@@ -28,8 +28,10 @@ import java.util.Locale;
 import io.searchbox.annotations.JestId;
 
 /**
- * This is class deal with request.
- * It contains all information the request needs
+ * <P>
+ *     This is class deal with request.
+ *     It contains all information the request needs
+ * </P>
  *
  * @author Linkai, Jinzhu
  *

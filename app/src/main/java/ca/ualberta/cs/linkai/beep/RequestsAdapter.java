@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Create a new adapter to deal with request list
+ * <p>
+ *     Create a new adapter to deal with request list
+ * </p>
+ *
  *
  * @author Linkai, Jinzhu
  * @see RequestDetailActivity_CONFIRMED

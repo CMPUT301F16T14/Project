@@ -16,7 +16,10 @@ import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 
 /**
- * This is the controller for account elastic search
+ * <p>
+ *     This is the controller for account elastic search
+ * </p>
+ *
  * Code from lab: https://github.com/SRomansky/AndroidElasticSearch
  * @author Linkai
  */

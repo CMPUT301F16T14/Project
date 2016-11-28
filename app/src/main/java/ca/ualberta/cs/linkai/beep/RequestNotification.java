@@ -19,6 +19,7 @@ import android.support.v4.app.NotificationCompat;
  * <p>
  * This class makes heavy use of the {@link NotificationCompat.Builder} helper
  * class to create notifications in a backward-compatible way.
+ * </p>
  */
 public class RequestNotification {
     /**

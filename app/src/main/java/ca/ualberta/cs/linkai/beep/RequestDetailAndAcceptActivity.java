@@ -16,8 +16,11 @@ import java.nio.BufferUnderflowException;
 import java.util.List;
 
 /**
- * This activity enables driver to view the detail of the request
+ * <P>
+ *     This activity enables driver to view the detail of the request
  * and decide whether or not to accept the request
+ * </P>
+ *
  *
  * @author xizi, Jinzhu
  * @see DriverMainActivity

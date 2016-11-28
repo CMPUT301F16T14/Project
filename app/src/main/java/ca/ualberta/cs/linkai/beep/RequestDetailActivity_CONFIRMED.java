@@ -21,9 +21,12 @@ import java.util.List;
  * @since 22/11/16
  * @see RequestsListActivity
  *
- * This activity is showing the detail infomation about the riders requests. 
+ * <P>
+ *     This activity is showing the detail infomation about the riders requests.
  * It includes the start and end location,
- * who takes the request and other detailed information 
+ * who takes the request and other detailed information
+ * </P>
+ *
  */
 public class RequestDetailActivity_CONFIRMED extends Activity {
 
