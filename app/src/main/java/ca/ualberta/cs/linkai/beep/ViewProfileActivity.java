@@ -64,7 +64,7 @@ public class ViewProfileActivity extends Activity {
 
         //TODO: change text to current user profile!
         currentUserName.setText(RequestDetailAndAcceptActivity.request.getInitiator().getUsername());
-        currentUserPhone.setText(RequestDetailAndAcceptActivity.request.getInitiator().getUsername());
+        currentUserPhone.setText(RequestDetailAndAcceptActivity.request.getInitiator().getPhone());
         currentUserEmail.setText(RequestDetailAndAcceptActivity.request.getInitiator().getEmail());
 
 

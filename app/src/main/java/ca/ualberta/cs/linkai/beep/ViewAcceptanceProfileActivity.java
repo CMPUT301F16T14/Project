@@ -69,7 +69,7 @@ public class ViewAcceptanceProfileActivity extends Activity {
         chooseAcceptance = (Button) findViewById(R.id.chooseAcceptanceButton);
 
         currentUserName.setText(RequestDetailActivity_OPEN.currentAcceptance.getUsername());
-        currentUserPhone.setText(RequestDetailActivity_OPEN.currentAcceptance.getUsername());
+        currentUserPhone.setText(RequestDetailActivity_OPEN.currentAcceptance.getPhone());
         currentUserEmail.setText(RequestDetailActivity_OPEN.currentAcceptance.getEmail());
 
 
