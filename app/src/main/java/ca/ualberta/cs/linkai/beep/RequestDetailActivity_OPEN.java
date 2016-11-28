@@ -96,6 +96,8 @@ public class RequestDetailActivity_OPEN extends Activity {
             end.setText("Unable to parse the location");
         }
 
+        date.setText(mRequest.getDate().toString());
+
         status.setText("Open Request");
         /*if(mRequest.getStatus() == OPEN_REQUEST) {
             status.setText("Open Request");
