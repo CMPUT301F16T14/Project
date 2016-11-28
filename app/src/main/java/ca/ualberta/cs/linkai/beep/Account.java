@@ -11,7 +11,9 @@ import io.searchbox.annotations.JestId;
  * @see SignUpActivity
  * @see WelcomeActivity
  *
- * <p>Here is the class to save all information about account</p>
+ * <p>Here is the class to save all information about account
+ *    Singleton Pattern is used
+ * </p>
  * <ul>
  *     <li>AccountId</li>
  *     <li>UserName</li>

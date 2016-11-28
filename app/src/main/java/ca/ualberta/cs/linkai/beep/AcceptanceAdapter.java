@@ -15,6 +15,9 @@ import java.util.Date;
 
 /**
  * Created by User on 2016/11/27.
+ * <p>
+ *     Include Adapter Pattern
+ * </p>
  */
 
 public class AcceptanceAdapter extends ArrayAdapter<Account> {

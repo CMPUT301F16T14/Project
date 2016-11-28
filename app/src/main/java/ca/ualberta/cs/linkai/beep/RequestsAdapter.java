@@ -16,6 +16,7 @@ import java.util.Date;
 /**
  * <p>
  *     Create a new adapter to deal with request list
+ *     Include Adapter Pattern
  * </p>
  *
  *
