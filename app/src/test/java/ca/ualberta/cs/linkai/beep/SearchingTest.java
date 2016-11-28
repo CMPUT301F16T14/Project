@@ -88,7 +88,6 @@ public class SearchingTest {
 
         String testReason = new String("Reason: for test!");
 
-        // TODO: not implement yet
         ElasticsearchRequestController.GetRequestByKeywordTask getRequestByKeywordTask =
                 new ElasticsearchRequestController.GetRequestByKeywordTask();
         getRequestByKeywordTask.execute(testReason);
@@ -101,4 +100,76 @@ public class SearchingTest {
         }
         assertEquals(searchResult.size(), 2 );
     }
+
+    /**
+     * Test for UC-SE02 (US04.03.01)
+     */
+    @Test
+    public void testSearchRequestsByPrice(){
+        ArrayList<Request> searchResult = new ArrayList<Request>();
+
+        // rider1 creates a request
+        Request testRequest1 = new Request(rider1, startLocation1, endLocation1);
+        testRequest1.setFare(34.5);
+
+        // rider2 creates a request
+        Request testRequest2 = new Request(rider2, startLocation2, endLocation2);
+        testRequest1.setFare(1024.45);
+
+        // add the request to the elastic search server
+        ElasticsearchRequestController.AddRequestTask addRequestTask =
+                new ElasticsearchRequestController.AddRequestTask();
+        addRequestTask.execute(testRequest1);
+        addRequestTask.execute(testRequest2);
+
+
+        ArrayList<Double> searchList = new ArrayList<Double>();
+        searchList.add(0.0);
+        searchList.add(100000.0);
+        ElasticsearchRequestController.GetRequestByUnitPrice getRequestByUnitPriceTask =
+                new ElasticsearchRequestController.GetRequestByUnitPrice();
+        getRequestByUnitPriceTask.execute(searchList);
+
+        try {
+            searchResult = getRequestByUnitPriceTask.get();
+        }
+        catch (Exception e) {
+            assertTrue("Cannot get requests from the elastic search", false);
+        }
+        assertEquals(searchResult.size(), 2 );
+    }
+
+    /**
+     * Test for UC-SE03 (US04.04.01)
+     * Test for UC-SE04 (US04.05.01)
+     */
+    @Test
+    public void testSearchRequestsByAddress(){
+        ArrayList<Request> searchResult = new ArrayList<Request>();
+
+        // rider1 creates a request
+        Request testRequest1 = new Request(rider1, startLocation1, endLocation1);
+
+        // rider2 creates a request
+        Request testRequest2 = new Request(rider2, startLocation2, endLocation2);
+
+        // add the request to the elastic search server
+        ElasticsearchRequestController.AddRequestTask addRequestTask =
+                new ElasticsearchRequestController.AddRequestTask();
+        addRequestTask.execute(testRequest1);
+        addRequestTask.execute(testRequest2);
+
+        ElasticsearchRequestController.GetRequestByGeoTask getRequestByGeoTask =
+                new ElasticsearchRequestController.GetRequestByGeoTask();
+        getRequestByGeoTask.execute();
+
+        try {
+            searchResult = getRequestByGeoTask.get();
+        }
+        catch (Exception e) {
+            assertTrue("Cannot get requests from the elastic search", false);
+        }
+        assertEquals(searchResult.size(), 0 );
+    }
+
 }
