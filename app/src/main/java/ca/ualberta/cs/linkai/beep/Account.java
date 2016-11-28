@@ -28,12 +28,11 @@ public class Account {
     private String id;
     private String username;
     private String phone;
-
-
-
     private String email;
     private int RequestNum;
     private String vehicleInfo;
+    private Double totolRating;
+    private Double totolCompletion;
     /**
      * Define the user type
      * "1" to be a driver
@@ -55,7 +54,14 @@ public class Account {
         this.email = email;
         this.UserType = AccountType;
     }
+    public Double getAvgRating() {
+        return totolRating/totolCompletion;
+    }
 
+    public void setRating(Double rateNum) {
+        totolRating = totolRating + rateNum;
+        totolCompletion = totolCompletion + 1;
+    }
 
     public int getUserType() {
         return UserType;

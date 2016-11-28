@@ -238,4 +238,48 @@ public class RequestsTest {
         assertTrue(acceptedDriver.equals(driver));
         assertTrue(myRequest.getConfirmedDriver().equals(driver));
     }
+
+    /**
+     * Test for UC-R09 (US01.09.01)
+     */
+    @Test
+    public void testDisplayDriverVehicleDescription(){
+        Request myRequest = new Request(rider1, startLocation1, endLocation1);
+
+        myRequest.addAcceptance(driver);
+        myRequest.setConfirmedDriver(driver);
+        myRequest.setStatus(2);
+
+        myRequest.getConfirmedDriver().getVehicleInfo();
+
+        // test if the vehicleInfo has been successfully set and displayed
+        assertTrue(myRequest.getConfirmedDriver().getVehicleInfo().
+                equals(driver.getVehicleInfo()));
+    }
+
+    /**
+     * Test for UC-R010 (US01.10.01)
+     * Test for UC-R011 (US01.11.01)
+     */
+    @Test
+    public void testSummaryRating(){
+        Request myRequest = new Request(rider1, startLocation1, endLocation1);
+
+        myRequest.addAcceptance(driver);
+        myRequest.setConfirmedDriver(driver);
+        myRequest.setStatus(2);
+
+        myRequest.getConfirmedDriver().setRating(3.5);
+        myRequest.getConfirmedDriver().setRating(2.0);
+        myRequest.getConfirmedDriver().setRating(5.0);
+        myRequest.getConfirmedDriver().setRating(4.3);
+
+        Double avg = (3.5 + 2.0 + 5.0 + 4.3) / 4;
+
+        // test whether the avg rating number has been calculated correctly
+        assertTrue(myRequest.getConfirmedDriver().getAvgRating().equals(avg));
+
+
+
+    }
 }
