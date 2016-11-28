@@ -21,7 +21,7 @@ import java.util.List;
  * @author Ting
  * @since 22/11/16
  * @see RequestsListActivity
- * @see RequestDetailActivity
+ * @see RequestDetailActivity_OPEN
  *
  * This activity is showing the detail infomation about the riders requests whose status is OPEN.
  * It includes the start and end location,
@@ -79,8 +79,18 @@ public class RequestDetailActivity_OPEN extends Activity {
             e.printStackTrace();
         }
 
-        start.setText(from.get(0).getLocality());
-        end.setText(to.get(0).getLocality());
+        try {
+            start.setText(from.get(0).getLocality());
+        } catch (RuntimeException e) {
+            start.setText("Unable to parse the location");
+        }
+
+        try {
+            end.setText(to.get(0).getLocality());
+        } catch (RuntimeException e) {
+            end.setText("Unable to parse the location");
+        }
+
         date.setText(mRequest.getDate().toString());
 
         if (ViewAcceptanceProfileActivity.confirmOrNot){

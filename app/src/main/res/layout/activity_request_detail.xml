@@ -8,25 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ca.ualberta.cs.linkai.beep.RequestDetailActivity">
-
-    <TextView
-        android:text="How's your ride? "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rate"
-        android:textSize="18sp"
-        android:layout_above="@+id/ratingBar"
-        android:layout_alignParentStart="true"
-        android:visibility="invisible"/>
-
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"/>
+    tools:context="ca.ualberta.cs.linkai.beep.RequestDetailActivity_CONFIRMED">
 
     <TextView
         android:text="From:  "
@@ -135,20 +117,21 @@
         android:layout_marginBottom="17dp" />
 
     <Button
+        android:text="I arrive the destination AND pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/arrive_pay"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
         android:text="Cancel Request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cancelrequest"
-        android:layout_above="@+id/rate"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Confirm and Pay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/confirm"
-        android:layout_alignBaseline="@+id/cancelrequest"
-        android:layout_alignBottom="@+id/cancelrequest"
+        android:layout_above="@+id/arrive_pay"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

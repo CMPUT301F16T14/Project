@@ -61,7 +61,7 @@ import static android.R.attr.data;
 
 public class RiderMainActivity extends FragmentActivity implements OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, GoogleMap.OnInfoWindowClickListener {
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     // set a requestList which created by the logInAccount
     public static ArrayList<Request> myRequestList = new ArrayList<Request>();
@@ -81,7 +81,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     double lng = 0;
     LatLng startLatLng;
     LatLng endLatLng;
-    LatLng latLng;
     private static int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
     private CharSequence sourceLocation;
     private CharSequence destLocation;
@@ -331,23 +330,80 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             public void onMapClick(LatLng latLng) {
 
                 //StartMarker.remove();
-                latLng = new LatLng(latLng.latitude, latLng.longitude);
+                final LatLng LatLng = new LatLng(latLng.latitude, latLng.longitude);
                 Marker = mMap.addMarker(new MarkerOptions().position(latLng).title(String.valueOf(latLng.latitude) +
                         " , " + String.valueOf(latLng.longitude)).draggable(true));
                 // Set Camera position
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
+                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                    @Override
+                    public void onInfoWindowClick(Marker marker) {
+                        //Toast.makeText(this, "Info window clicked", Toast.LENGTH_SHORT).show();
+
+                        Geocoder geocoder = new Geocoder(RiderMainActivity.this);
+                        try {
+                            List<Address> addresses = geocoder.getFromLocation(LatLng.latitude, LatLng.longitude, 5);
+                            if(SourceAutocompleteFragment.toString().isEmpty()) {
+                                SourceAutocompleteFragment.setText(addresses.get(0).getLocality());
+                            } else {
+                                DestinationAutocompleteFragment.setText(addresses.get(0).getLocality());
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+
+                        }
+                    }
+                });
+
             }
         });
         // Set a listener for info window events.
-        mMap.setOnInfoWindowClickListener(this);
+        //mMap.setOnInfoWindowClickListener(this);
     }
-
+/*
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Toast.makeText(this, "Info window clicked",
-                Toast.LENGTH_SHORT).show();
-    }
+        Toast.makeText(this, "Info window clicked", Toast.LENGTH_SHORT).show();
+
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 5);
+            SourceAutocompleteFragment.setText(addresses.get(0).getLocality());
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+        destLocation = place.getAddress();
+
+        if(!destLocation.toString().isEmpty()) {
+            try {
+                endAddress = geocoder.getFromLocationName(destLocation.toString(), 5);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (EndMarker != null) {
+                EndMarker.remove();
+            }
+
+            if (endAddress.size() == 1){
+                end = endAddress.get(0);
+                DestAddress = end.getLocality();
+                endLatLng = new LatLng(end.getLatitude(), end.getLongitude());
+                EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To").draggable(true));
+
+            } else {
+                end = new Address(Locale.CANADA);
+                end.setLatitude(53.523219);
+                end.setLongitude(-113.526354);
+                DestAddress = end.getLocality();
+                endLatLng = new LatLng(end.getLatitude(), end.getLongitude());
+                EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To").draggable(true));
+            }
+        }
+
+    }*/
 
 
     @Override

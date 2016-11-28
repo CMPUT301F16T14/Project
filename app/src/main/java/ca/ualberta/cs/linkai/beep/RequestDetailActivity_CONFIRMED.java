@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +25,7 @@ import java.util.List;
  * It includes the start and end location,
  * who takes the request and other detailed information 
  */
-public class RequestDetailActivity extends Activity {
+public class RequestDetailActivity_CONFIRMED extends Activity {
 
     TextView start;
     TextView end;
@@ -36,7 +35,7 @@ public class RequestDetailActivity extends Activity {
     TextView status;
     TextView rate;
     Button cancel;
-    Button confirm;
+    Button arriveAndPayButton;
     RatingBar ratingBar;
     int flag;
     Request mRequest;
@@ -68,16 +67,14 @@ public class RequestDetailActivity extends Activity {
         //status = (TextView) findViewById(R.id.StatusInfo);
         rate = (TextView) findViewById(R.id.rate) ;
         cancel = (Button) findViewById(R.id.cancelrequest);
-        confirm = (Button) findViewById(R.id.confirm);
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        arriveAndPayButton = (Button) findViewById(R.id.arrive_pay);
 
         if(bundle != null) {
             flag = bundle.getInt("sendPosition");
-
             mRequest = RuntimeRequestList.getInstance().myRequestList.get(flag);
         }
 
-        Geocoder geocoder = new Geocoder(RequestDetailActivity.this);
+        Geocoder geocoder = new Geocoder(RequestDetailActivity_CONFIRMED.this);
         try {
             from = geocoder.getFromLocation(mRequest.getStartLatLng().latitude, mRequest.getStartLatLng().longitude, 1);
             to = geocoder.getFromLocation(mRequest.getEndLatLng().latitude, mRequest.getEndLatLng().longitude, 1);
@@ -96,28 +93,18 @@ public class RequestDetailActivity extends Activity {
             status.setText("Request accepted");
         } else if(mRequest.getStatus() == PAID) {
             status.setText("Request complete");
-            //only show rating bar when status is PAID
-            ratingBar.setVisibility(View.VISIBLE);
-            rate.setVisibility(View.VISIBLE);
         } else if(mRequest.getStatus() == CANCELLED) {
             status.setText("Request cancelled");
         }
 
-        // Set a listener for changes to RatingBar
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            // Call when the user swipes the RatingBar
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                Toast.makeText(RequestDetailActivity.this, "Thank you for rating!", Toast.LENGTH_SHORT).show();
-                RuntimeRequestList.getInstance().myRequestList.get(flag).setRating(v);
-            }
-        });
+        driver.setText(mRequest.getConfirmedDriver().getUsername());
+        vehicle.setText(mRequest.getConfirmedDriver().getVehicleInfo());
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setResult(RESULT_OK);
-                Toast.makeText(RequestDetailActivity.this, "Request has been canceled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RequestDetailActivity_CONFIRMED.this, "Request has been canceled", Toast.LENGTH_SHORT).show();
 
                 RuntimeRequestList.getInstance().myRequestList.get(flag).setStatus(CANCELLED);
                 ElasticsearchRequestController.AddRequestListTask addRequestListTask = new ElasticsearchRequestController.AddRequestListTask();
@@ -128,19 +115,14 @@ public class RequestDetailActivity extends Activity {
             }
         });
 
-        confirm.setOnClickListener(new View.OnClickListener() {
+        arriveAndPayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // /TODO: handle confirm and pay
                 setResult(RESULT_OK);
-                if(mRequest.getStatus() != CONFIRMED) {
-                    Toast.makeText(RequestDetailActivity.this, "Request has not been accepted yet.", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(RequestDetailActivity.this, "Request has been complete", Toast.LENGTH_SHORT).show();
-                    //TODO: save the cancel change in elastic search server
-                    RuntimeRequestList.getInstance().myRequestList.get(flag).setStatus(PAID);
-                    finish();
-                }
+
+                Intent intent = new Intent(RequestDetailActivity_CONFIRMED.this, MakePaymentActivity.class);
+                startActivity(intent);
+
             }
         });
     }

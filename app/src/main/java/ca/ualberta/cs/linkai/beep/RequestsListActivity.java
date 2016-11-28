@@ -7,28 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.concurrent.Exchanger;
-
-import static ca.ualberta.cs.linkai.beep.R.styleable.View;
 
 /**
  * Request list to store and show current user requests
  *
  * @see RequestsAdapter
- * @see RequestDetailActivity
+ * @see RequestDetailActivity_CONFIRMED
  *
  */
 
@@ -66,13 +50,15 @@ public class RequestsListActivity extends Activity {
                     intent.putExtra("sendPosition", position);
                     startActivity(intent);
                 }else if (RuntimeRequestList.getInstance().myRequestList.get(position).getStatus() == CANCELLED) {
-                    Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity_CANCLE.class);
+                    Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity_CANCEL.class);
                     intent.putExtra("sendPosition", position);
                     startActivity(intent);
-                }else{
-                    Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity.class);
+                }else if (RuntimeRequestList.getInstance().myRequestList.get(position).getStatus() == CONFIRMED){
+                    Intent intent = new Intent(RequestsListActivity.this, RequestDetailActivity_CONFIRMED.class);
                     intent.putExtra("sendPosition", position);
                     startActivity(intent);
+                } else {
+                    Log.i("Error", "Cannot find correspond status activity!");
                 }
 
             }

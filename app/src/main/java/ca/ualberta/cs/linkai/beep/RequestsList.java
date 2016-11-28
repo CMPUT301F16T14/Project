@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author Jinzhu
  * @see Request
  * @see RequestsListActivity
- * @see RequestDetailActivity
+ * @see RequestDetailActivity_CONFIRMED
  */
 
 public class RequestsList {

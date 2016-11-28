@@ -4,14 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,7 +19,7 @@ import java.util.List;
  * This activity is showing the detail infomation about the riders requests whose status is CANCLE.
  * It includes the start, end location, and other detailed information
  */
-public class RequestDetailActivity_CANCLE extends Activity {
+public class RequestDetailActivity_CANCEL extends Activity {
 
     private TextView start;
     private TextView end;
@@ -46,7 +42,7 @@ public class RequestDetailActivity_CANCLE extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_detail__cancle);
+        setContentView(R.layout.activity_request_detail__cancel);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -61,7 +57,7 @@ public class RequestDetailActivity_CANCLE extends Activity {
             mRequest = RuntimeRequestList.getInstance().myRequestList.get(flag);
         }
 
-        Geocoder geocoder = new Geocoder(ca.ualberta.cs.linkai.beep.RequestDetailActivity_CANCLE.this);
+        Geocoder geocoder = new Geocoder(RequestDetailActivity_CANCEL.this);
         try {
             from = geocoder.getFromLocation(mRequest.getStartLatLng().latitude, mRequest.getStartLatLng().longitude, 1);
             to = geocoder.getFromLocation(mRequest.getEndLatLng().latitude, mRequest.getEndLatLng().longitude, 1);
