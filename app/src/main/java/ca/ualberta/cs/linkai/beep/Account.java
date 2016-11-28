@@ -31,8 +31,8 @@ public class Account {
     private String email;
     private int RequestNum;
     private String vehicleInfo;
-    private Double totolRating;
-    private Double totolCompletion;
+    private Double totalRating;
+    private Double totalCompletion;
     /**
      * Define the user type
      * "1" to be a driver
@@ -55,12 +55,12 @@ public class Account {
         this.UserType = AccountType;
     }
     public Double getAvgRating() {
-        return totolRating/totolCompletion;
+        return totalRating/totalCompletion;
     }
 
     public void setRating(Double rateNum) {
-        totolRating = totolRating + rateNum;
-        totolCompletion = totolCompletion + 1;
+        totalRating = totalRating + rateNum;
+        totalCompletion = totalCompletion + 1;
     }
 
     public int getUserType() {
