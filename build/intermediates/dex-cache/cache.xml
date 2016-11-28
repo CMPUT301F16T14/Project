@@ -2,13 +2,13 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        is-multidex="false"
+        jar="C:\Users\User\Documents\GitHub\Project\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_b6f1ab462b51dc7004affda8d051ac20ba1e5390/classes.dex" />
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="C:\Users\User\Documents\GitHub\Project\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_3c2373bcbb48ee84b65231e4856aca46f1c5c51b.jar" />
     </item>
     <item
         is-multidex="true"
@@ -218,13 +218,13 @@
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.0.0_fa162918e156362893bc33a4824d03b384656cf2/classes.dex" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
+        is-multidex="false"
+        jar="C:\Users\User\Documents\GitHub\Project\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.0.0_10a0c7de4f951615f33a6551e46543d67ba7fdc0/classes.dex" />
+        sha1="8a372c4191f80489770a231f7be4820b204b886a">
+        <dex dex="C:\Users\User\Documents\GitHub\Project\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-25.0.0_e44100faeb6361b3a012f5b4a88c9ea7fe79dc33.jar" />
     </item>
 
 </items>

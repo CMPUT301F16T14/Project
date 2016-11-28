@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,15 +16,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static ca.ualberta.cs.linkai.beep.R.id.phoneTextView;
-import static ca.ualberta.cs.linkai.beep.R.id.textView;
-
-public class ViewProfileActivity extends Activity {
+public class ViewAcceptanceProfileActivity extends Activity {
 
     private TextView currentUserName;
     private TextView currentUserPhone;
     private TextView currentUserEmail;
-    private Button finishButton;
+    private Button chooseAcceptance;
+    public static Boolean confirmOrNot = Boolean.FALSE;
+
+    // status variable
+    private final static int CREATED = 0;
+    private final static int OPEN_REQUEST = 1;
+    private final static int CONFIRMED = 2;
+    private final static int PAID = 3;
+    private final static int CANCELLED = 4;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,7 +56,7 @@ public class ViewProfileActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_profile);
+        setContentView(R.layout.activity_view_acceptance_profile);
     }
 
     @Override
@@ -60,12 +66,11 @@ public class ViewProfileActivity extends Activity {
         currentUserName = (TextView) findViewById(R.id.nameTextView);
         currentUserPhone = (TextView) findViewById(R.id.phoneTextView);
         currentUserEmail = (TextView) findViewById(R.id.emailTextView);
-        finishButton = (Button) findViewById(R.id.finishViewProfileButton);
+        chooseAcceptance = (Button) findViewById(R.id.chooseAcceptanceButton);
 
-        //TODO: change text to current user profile!
-        currentUserName.setText(RequestDetailAndAcceptActivity.request.getInitiator().getUsername());
-        currentUserPhone.setText(RequestDetailAndAcceptActivity.request.getInitiator().getPhone());
-        currentUserEmail.setText(RequestDetailAndAcceptActivity.request.getInitiator().getEmail());
+        currentUserName.setText(RequestDetailActivity_OPEN.currentAcceptance.getUsername());
+        currentUserPhone.setText(RequestDetailActivity_OPEN.currentAcceptance.getPhone());
+        currentUserEmail.setText(RequestDetailActivity_OPEN.currentAcceptance.getEmail());
 
 
         //http://stackoverflow.com/questions/8599657/dialing-a-phone-call-on-click-of-textview-in-android
@@ -78,7 +83,7 @@ public class ViewProfileActivity extends Activity {
                 currentUserPhone.setBackgroundResource(R.color.green);
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:+" + phoneNumber.trim()));
-                if (ActivityCompat.checkSelfPermission(ViewProfileActivity.this,
+                if (ActivityCompat.checkSelfPermission(ViewAcceptanceProfileActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }startActivity(callIntent);
@@ -107,7 +112,7 @@ public class ViewProfileActivity extends Activity {
                     finish();
                     Log.i("Finished sending email", "");
                 } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(ViewProfileActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewAcceptanceProfileActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -115,16 +120,22 @@ public class ViewProfileActivity extends Activity {
         });
 
         //reach here when user click the finish button
-        finishButton.setOnClickListener(new View.OnClickListener() {
+        chooseAcceptance.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
+                RequestDetailActivity_OPEN.mRequest.setStatus(CONFIRMED);
+                RequestDetailActivity_OPEN.mRequest.setConfirmedDriver(RequestDetailActivity_OPEN.currentAcceptance);
+                Toast.makeText(ViewAcceptanceProfileActivity.this, "Request has been confirmed", Toast.LENGTH_SHORT).show();
+                ElasticsearchRequestController.AddRequestTask addRequestTask = new ElasticsearchRequestController.AddRequestTask();
+                addRequestTask.execute(RequestDetailActivity_OPEN.mRequest);
+                confirmOrNot = Boolean.TRUE;
                 //destroy this page, return to last page
                 finish();
+
 
             }
         });
 
     }
-
 }

@@ -344,7 +344,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         Geocoder geocoder = new Geocoder(RiderMainActivity.this);
                         try {
                             List<Address> addresses = geocoder.getFromLocation(LatLng.latitude, LatLng.longitude, 5);
-                            SourceAutocompleteFragment.setText(addresses.get(0).getLocality());
+                            if(SourceAutocompleteFragment.toString().isEmpty()) {
+                                SourceAutocompleteFragment.setText(addresses.get(0).getLocality());
+                            } else {
+                                DestinationAutocompleteFragment.setText(addresses.get(0).getLocality());
+                            }
                         } catch (IOException e) {
                             e.printStackTrace();
 
