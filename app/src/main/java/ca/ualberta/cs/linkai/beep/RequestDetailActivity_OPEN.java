@@ -84,8 +84,18 @@ public class RequestDetailActivity_OPEN extends Activity {
             e.printStackTrace();
         }
 
-        start.setText(from.get(0).getLocality());
-        end.setText(to.get(0).getLocality());
+        try {
+            start.setText(from.get(0).getLocality());
+        } catch (RuntimeException e) {
+            start.setText("Unable to parse the location");
+        }
+
+        try {
+            end.setText(to.get(0).getLocality());
+        } catch (RuntimeException e) {
+            end.setText("Unable to parse the location");
+        }
+
         date.setText(mRequest.getDate().toString());
 
         status.setText("Open Request");
