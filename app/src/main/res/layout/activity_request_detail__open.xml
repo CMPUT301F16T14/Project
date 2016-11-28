@@ -62,12 +62,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/date"
         android:id="@+id/DateInfo"
         android:layout_alignParentEnd="true"
         android:textSize="20sp"
         android:layout_toEndOf="@+id/Driver"
-        android:layout_alignStart="@+id/DestAddress" />
+        android:layout_alignStart="@+id/DestAddress"
+        android:layout_above="@+id/StatusInfo"
+        android:layout_below="@+id/DestAddress" />
 
     <TextView
         android:text="Status:  "
