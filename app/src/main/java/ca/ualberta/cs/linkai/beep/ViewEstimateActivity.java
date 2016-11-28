@@ -9,7 +9,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.RuntimeExecutionException;
+import com.google.gson.Gson;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
+
+import java.io.FileInputStream;
 
 /**
  * @see RiderMainActivity
@@ -21,6 +30,8 @@ public class ViewEstimateActivity extends Activity {
     private EditText userKeyword;
     private Button placeRequestButton;
 
+    private static final String FILENAME = "file.sav";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +41,8 @@ public class ViewEstimateActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        saveInFile();
 
         currentEstimate = (EditText) findViewById(R.id.currentEstimate);
         userKeyword = (EditText) findViewById(R.id.userKeyword);
@@ -84,7 +97,41 @@ public class ViewEstimateActivity extends Activity {
                         Log.e("Error", "Something was wrong when we placed the request!");
                     }
                 }
+
+
+                clearInFile();
+                saveInFile();
+
+
             }
         });
+    }
+
+    private void saveInFile(){
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, 0);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(RuntimeRequestList.getInstance().myRequestList, writer);
+            writer.flush();
+        } catch (FileNotFoundException e){
+            throw new RuntimeException();
+        } catch (IOException e){
+            throw new RuntimeException();
+        }
+    }
+
+    private void clearInFile(){
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, 0);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(RuntimeRequestList.getInstance().myRequestList, writer);
+            writer.flush();
+        } catch (FileNotFoundException e){
+            throw new RuntimeException();
+        } catch (IOException e){
+            throw new RuntimeException();
+        }
     }
 }
