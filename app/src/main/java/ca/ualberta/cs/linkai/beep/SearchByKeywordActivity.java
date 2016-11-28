@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 /**
  * @author Jinzhu
+ * Here is the activtiy user can search by keyword
  */
 public class SearchByKeywordActivity extends Activity {
 
@@ -45,14 +46,16 @@ public class SearchByKeywordActivity extends Activity {
             public void onClick(View view) {
                 setResult(RESULT_OK);
 
+                /*check if the sting is null or not*/
                 String KeyWord = null;
-                //TODO: get satisfied requests from elastic search server
+                //get satisfied requests from elastic search server
                 if(keyword.getText().toString().isEmpty()) {
                     Toast.makeText(SearchByKeywordActivity.this, "Keyword cannot be empty", Toast.LENGTH_SHORT).show();
                 } else {
                     KeyWord = keyword.getText().toString();
 
                 }
+                /*search from the server*/
                 ElasticsearchRequestController.GetRequestByKeywordTask getRequestByKeywordTask = new ElasticsearchRequestController.GetRequestByKeywordTask();
                 getRequestByKeywordTask.execute(KeyWord);
 
