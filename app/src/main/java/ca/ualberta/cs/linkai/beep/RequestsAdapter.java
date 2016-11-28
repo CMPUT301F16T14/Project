@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,7 +17,7 @@ import java.util.Date;
  * Create a new adapter to deal with request list
  *
  * @author Linkai, Jinzhu
- * @see RequestDetailActivity
+ * @see RequestDetailActivity_CONFIRMED
  * @see RequestsListActivity
  * @see RequestsList
  * @since 13/11/2016

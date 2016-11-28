@@ -31,7 +31,7 @@
         <activity android:name=".ViewEstimateActivity" />
         <activity android:name=".RequestsListActivity" />
         <activity android:name=".ViewProfileActivity" />
-        <activity android:name=".RequestDetailActivity" />
+        <activity android:name=".RequestDetailActivity_CONFIRMED" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -75,7 +75,8 @@
             android:label="@string/title_activity_request_detail_paid" />
         <activity
             android:name=".RequestDetailActivity_CANCLE"
-            android:label="@string/title_activity_request_detail_cancle"></activity>
+            android:label="@string/title_activity_request_detail_cancle" />
+        <activity android:name=".MakePaymentActivity"></activity>
     </application>
 
 </manifest>

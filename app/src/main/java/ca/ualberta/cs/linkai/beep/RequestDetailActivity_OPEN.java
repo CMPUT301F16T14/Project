@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +18,7 @@ import java.util.List;
  * @author Ting
  * @since 22/11/16
  * @see RequestsListActivity
- * @see RequestDetailActivity
+ * @see RequestDetailActivity_CONFIRMED
  *
  * This activity is showing the detail infomation about the riders requests whose status is OPEN.
  * It includes the start and end location,
@@ -68,7 +66,7 @@ public class RequestDetailActivity_OPEN extends Activity {
         status = (TextView) findViewById(R.id.StatusInfo);
         rate = (TextView) findViewById(R.id.rate) ;
         cancel = (Button) findViewById(R.id.cancelrequest);
-        confirm = (Button) findViewById(R.id.confirm);
+        confirm = (Button) findViewById(R.id.arrive_pay);
 
         if(bundle != null) {
             flag = bundle.getInt("sendPosition");
