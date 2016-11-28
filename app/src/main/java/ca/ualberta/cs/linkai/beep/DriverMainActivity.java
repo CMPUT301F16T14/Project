@@ -3,10 +3,16 @@ package ca.ualberta.cs.linkai.beep;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * This is the class to deal with driver main activity
@@ -33,6 +39,13 @@ public class DriverMainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_main);
+        /**
+         * add timer for checking notification condition of
+         * offer being confirmed
+         * per 3 seconds with a delay of 1 second
+         */
+        Timer time = new Timer();
+        time.schedule(new DriverMainActivity.TimeConfirm() ,1000,3000);
 
         searchByLocation = (Button) findViewById(R.id.search1);
         searchByKeyword = (Button) findViewById(R.id.search2);
@@ -100,5 +113,35 @@ public class DriverMainActivity extends Activity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * this method is to auto-check for a offer's confirmation per 3 seconds.
+     */
+
+    public class TimeConfirm extends TimerTask {
+        public ArrayList<Request> realtimeRequests = new ArrayList<>();
+        Account current = RuntimeAccount.getInstance().myAccount;
+
+        @Override
+        public void run(){
+            // get the initiator's real time requests per 3 seconds
+            ElasticsearchRequestController.GetAllReqeusts getAllReqeustsTask =
+                    new ElasticsearchRequestController.GetAllReqeusts();
+            getAllReqeustsTask.execute();
+            try {
+                realtimeRequests = getAllReqeustsTask.get();
+            } catch (Exception e) {
+                Log.i("Error", "Failed to get result.");
+            }
+            //2 iteratively checking driver's offer confirmed, occur notification, if not nothing.
+            Iterator it = realtimeRequests.iterator();
+            while (it.hasNext()) {
+                Request request = (Request) it.next();
+                if (request.getConfirmedDriver() == current) {
+                    RequestNotification.notify(DriverMainActivity.this.getApplicationContext(), "Your offer is accepted", 2);
+                }
+            }
+        }
     }
 }

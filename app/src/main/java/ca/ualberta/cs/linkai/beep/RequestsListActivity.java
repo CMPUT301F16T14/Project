@@ -42,7 +42,7 @@ public class RequestsListActivity extends Activity {
          * per 3 seconds with a delay of 1 second
          */
         Timer timer = new Timer();
-        timer.schedule(new NotifyTask() ,1000,3000);
+        timer.schedule(new TimeAccept() ,1000,3000);
 
         myRequestsList = (ListView) findViewById(R.id.requestsListView);
 
@@ -116,7 +116,7 @@ public class RequestsListActivity extends Activity {
      * This method is to implement a TImerTask that will response whenever a reqeust is accepted
      */
 
-    public class NotifyTask extends TimerTask {
+    public class TimeAccept extends TimerTask {
         public ArrayList<Request> realtimeRequests = new ArrayList<>();
 
         @Override
