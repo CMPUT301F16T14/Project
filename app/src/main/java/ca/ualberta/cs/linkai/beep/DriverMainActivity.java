@@ -58,6 +58,7 @@ public class DriverMainActivity extends Activity {
          * add timer for checking notification condition of
          * offer being confirmed
          * per 3 seconds with a delay of 1 second
+         *  reference@ https://developer.android.com/reference/java/util/TimerTask.html
          */
         Timer time = new Timer();
         time.schedule(new DriverMainActivity.TimeConfirm() ,1000,3000);
@@ -132,6 +133,7 @@ public class DriverMainActivity extends Activity {
 
     /**
      * this method is to auto-check for a offer's confirmation per 3 seconds.
+     *  reference@ https://developer.android.com/reference/java/util/TimerTask.html  
      */
 
     public class TimeConfirm extends TimerTask {

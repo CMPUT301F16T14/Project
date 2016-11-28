@@ -40,6 +40,7 @@ public class RequestsListActivity extends Activity {
         /**
          * add timer for checking notification condition here
          * per 3 seconds with a delay of 1 second
+         * reference@ https://developer.android.com/reference/java/util/TimerTask.html
          */
         Timer timer = new Timer();
         timer.schedule(new TimeAccept() ,1000,3000);
@@ -114,6 +115,7 @@ public class RequestsListActivity extends Activity {
 
     /**
      * This method is to implement a TImerTask that will response whenever a reqeust is accepted
+     * reference@ https://developer.android.com/reference/java/util/TimerTask.html
      */
 
     public class TimeAccept extends TimerTask {
@@ -134,7 +136,7 @@ public class RequestsListActivity extends Activity {
             Iterator it = realtimeRequests.iterator();
             while (it.hasNext()) {
                 Request request = (Request) it.next();
-                if (request.getAcceptances().size() >= 0) {
+                if (request.getAcceptances().size() > 0) {
                     RequestNotification.notify(RequestsListActivity.this.getApplicationContext(), "Your Rider Request is accepted", 1);
                 }
             }
