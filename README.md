@@ -5,4 +5,3 @@ This application is a mobile application that allows drivers to search for recen
 
 With a higher SDK 25 to enable Google Maps   
 
-See JavaDoc at file:///Users/Aries/Desktop/Project/docs/index.html
