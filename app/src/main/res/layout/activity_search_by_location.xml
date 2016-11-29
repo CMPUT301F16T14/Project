@@ -10,4 +10,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.ualberta.cs.linkai.beep.SearchByLocationActivity">
 
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="fill_parent"
+        tools:context="ca.ualberta.cs.linkai.beep.SearchByLocationActivity"
+        android:layout_height="310dp"
+        android:layout_alignParentStart="true" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:id="@+id/resultList"
+        android:layout_below="@+id/map" />
+
 </RelativeLayout>
