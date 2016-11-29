@@ -422,6 +422,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     }*/
 
 
+    /**
+     * When the map is showed, as we connect to the google map API server
+     * we get our current location
+     * @param bundle
+     */
     @Override
     public void onConnected(Bundle bundle) {
         if (ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
@@ -488,6 +493,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         return true;
     }
 
+    /**
+     * deal with the hamburger button
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
