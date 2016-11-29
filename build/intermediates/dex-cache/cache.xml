@@ -12,12 +12,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.0.0_59d3f1b270b2dd18ebb40f40521ee9a07c29c5af/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.0.0_940c3801fb8c658eb60f3d1726c176529af54806/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.0.0_9fd1933d84ae887c254143648e4012e337fc0d8d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.0.0_8e15914dde839c825f6dd36e96a901509bffb0b7/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -36,6 +63,15 @@
         revision="25.0.0"
         sha1="a819aae4f0c711e50b4fd633922a3c1a176cb51e">
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.0.0_2754096b6082a7fa63ab90b5957ae820d7c35f76/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="42df48c7305b08b14fa0e84561091b0c24d70d26">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.0.0_4eddbc22b1770a3125ff83c655e7b3292b58e1fa/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -75,6 +111,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.0.0_c7f9197b7eadde76d8577a753306a59cc91aa5a8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
         jumboMode="true"
         optimize="true"
@@ -93,87 +138,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/linkai/Documents/Project/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f19252ddd4b4bf2fc7a97df85da95d237abcb42c">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e2a32a12ce53b8c51839cbef70319e8226962b33/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/linkai/.gradle/caches/modules-2/files-2.1/io.searchbox/jest-droid/2.0.3/63732634901438ac56b8f6ab0ca16c8e20da85c5/jest-droid-2.0.3.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="63732634901438ac56b8f6ab0ca16c8e20da85c5">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/jest-droid-2.0.3_41cf6826b8edfe2a9a75de8297931f1bd387861e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8a372c4191f80489770a231f7be4820b204b886a">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-25.0.0_70c03f351b1b2af0d283f80696af48bc045ebe2f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.0.0_fa162918e156362893bc33a4824d03b384656cf2/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.0.0_59d3f1b270b2dd18ebb40f40521ee9a07c29c5af/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26674000177e45447a0326a6ad84612761199a13">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.0.0_940c3801fb8c658eb60f3d1726c176529af54806/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.0.0_8e15914dde839c825f6dd36e96a901509bffb0b7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="42df48c7305b08b14fa0e84561091b0c24d70d26">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.0.0_4eddbc22b1770a3125ff83c655e7b3292b58e1fa/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
-        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.0.0_c7f9197b7eadde76d8577a753306a59cc91aa5a8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -187,7 +151,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="14a9d751f91c9dbe539cca7fd9d9345275333be0">
+        sha1="d2b8b97984c5d2a4f7c28c0d47c9ee5d1020bfe6">
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_a13049d23ca83bd3f329a97a13384df8f69bc10a/classes.dex" />
     </item>
     <item
@@ -198,6 +162,15 @@
         revision="25.0.0"
         sha1="cc178928721f3222b3b06bdfbd9497378ccb9792">
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.0.0_6712f4d3a83c7542fcdbfc0f639157e5e282d23b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0684b18f3ccc225029d66fb742a1d422827660f4">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e2a32a12ce53b8c51839cbef70319e8226962b33/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -219,12 +192,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/linkai/.gradle/caches/modules-2/files-2.1/io.searchbox/jest-droid/2.0.3/63732634901438ac56b8f6ab0ca16c8e20da85c5/jest-droid-2.0.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="63732634901438ac56b8f6ab0ca16c8e20da85c5">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/jest-droid-2.0.3_41cf6826b8edfe2a9a75de8297931f1bd387861e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8a372c4191f80489770a231f7be4820b204b886a">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-25.0.0_70c03f351b1b2af0d283f80696af48bc045ebe2f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.0.0_10a0c7de4f951615f33a6551e46543d67ba7fdc0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.0.0_fa162918e156362893bc33a4824d03b384656cf2/classes.dex" />
     </item>
 
 </items>

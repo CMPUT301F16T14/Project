@@ -96,6 +96,7 @@ public class WelcomeActivity extends Activity {
             Toast.makeText(WelcomeActivity.this, "This is not a driver account!", Toast.LENGTH_SHORT).show();
         } else {
             logInAccount = resultAccounts.get(0);
+            RuntimeAccount.getInstance().myAccount = logInAccount;
             Intent intent = new Intent(this, DriverMainActivity.class);
             startActivity(intent);
         }
@@ -122,6 +123,7 @@ public class WelcomeActivity extends Activity {
             Toast.makeText(WelcomeActivity.this, "This is not a rider account!", Toast.LENGTH_SHORT).show();
         } else {
             logInAccount = resultAccounts.get(0);
+            RuntimeAccount.getInstance().myAccount = logInAccount;
             Intent intent = new Intent(this, RiderMainActivity.class);
             startActivity(intent);
         }
