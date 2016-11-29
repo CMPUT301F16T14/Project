@@ -119,7 +119,9 @@ public class SearchByLocationActivity extends FragmentActivity implements OnMapR
             @Override
             public void onMapClick(LatLng latLng) {
 
-                //StartMarker.remove();
+                if(Marker != null) {
+                    Marker.remove();
+                }
                 final LatLng LatLng = new LatLng(latLng.latitude, latLng.longitude);
                 Marker = mMap.addMarker(new MarkerOptions().position(latLng).title(String.valueOf(latLng.latitude) +
                         " , " + String.valueOf(latLng.longitude)).draggable(true));
