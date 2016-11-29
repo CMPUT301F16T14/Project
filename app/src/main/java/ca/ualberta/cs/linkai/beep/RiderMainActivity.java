@@ -111,7 +111,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private Marker StartMarker;
     private Marker EndMarker;
     private Marker Marker;
-    public static Account currentAccount = RuntimeAccount.getInstance().myAccount;
     private PlaceAutocompleteFragment SourceAutocompleteFragment;
     private PlaceAutocompleteFragment DestinationAutocompleteFragment;
 
@@ -466,7 +465,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         } else if(endAddress == null) {
             Toast.makeText(RiderMainActivity.this, "Empty Destination!", Toast.LENGTH_SHORT).show();
         } else {
-            myRequest = new Request(currentAccount, startLatLng, endLatLng);
+            myRequest = new Request(RuntimeAccount.getInstance().myAccount, startLatLng, endLatLng);
             myRequest.EstimateByDistance(startLatLng,endLatLng);
 
             /**
