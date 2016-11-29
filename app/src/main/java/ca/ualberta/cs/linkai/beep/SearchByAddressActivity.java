@@ -69,7 +69,7 @@ public class SearchByAddressActivity extends Activity {
                     Toast.makeText(SearchByAddressActivity.this,"Address cannot be empty", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Address = "Edmonton";
+                    Address = address.getText().toString();
                     Geocoder geocoder = new Geocoder(SearchByAddressActivity.this);
                     try {
                         addr = geocoder.getFromLocationName(Address.toString(), 1);
@@ -84,11 +84,35 @@ public class SearchByAddressActivity extends Activity {
                         end = Addr.getLongitude();
                         list.add(start);
                         list.add(end);
+                        //Log.i("Error", start.toString()+end.toString());
                         ElasticsearchRequestController.GetRequestByAddressTask getRequestByAddressTask = new ElasticsearchRequestController.GetRequestByAddressTask();
                         getRequestByAddressTask.execute(list);
 
                         try {
                             requestList = getRequestByAddressTask.get();
+                        } catch (Exception e) {
+                            Log.i("Error", "Failed to get the Accounts out of the async object.");
+                        }
+
+                        if (requestList.isEmpty()) {
+                            Toast.makeText(SearchByAddressActivity.this, "No request find", Toast.LENGTH_SHORT).show();
+                        } else {
+                            adapter.clear();
+                            adapter.addAll(requestList);
+                            adapter.notifyDataSetChanged();
+
+                        }
+                    } else if(flag == 1) {
+                        start = Addr.getLatitude();
+                        end = Addr.getLongitude();
+                        list.add(start);
+                        list.add(end);
+                        //Log.i("Error", start.toString()+end.toString());
+                        ElasticsearchRequestController.GetRequestByNearbyAddressTask getRequestByNearbyAddressTask = new ElasticsearchRequestController.GetRequestByNearbyAddressTask();
+                        getRequestByNearbyAddressTask.execute(list);
+
+                        try {
+                            requestList = getRequestByNearbyAddressTask.get();
                         } catch (Exception e) {
                             Log.i("Error", "Failed to get the Accounts out of the async object.");
                         }

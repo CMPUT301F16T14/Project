@@ -146,22 +146,67 @@ public class ElasticsearchRequestController {
 
             ArrayList<Request> myRequests = new ArrayList<Request>();
 
-            Double start = search_parameters[0].get(0);
-            Double end = search_parameters[0].get(1);
+            Double lat = search_parameters[0].get(0);
+            Double lng = search_parameters[0].get(1);
 
             String search_string = "{ \n" +
                     "  \"query\": {\n" +
-                    "      \"should\": [\n" +
-                    "               {\"startLocation\": {\n" +
-                    "                   { \"latitude\": \"" + start + ",\"} + \n" +
-                    "                   { \"longitude\": \"" + end + "\" }},\n" +
-                    "               {\"endLocation\": {\n" +
-                    "                   { \"latitude\": \"" + start + ",\" } + \n" +
-                    "                   { \"longitude\": \"" + end + "\" }}\n" +
-                    "      ],\n" +
-                    "      \"minimum_should_match\": \"1\"\n" +
-                    "    }\n" +
-                    "  }\n" +
+                    "      \"match_all\": {}\n" +
+                    "   },\n" +
+                    "       \"filter\": { \n" +
+                    "           \"geo_distance\":{\n" +
+                    "               \"distance\":\"1.0km\",\n" +
+                    "                   \"location\":["+lng+","+lat+"]\n" +
+                    "               }\n" +
+                    "           }\n" +
+                    "}";
+            // assume that search_parameters[0] is the only search term we are interested in using
+            Search search = new Search.Builder(search_string)
+                    .addIndex("f16t14")
+                    .addType("Request")
+                    .build();
+
+            try {
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()) {
+                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
+                    myRequests.addAll(foundRequests);
+                }
+                else {
+                    Log.i("Error", "The search query failed to find any request that matched.");
+                }
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+
+            return myRequests;
+        }
+    }
+
+    /**
+     * Search based on an input address with search within 10kn
+     */
+    public static class GetRequestByNearbyAddressTask extends AsyncTask<ArrayList<Double>, Void, ArrayList<Request>> {
+        @Override
+        protected ArrayList<Request> doInBackground(ArrayList<Double> ... search_parameters) {
+            verifySettings();
+
+            ArrayList<Request> myRequests = new ArrayList<Request>();
+
+            Double lat = search_parameters[0].get(0);
+            Double lng = search_parameters[0].get(1);
+
+            String search_string = "{ \n" +
+                    "  \"query\": {\n" +
+                    "      \"match_all\": {}\n" +
+                    "   },\n" +
+                    "       \"filter\": { \n" +
+                    "           \"geo_distance\":{\n" +
+                    "               \"distance\":\"10.0km\",\n" +
+                    "                   \"location\":["+lng+","+lat+"]\n" +
+                    "               }\n" +
+                    "           }\n" +
                     "}";
             // assume that search_parameters[0] is the only search term we are interested in using
             Search search = new Search.Builder(search_string)
