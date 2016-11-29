@@ -341,6 +341,18 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
 
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                mMap.addMarker(new MarkerOptions().position(latLng).title(
+                        latLng.toString()));
+
+                Toast.makeText(getApplicationContext(),
+                        "New marker added@" + latLng.toString(), Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
