@@ -2,12 +2,14 @@ package ca.ualberta.cs.linkai.beep;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.location.Geocoder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class RequestsAdapter extends ArrayAdapter<Request>{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        String infoString = "";
         String status = "";
         // Get the data item for this position
         Request request = getItem(position);
@@ -51,25 +54,30 @@ public class RequestsAdapter extends ArrayAdapter<Request>{
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.requests_list_view, parent, false);
         }
         // Lookup view for data population
-        TextView myStatusView = (TextView) convertView.findViewById(R.id.current_status);
-        TextView myDateView = (TextView) convertView.findViewById(R.id.created_date);
-        TextView myTimeView = (TextView) convertView.findViewById(R.id.created_time);
+        TextView requestInfoView = (TextView) convertView.findViewById(R.id.request_info);;
 
         if (request.getStatus() == CREATED){
-            status = "CREATED";
+            infoString = "Status: CREATED \n";
         } else if (request.getStatus() == OPEN_REQUEST) {
-            status = "OPEN";
+            infoString = "Status: OPEN \n";
         } else if (request.getStatus() == CONFIRMED) {
-            status = "CONFIRMED";
+            infoString = "Status: CONFIRMED \n";
         } else if (request.getStatus() == PAID) {
-            status = "PAID";
+            infoString = "Status: PAID \n";
         } else if (request.getStatus() == CANCELLED) {
-            status = "CANCELLED";
-            myStatusView.setBackgroundColor(Color.parseColor("#ff7a7a"));
-            myDateView.setBackgroundColor(Color.parseColor("#ff7a7a"));
-            myTimeView.setBackgroundColor(Color.parseColor("#ff7a7a"));
+            infoString = "Status: CANCELLED \n";
+            requestInfoView.setBackgroundColor(Color.parseColor("#ff7a7a"));;
         }
 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String dateString = dateFormat.format(request.getDate());
+        infoString = infoString + dateString + "\n";
+
+        infoString = infoString + "From: "+ request.getStartLocality() + "   To:"+ request.getEndLocality() + "\n";
+        infoString = infoString + "Reason: " + request.getKeyword() + "\n";
+
+
+        /*
         // Populate the data into the template view using the data object
         Date date = request.getDate();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -77,10 +85,9 @@ public class RequestsAdapter extends ArrayAdapter<Request>{
 
         DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
         String timeString = timeFormat.format(date);
+        */
 
-        myStatusView.setText(status);
-        myDateView.setText(dateString);
-        myTimeView.setText(timeString);
+        requestInfoView.setText(infoString);
 
         // Return the completed view to render on screen
         return convertView;
