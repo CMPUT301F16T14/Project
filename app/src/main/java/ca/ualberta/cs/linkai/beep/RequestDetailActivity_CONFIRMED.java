@@ -112,6 +112,10 @@ public class RequestDetailActivity_CONFIRMED extends Activity {
             public void onClick(View view) {
                 setResult(RESULT_OK);
 
+                RuntimeRequestList.getInstance().myRequestList.get(flag).setStatus(PAID);
+                ElasticsearchRequestController.AddRequestListTask addRequestListTask = new ElasticsearchRequestController.AddRequestListTask();
+                addRequestListTask.execute(RuntimeRequestList.getInstance().myRequestList);
+
                 Intent intent = new Intent(RequestDetailActivity_CONFIRMED.this, MakePaymentActivity.class);
                 startActivity(intent);
 
