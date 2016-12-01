@@ -126,7 +126,7 @@ public class SearchByLocationActivity extends FragmentActivity implements OnMapR
                 Marker = mMap.addMarker(new MarkerOptions().position(latLng).title(String.valueOf(latLng.latitude) +
                         " , " + String.valueOf(latLng.longitude)).draggable(true));
 
-
+/*
                 // Set Camera position
                 //reference: http://stackoverflow.com/questions/14828217/android-map-v2-zoom-to-show-all-the-markers
                 //first calculate the bounds of both two markers
@@ -135,13 +135,12 @@ public class SearchByLocationActivity extends FragmentActivity implements OnMapR
                 LatLngBounds bounds = builder.build();
                 int padding = 200; // offset from edges of the map in pixels
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-                mMap.animateCamera(cameraUpdate);
+                mMap.animateCamera(cameraUpdate);*/
 
 
                 mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                     @Override
                     public void onInfoWindowClick(Marker marker) {
-                        Toast.makeText(SearchByLocationActivity.this, "Info window clicked", Toast.LENGTH_SHORT).show();
                         list.add(LatLng.latitude);
                         list.add(LatLng.longitude);
                         ElasticsearchRequestController.GetRequestByNearbyAddressTask getRequestByLocationTask = new ElasticsearchRequestController.GetRequestByNearbyAddressTask();
@@ -155,6 +154,7 @@ public class SearchByLocationActivity extends FragmentActivity implements OnMapR
                         if (requestList.isEmpty()) {
                             Toast.makeText(SearchByLocationActivity.this, "No request find", Toast.LENGTH_SHORT).show();
                         } else {
+                            Toast.makeText(SearchByLocationActivity.this, "Request found", Toast.LENGTH_SHORT).show();
                             adapter.clear();
                             adapter.addAll(requestList);
                             adapter.notifyDataSetChanged();
@@ -215,9 +215,9 @@ public class SearchByLocationActivity extends FragmentActivity implements OnMapR
             lat = mLastLocation.getLatitude();
             lng = mLastLocation.getLongitude();
 
-            LatLng loc = new LatLng(lat, lng);
+            LatLng loc = new LatLng(53.523219, -113.526354);
             OriginMarker = mMap.addMarker(new MarkerOptions().position(loc).title("My Current Location"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,13));
 
         }
 

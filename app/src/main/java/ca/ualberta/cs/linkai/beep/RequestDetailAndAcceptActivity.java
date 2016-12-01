@@ -58,12 +58,18 @@ public class RequestDetailAndAcceptActivity extends Activity {
 
         if (bundle != null){
             int i = bundle.getInt("request_Detail");
+
+            /**
+             * get request list according to different search type
+             */
             if(DriverMainActivity.searchType == DriverMainActivity.SEARCH_BY_PRICE ) {
                 request = SearchByPriceActivity.resultRequests.get(i);
             } else if(DriverMainActivity.searchType == DriverMainActivity.SEARCH_BY_KEYWORD) {
                 request = SearchByKeywordActivity.requestsList.get(i);
             }else if(DriverMainActivity.searchType == DriverMainActivity.SEARCH_BY_ADDRESS){
                 request = SearchByAddressActivity.requestList.get(i);
+            } else if(DriverMainActivity.searchType == DriverMainActivity.SEARCH_BY_LOCATION) {
+                request = SearchByLocationActivity.requestList.get(i);
             }
         }
 
@@ -71,7 +77,7 @@ public class RequestDetailAndAcceptActivity extends Activity {
         start      = (TextView) findViewById(R.id.textView11);
         end        = (TextView) findViewById(R.id.textView13);
         totalPrice = (TextView) findViewById(R.id.textView15);
-        acceptRequest = (Button) findViewById(R.id.AcceptButton) ;
+        acceptRequest = (Button) findViewById(R.id.AcceptButton);
 
         riderName.setText(request.getInitiator().getUsername());
         riderName.setBackgroundResource(R.color.orange);
