@@ -70,7 +70,7 @@
         android:layout_above="@+id/Driver" />
 
     <TextView
-        android:text="Driver's vehicle:"
+        android:text="Driver's vehicle:   "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/car"
@@ -84,7 +84,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/Driver"
         android:textSize="18sp"
-        android:layout_alignBottom="@+id/DriverName" />
+        android:layout_alignBottom="@+id/DriverName"
+        android:layout_alignTop="@+id/DriverName" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -103,7 +104,8 @@
         android:layout_above="@+id/CarInfo"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="43dp"
-        android:layout_marginBottom="17dp" />
+        android:layout_marginBottom="17dp"
+        android:layout_alignStart="@+id/DateInfo" />
 
     <Button
         android:text="I arrive the destination AND pay"
@@ -131,6 +133,7 @@
         android:clickable="true"
         android:layout_marginBottom="23dp"
         android:layout_above="@+id/DriverInfo"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/DateInfo" />
 
 </RelativeLayout>

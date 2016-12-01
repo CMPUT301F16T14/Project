@@ -110,8 +110,24 @@ public class ElasticsearchRequestController {
 
             ArrayList<Request> myRequests = new ArrayList<Request>();
 
-            int status = 1;
-            String search_string = "{\"query\" : {\"term\" : {\"keyword\":\"" + search_parameters[0] + "\" }}}";
+            //int status = 1;
+            String search_string = "{\n" +
+                    "  \"query\": {\n" +
+                    "    \"bool\": {\n" +
+                    "      \"must\": {\n" +
+                    "        \"match\": {\n" +
+                    "\t\t\t\"keyword\": \"" + search_parameters[0] + "\"\n" +
+                    "\t\t\t}\n" +
+                    "      },\n" +
+                    "      \"should\": [\n" +
+                    "         \t{\"match\":{\"status\": 1}},\n" +
+                    "      \t\t{\"match\":{\"status\": 0}}\n" +
+                    "        ],\n" +
+                    "        \"minimum_should_match\" : 1\n" +
+                    "      }\n" +
+                    "   \n" +
+                    "  }\n" +
+                    "}\n";
             // assume that search_parameters[0] is the only search term we are interested in using
             Search search = new Search.Builder(search_string)
                     .addIndex("f16t14")
@@ -149,7 +165,7 @@ public class ElasticsearchRequestController {
             Double lat = search_parameters[0].get(0);
             Double lng = search_parameters[0].get(1);
 
-            String search_string = "{ \n" +
+            /*String search_string = "{ \n" +
                     "  \"query\": {\n" +
                     "      \"match_all\": {}\n" +
                     "   },\n" +
@@ -159,8 +175,29 @@ public class ElasticsearchRequestController {
                     "                   \"location\":["+lng+","+lat+"]\n" +
                     "               }\n" +
                     "           }\n" +
-                    "}";
-            // assume that search_parameters[0] is the only search term we are interested in using
+                    "}";*/
+            String search_string = "{\n" +
+                    "    \"query\": {\n" +
+                    "    \"filtered\":{\n" +
+                    "    \"query\":{\n" +
+                    "        \"bool\" : {\n" +
+                    "            \"must\" : {\n" +
+                    "                \"match\" : {\"status\":1}\n" +
+                    "                }\n" +
+                    "            }},\n" +
+                    "            \"filter\" : {\n" +
+                    "                \"geo_distance\" : {\n" +
+                    "                    \"distance\" : \"1.0km\",\n" +
+                    "                    \"location\" : {\n" +
+                    "                        \"lat\" : " + lat + ",\n" +
+                    "                        \"lon\" : " + lng + "\n" +
+                    "                    }\n" +
+                    "                }\n" +
+                    "            }\n" +
+                    "        }\n" +
+                    "    }\n" +
+                    "}\n";
+                    // assume that search_parameters[0] is the only search term we are interested in using
             Search search = new Search.Builder(search_string)
                     .addIndex("f16t14")
                     .addType("Request")
@@ -197,7 +234,7 @@ public class ElasticsearchRequestController {
             Double lat = search_parameters[0].get(0);
             Double lng = search_parameters[0].get(1);
 
-            String search_string = "{ \n" +
+            /*String search_string = "{ \n" +
                     "  \"query\": {\n" +
                     "      \"match_all\": {}\n" +
                     "   },\n" +
@@ -207,7 +244,28 @@ public class ElasticsearchRequestController {
                     "                   \"location\":["+lng+","+lat+"]\n" +
                     "               }\n" +
                     "           }\n" +
-                    "}";
+                    "}";*/
+            String search_string = "{\n" +
+                    "    \"query\": {\n" +
+                    "    \"filtered\":{\n" +
+                    "    \"query\":{\n" +
+                    "        \"bool\" : {\n" +
+                    "            \"must\" : {\n" +
+                    "                \"match\" : {\"status\":1}\n" +
+                    "                }\n" +
+                    "            }},\n" +
+                    "            \"filter\" : {\n" +
+                    "                \"geo_distance\" : {\n" +
+                    "                    \"distance\" : \"10.0km\",\n" +
+                    "                    \"location\" : {\n" +
+                    "                        \"lat\" : " + lat + ",\n" +
+                    "                        \"lon\" : " + lng + "\n" +
+                    "                    }\n" +
+                    "                }\n" +
+                    "            }\n" +
+                    "        }\n" +
+                    "    }\n" +
+                    "}\n";
             // assume that search_parameters[0] is the only search term we are interested in using
             Search search = new Search.Builder(search_string)
                     .addIndex("f16t14")
@@ -243,7 +301,7 @@ public class ElasticsearchRequestController {
             Double min = search_parameters[0].get(0);
             Double max = search_parameters[0].get(1);
 
-            String search_string = "{\n" +
+            /*String search_string = "{\n" +
                     "    \"query\": {\n" +
                     "        \"range\" : {\n" +
                     "            \"fare\" : {\n" +
@@ -252,7 +310,27 @@ public class ElasticsearchRequestController {
                     "            }\n" +
                     "        }\n" +
                     "    }\n" +
-                    "}";
+                    "}";*/
+            String search_string = "{\n" +
+                    "    \"query\": {\n" +
+                    "    \"filtered\":{\n" +
+                    "    \"query\":{\n" +
+                    "        \"bool\" : {\n" +
+                    "            \"must\" : {\n" +
+                    "                \"match\" : {\"status\":1}\n" +
+                    "                }\n" +
+                    "            }},\n" +
+                    "            \"filter\" : {\n" +
+                    "                \"range\" : {\n" +
+                    "                    \"fare\" :{\n" +
+                    "                        \"gte\" : " + min + ",\n" +
+                    "                        \"lte\" : " + max + "\n" +
+                    "                    }\n" +
+                    "                }\n" +
+                    "            }\n" +
+                    "        }\n" +
+                    "    }\n" +
+                    "}\n";
             // assume that search_parameters[0], search_parameters[1] are the only search terms we are interested in using
             Search search = new Search.Builder(search_string)
                     .addIndex("f16t14")
@@ -288,7 +366,7 @@ public class ElasticsearchRequestController {
             Double min = search_parameters[0].get(0);
             Double max = search_parameters[0].get(1);
 
-            String search_string = "{\n" +
+            /*String search_string = "{\n" +
                     "    \"query\": {\n" +
                     "        \"range\" : {\n" +
                     "            \"unitPrice\" : {\n" +
@@ -297,7 +375,27 @@ public class ElasticsearchRequestController {
                     "            }\n" +
                     "        }\n" +
                     "    }\n" +
-                    "}";
+                    "}";*/
+            String search_string = "{\n" +
+                    "    \"query\": {\n" +
+                    "    \"filtered\":{\n" +
+                    "    \"query\":{\n" +
+                    "        \"bool\" : {\n" +
+                    "            \"must\" : {\n" +
+                    "                \"match\" : {\"status\":1}\n" +
+                    "                }\n" +
+                    "            }},\n" +
+                    "            \"filter\" : {\n" +
+                    "                \"range\" : {\n" +
+                    "                    \"UnitPrice\" :{\n" +
+                    "                        \"gte\" : " + min + ",\n" +
+                    "                        \"lte\" : " + max + "\n" +
+                    "                    }\n" +
+                    "                }\n" +
+                    "            }\n" +
+                    "        }\n" +
+                    "    }\n" +
+                    "}\n";
             // assume that search_parameters[0], search_parameters[1] are the only search terms we are interested in using
             Search search = new Search.Builder(search_string)
                     .addIndex("f16t14")

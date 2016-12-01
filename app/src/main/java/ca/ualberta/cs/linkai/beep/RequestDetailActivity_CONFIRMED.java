@@ -64,7 +64,7 @@ public class RequestDetailActivity_CONFIRMED extends Activity {
 
         start = (TextView) findViewById(R.id.StartAddress);
         end = (TextView) findViewById(R.id.DestAddress);
-        driver = (TextView) findViewById(R.id.DriverInfo);
+        driver = (TextView) findViewById(R.id.DriverName);
         vehicle = (TextView) findViewById(R.id.CarInfo);
         date = (TextView) findViewById(R.id.DateInfo);
         //status = (TextView) findViewById(R.id.StatusInfo);
