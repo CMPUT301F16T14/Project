@@ -97,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="b7a671d6c7135643ae71a00c555a5a84fbcadd9e">
+        sha1="3892830b760647a31f73b47cc2434a841d3b4e33">
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e2a32a12ce53b8c51839cbef70319e8226962b33/classes.dex" />
     </item>
     <item
@@ -180,6 +180,15 @@
         revision="25.0.0"
         sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.0.0_c04bd9e3206b8b6c143e264f1ca8375de0683c0b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/linkai/Documents/Project/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9fffb070ec24dbb2aafae902c3c5bbf3f6b7e064">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_a13049d23ca83bd3f329a97a13384df8f69bc10a/classes.dex" />
     </item>
     <item
         is-multidex="true"

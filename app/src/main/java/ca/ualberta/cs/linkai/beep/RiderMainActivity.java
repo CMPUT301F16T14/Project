@@ -112,6 +112,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private Marker EndMarker;
     private Marker Marker;
 
+    List<Address> from;
+    List<Address> to;
+    String startString;
+    String endString;
+
     private Marker longClickMarker;
     public static Account currentAccount = RuntimeAccount.getInstance().myAccount;
 
@@ -453,7 +458,36 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         } else if(endAddress == null) {
             Toast.makeText(RiderMainActivity.this, "Empty Destination!", Toast.LENGTH_SHORT).show();
         } else {
-            myRequest = new Request(RuntimeAccount.getInstance().myAccount, startLatLng, endLatLng);
+
+
+            Geocoder geocoder = new Geocoder(RiderMainActivity.this);
+            try {
+                from = geocoder.getFromLocation(startLatLng.latitude, startLatLng.longitude, 1);
+                to = geocoder.getFromLocation(endLatLng.latitude, endLatLng.longitude, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                startString = from.get(0).getLocality();
+            } catch (RuntimeException e) {
+                startString = "Unable to parse the location";
+            }
+
+            try {
+                endString = to.get(0).getLocality();
+            } catch (RuntimeException e) {
+                endString = "Unable to parse the location";
+            }
+
+
+
+
+
+
+
+
+            myRequest = new Request(RuntimeAccount.getInstance().myAccount, startLatLng, endLatLng, startString, endString);
             myRequest.EstimateByDistance(startLatLng,endLatLng);
 
             /**
@@ -528,6 +562,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         if (marker.equals(longClickMarker))
                         {
                             // TODO going to finish this
+                            startActivity(new Intent(RiderMainActivity.this, PopUpWindow.class));
                             Toast.makeText(getApplicationContext(),
                                     "It Worked !!!!!!!!!", Toast.LENGTH_LONG)
                                     .show();

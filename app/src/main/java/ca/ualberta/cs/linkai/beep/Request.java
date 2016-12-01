@@ -59,6 +59,9 @@ public class Request {
     private float mRating;
     private static final String TAG = Request.class.getSimpleName();
 
+    private String startLocality;
+    private String endLocality;
+
     // For elastic search
     private Double[] location;
 
@@ -83,7 +86,7 @@ public class Request {
      * @param start represent the start location of the ride
      * @param end represent the destination of the ride
      */
-    public Request(Account initiator, LatLng start, LatLng end) {
+    public Request(Account initiator, LatLng start, LatLng end, String startLocality, String endLocality) {
         this.initiator = initiator;
         this.startLocation = start;
         this.endLocation = end;
@@ -94,6 +97,18 @@ public class Request {
         this.location = new Double[2];
         this.location[0] = start.longitude;
         this.location[1] = start.latitude;
+
+        // Add Locality String;
+        this.startLocality = startLocality;
+        this.endLocality = endLocality;
+    }
+
+    public String getStartLocality(){
+        return startLocality;
+    }
+
+    public String getEndLocality(){
+        return endLocality;
     }
 
     public Date getDate(){
