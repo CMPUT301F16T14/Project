@@ -75,11 +75,11 @@
             android:label="@string/title_activity_request_detail_paid" />
         <activity
             android:name=".RequestDetailActivity_CANCEL"
-            android:label="@string/title_activity_request_detail_cancle" />
+            android:label="@string/title_activity_request_detail_cancel" />
         <activity android:name=".ViewAcceptanceProfileActivity"/>
         <activity android:name=".PopUpWindow"
             android:theme="@style/AppTheme.CustomTheme"
-            ></activity>
+            android:label="@string/title_activity_pop_up_window"/>
         <activity android:name=".MakePaymentActivity"></activity>
     </application>
 

@@ -123,6 +123,14 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private PlaceAutocompleteFragment SourceAutocompleteFragment;
     private PlaceAutocompleteFragment DestinationAutocompleteFragment;
 
+    // set popUp windows status constant
+    private static final Integer NOSELECTION = 0;
+    private static final Integer STARTSELECTION = 1;
+    private static final Integer ENDSELECTION = 2;
+
+    public static Integer popSelection = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -482,11 +490,6 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
 
 
-
-
-
-
-
             myRequest = new Request(RuntimeAccount.getInstance().myAccount, startLatLng, endLatLng, startString, endString);
             myRequest.EstimateByDistance(startLatLng,endLatLng);
 
@@ -495,8 +498,17 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
              */
             SourceAutocompleteFragment.setText("");
             DestinationAutocompleteFragment.setText("");
-            StartMarker.remove();
-            EndMarker.remove();
+            if (StartMarker != null) {
+                StartMarker.remove();
+                StartMarker = null;
+            }
+
+            if (EndMarker != null) {
+                EndMarker.remove();
+                EndMarker = null;
+            }
+
+
 
             Intent intent = new Intent(this, ViewEstimateActivity.class);
             startActivity(intent);
@@ -563,18 +575,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         {
                             // TODO going to finish this
                             startActivity(new Intent(RiderMainActivity.this, PopUpWindow.class));
-                            Toast.makeText(getApplicationContext(),
-                                    "It Worked !!!!!!!!!", Toast.LENGTH_LONG)
-                                    .show();
                         }
                         return true;
                     }
                 };
                 mMap.setOnMarkerClickListener(onMarkerClickedListener);
-
-                Toast.makeText(getApplicationContext(),
-                        "New marker added@" + latLng.toString(), Toast.LENGTH_LONG)
-                        .show();
             }
         });
 
@@ -643,6 +648,65 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
         catch (Exception e) {
             Log.i("Error", "Failed to get the Requests out of the async object.");
             Toast.makeText(RiderMainActivity.this, "Unable to find Requests by elastic search", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        // TODO
+        if (popSelection.equals(STARTSELECTION)) {
+            startLatLng = longClickMarker.getPosition();
+
+            String startAddressStr = "";
+
+            Geocoder geocoder = new Geocoder(RiderMainActivity.this);
+            try {
+                startAddress = geocoder.getFromLocation(startLatLng.latitude, startLatLng.longitude, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                for(int i = 0; i < startAddress.get(0).getMaxAddressLineIndex(); i++) {
+                    startAddressStr = startAddressStr + startAddress.get(0).getAddressLine(i);
+                }
+            } catch (RuntimeException e) {
+                startAddressStr = "Unable to parse the location";
+            }
+
+            Toast.makeText(RiderMainActivity.this, startAddressStr, Toast.LENGTH_SHORT).show();
+
+            SourceAutocompleteFragment.setText(startAddressStr);
+            popSelection = NOSELECTION;
+
+
+        } else if (popSelection.equals(ENDSELECTION)) {
+            endLatLng = longClickMarker.getPosition();
+
+            String endAddressStr = "";
+
+            Geocoder geocoder = new Geocoder(RiderMainActivity.this);
+            try {
+                endAddress = geocoder.getFromLocation(endLatLng.latitude, endLatLng.longitude, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                for(int i = 0; i < endAddress.get(0).getMaxAddressLineIndex(); i++) {
+                    endAddressStr = endAddressStr + endAddress.get(0).getAddressLine(i);
+                }
+            } catch (RuntimeException e) {
+                endAddressStr = "Unable to parse the location";
+            }
+
+            Toast.makeText(RiderMainActivity.this, endAddressStr, Toast.LENGTH_SHORT).show();
+
+            DestinationAutocompleteFragment.setText(endAddressStr);
+            popSelection = NOSELECTION;
         }
 
     }

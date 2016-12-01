@@ -9,7 +9,8 @@
     <string name="title_activity_request_detail_and_accept">Accept request</string>
     <string name="title_activity_request_detail_open">Request Detail -- OPEN</string>
     <string name="title_activity_request_detail_paid">Request Detail -- PAID</string>
-    <string name="title_activity_request_detail_cancle">Request Detail -- CANCLE</string>
+    <string name="title_activity_request_detail_cancel">Request Detail -- CANCEL</string>
+    <string name="title_activity_pop_up_window">Select one</string>
 
     <string name="request_notification_title_template">Request: %1$s</string>
 
