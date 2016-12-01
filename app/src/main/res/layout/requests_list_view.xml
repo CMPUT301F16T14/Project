@@ -9,6 +9,6 @@
         android:id="@+id/request_info"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:textSize="15sp"/>
+        android:textSize="18sp"/>
 
 </LinearLayout>

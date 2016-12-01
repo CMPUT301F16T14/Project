@@ -5,6 +5,6 @@
     tools:context="ca.ualberta.project.cmput301f16t14.beep.DriverMainActivity">
     <item android:id="@+id/action_settings" android:title="Edit My Profile"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/view_request" android:title="Accepted Requests"
+    <item android:id="@+id/view_request" android:title="My Requests"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
