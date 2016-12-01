@@ -72,7 +72,7 @@
         android:id="@+id/DriverName"
         android:textSize="18sp"
         android:layout_alignParentRight="true"
-        android:layout_toEndOf="@+id/to"
+        android:layout_toEndOf="@+id/status"
         android:contextClickable="true"/>
 
     <TextView
@@ -85,7 +85,6 @@
         android:layout_alignParentRight="true" />
 
     <TextView
-        android:text="(Click name to see driver profile)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/DriverInfo"
@@ -133,7 +132,7 @@
         android:layout_toEndOf="@+id/status" />
 
     <TextView
-        android:text="Driver:"
+        android:text="Driver:   "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Driver"

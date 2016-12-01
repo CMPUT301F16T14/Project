@@ -79,7 +79,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="Driver:"
+        android:text="Driver:   "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Driver"
@@ -134,6 +134,7 @@
         android:layout_marginBottom="23dp"
         android:layout_above="@+id/DriverInfo"
         android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/DateInfo" />
+        android:layout_alignStart="@+id/DateInfo"
+        android:contextClickable="true"/>
 
 </RelativeLayout>

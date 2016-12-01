@@ -92,6 +92,14 @@ public class RequestDetailActivity_CONFIRMED extends Activity {
         driver.setText(mRequest.getConfirmedDriver().getUsername());
         vehicle.setText(mRequest.getConfirmedDriver().getVehicleInfo());
 
+        driver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RequestDetailActivity_CONFIRMED.this, ViewProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

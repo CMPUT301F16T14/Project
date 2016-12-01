@@ -105,6 +105,14 @@ public class RequestDetailActivity_PAID extends Activity {
             status.setText("Request cancelled");
         }*/
 
+        driver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RequestDetailActivity_PAID.this, ViewProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Set a listener for changes to RatingBar
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             // Call when the user swipes the RatingBar
