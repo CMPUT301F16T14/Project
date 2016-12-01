@@ -187,8 +187,13 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
+<<<<<<< HEAD
         sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
         <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_a657796bcaa4eb194061c2299603b027e1f8bc29/classes.dex" />
+=======
+        sha1="f4c0c8737c6bf9b9700c056b164545898a926844">
+        <dex dex="/Users/linkai/Documents/Project/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_a13049d23ca83bd3f329a97a13384df8f69bc10a/classes.dex" />
+>>>>>>> Lincoln-feature-branch
     </item>
     <item
         is-multidex="true"

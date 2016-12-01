@@ -111,6 +111,10 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     private Marker StartMarker;
     private Marker EndMarker;
     private Marker Marker;
+
+    private Marker longClickMarker;
+    public static Account currentAccount = RuntimeAccount.getInstance().myAccount;
+
     private PlaceAutocompleteFragment SourceAutocompleteFragment;
     private PlaceAutocompleteFragment DestinationAutocompleteFragment;
 
@@ -170,15 +174,16 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         e.printStackTrace();
                     }
 
-                    if (StartMarker != null) {
-                        StartMarker.remove();
-                    }
-
                     if (startAddress.size() == 1){
                         start = startAddress.get(0);
                         SourceAddress = start.getLocality();
                         startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
-                        StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From").draggable(true));
+                        if (StartMarker == null) {
+                            StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                            StartMarker.showInfoWindow();
+                        } else {
+                            StartMarker.setPosition(startLatLng);
+                        }
                         // Set Camera position
                         mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
                     } else {
@@ -187,7 +192,12 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         start.setLongitude(-113.526354);
                         SourceAddress = start.getLocality();
                         startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
-                        StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From").draggable(true));
+                        if (StartMarker == null) {
+                            StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                            StartMarker.showInfoWindow();
+                        } else {
+                            StartMarker.setPosition(startLatLng);
+                        }
                         // Set Camera position
                         mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
                     }
@@ -240,15 +250,16 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         e.printStackTrace();
                     }
 
-                    if (EndMarker != null) {
-                        EndMarker.remove();
-                    }
-
                     if (endAddress.size() == 1){
                         end = endAddress.get(0);
                         DestAddress = end.getLocality();
                         endLatLng = new LatLng(end.getLatitude(), end.getLongitude());
-                        EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To").draggable(true));
+                        if (EndMarker == null) {
+                            EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To"));
+                            EndMarker.showInfoWindow();
+                        } else {
+                            EndMarker.setPosition(endLatLng);
+                        }
 
                     } else {
                         end = new Address(Locale.CANADA);
@@ -256,7 +267,12 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         end.setLongitude(-113.526354);
                         DestAddress = end.getLocality();
                         endLatLng = new LatLng(end.getLatitude(), end.getLongitude());
-                        EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To").draggable(true));
+                        if (EndMarker == null) {
+                            EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To"));
+                            EndMarker.showInfoWindow();
+                        } else {
+                            EndMarker.setPosition(endLatLng);
+                        }
                     }
                 }
                 /**
@@ -331,48 +347,20 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+        if (ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) !=
+                PackageManager.PERMISSION_GRANTED ) {
 
-            ActivityCompat.requestPermissions(this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  }, MY_PERMISSION_ACCESS_COURSE_LOCATION );
+            ActivityCompat.requestPermissions(this, new String[] { android.Manifest.permission.ACCESS_COARSE_LOCATION },
+                    MY_PERMISSION_ACCESS_COURSE_LOCATION );
         }
 
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
+        setMapLongClickListener();
+        //setMapClickListener();
 
-                //StartMarker.remove();
-                final LatLng LatLng = new LatLng(latLng.latitude, latLng.longitude);
-                Marker = mMap.addMarker(new MarkerOptions().position(latLng).title(String.valueOf(latLng.latitude) +
-                        " , " + String.valueOf(latLng.longitude)).draggable(true));
-                // Set Camera position
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-
-                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                    @Override
-                    public void onInfoWindowClick(Marker marker) {
-                        //Toast.makeText(this, "Info window clicked", Toast.LENGTH_SHORT).show();
-
-                        Geocoder geocoder = new Geocoder(RiderMainActivity.this);
-                        try {
-                            List<Address> addresses = geocoder.getFromLocation(LatLng.latitude, LatLng.longitude, 5);
-                            if(SourceAutocompleteFragment.toString().isEmpty()) {
-                                SourceAutocompleteFragment.setText(addresses.get(0).getLocality());
-                            } else {
-                                DestinationAutocompleteFragment.setText(addresses.get(0).getLocality());
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-
-                        }
-                    }
-                });
-
-            }
-        });
         // Set a listener for info window events.
         //mMap.setOnInfoWindowClickListener(this);
     }
@@ -483,6 +471,80 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
     }
 
+    private void setMapClickListener() {
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+
+                //StartMarker.remove();
+                final LatLng LatLng = new LatLng(latLng.latitude, latLng.longitude);
+                Marker = mMap.addMarker(new MarkerOptions().position(latLng).title(String.valueOf(latLng.latitude) +
+                        " , " + String.valueOf(latLng.longitude)).draggable(true));
+                // Set Camera position
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                    @Override
+                    public void onInfoWindowClick(Marker marker) {
+                        //Toast.makeText(this, "Info window clicked", Toast.LENGTH_SHORT).show();
+
+                        Geocoder geocoder = new Geocoder(RiderMainActivity.this);
+                        try {
+                            List<Address> addresses = geocoder.getFromLocation(LatLng.latitude, LatLng.longitude, 5);
+                            if(SourceAutocompleteFragment.toString().isEmpty()) {
+                                SourceAutocompleteFragment.setText(addresses.get(0).getLocality());
+                            } else {
+                                DestinationAutocompleteFragment.setText(addresses.get(0).getLocality());
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+
+                        }
+                    }
+                });
+
+            }
+        });
+    }
+
+    private void setMapLongClickListener(){
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                if (longClickMarker == null) {
+                    longClickMarker = mMap.addMarker(new MarkerOptions().position(latLng).title(
+                            latLng.toString()));
+                    longClickMarker.setDraggable(true);
+                } else {
+                    longClickMarker.setPosition(latLng);
+                }
+
+                GoogleMap.OnMarkerClickListener onMarkerClickedListener = new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        // show marker title
+                        marker.showInfoWindow();
+
+                        if (marker.equals(longClickMarker))
+                        {
+                            // TODO going to finish this
+                            Toast.makeText(getApplicationContext(),
+                                    "It Worked !!!!!!!!!", Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                        return true;
+                    }
+                };
+                mMap.setOnMarkerClickListener(onMarkerClickedListener);
+
+                Toast.makeText(getApplicationContext(),
+                        "New marker added@" + latLng.toString(), Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
