@@ -120,6 +120,7 @@ public class RequestsListActivity extends Activity {
 
     public class TimeAccept extends TimerTask {
         public ArrayList<Request> realtimeRequests = new ArrayList<>();
+        Account current = RuntimeAccount.getInstance().myAccount;
 
         @Override
         public void run(){
@@ -136,7 +137,7 @@ public class RequestsListActivity extends Activity {
             Iterator it = realtimeRequests.iterator();
             while (it.hasNext()) {
                 Request request = (Request) it.next();
-                if (request.getAcceptances().size() > 0) {
+                if (request.getAcceptances().size() > 0 && request.getStatus() == 1) {
                     RequestNotification.notify(RequestsListActivity.this.getApplicationContext(), "Your Rider Request is accepted", 1);
                 }
             }
