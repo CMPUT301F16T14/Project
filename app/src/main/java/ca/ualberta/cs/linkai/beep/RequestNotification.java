@@ -54,14 +54,13 @@ public class RequestNotification {
         final String ticker = exampleString;
         final String title = res.getString(
                 R.string.request_notification_title_template, exampleString);
-        final String text = res.getString(
-                R.string.request_notification_placeholder_text_template, exampleString);
+        final String text = exampleString;
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
 
                 // Set appropriate defaults for the notification light, sound,
                 // and vibration.
-                .setDefaults(Notification.DEFAULT_ALL)
+                .setDefaults(0)
 
                 // Set required fields, including the small icon, the
                 // notification title, and text.
@@ -109,7 +108,7 @@ public class RequestNotification {
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(text)
                         .setBigContentTitle(title)
-                        .setSummaryText("Dummy summary text"))
+                        .setSummaryText(""))
 
                 // Automatically dismiss the notification when it is touched.
                 .setAutoCancel(true);
