@@ -37,6 +37,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -123,8 +124,13 @@ public class SearchByLocationActivity extends FragmentActivity implements OnMapR
                     Marker.remove();
                 }
                 final LatLng LatLng = new LatLng(latLng.latitude, latLng.longitude);
-                Marker = mMap.addMarker(new MarkerOptions().position(latLng).title(String.valueOf(latLng.latitude) +
-                        " , " + String.valueOf(latLng.longitude)).draggable(true));
+                DecimalFormat numberFormat = new DecimalFormat("#.00");
+                String temp1 = numberFormat.format(LatLng.latitude);
+                String temp2 = numberFormat.format(LatLng.longitude);
+                Marker = mMap.addMarker(new MarkerOptions().position(latLng).title(
+                        "Lat:" + temp1 + " , " + "Lng:" + temp2));
+                /*Marker = mMap.addMarker(new MarkerOptions().position(latLng).title(String.valueOf(latLng.latitude) +
+                        " , " + String.valueOf(latLng.longitude)).draggable(true));*/
 
 /*
                 // Set Camera position

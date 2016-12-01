@@ -13,20 +13,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView10"
-        android:id="@+id/textView11"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/textView10"
-        android:textSize="20sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView12"
         android:id="@+id/textView13"
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/textView12"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <Button
         android:text="Accept This Request"
@@ -60,25 +51,25 @@
 
     <TextView
         android:text="End:"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView12"
         android:textSize="20sp"
         android:layout_above="@+id/textView14"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="34dp"
-        android:layout_toStartOf="@+id/textView11" />
+        android:layout_toStartOf="@+id/textView11"
+        android:layout_width="12dp" />
 
     <TextView
         android:text="Start: "
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView10"
         android:textSize="20sp"
         android:layout_above="@+id/textView12"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="46dp"
-        android:layout_toStartOf="@+id/textView15" />
+        android:layout_toStartOf="@+id/textView15"
+        android:layout_width="12dp" />
 
     <TextView
         android:text="Rider Name:    "
@@ -100,5 +91,14 @@
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/textView8"
         android:contextClickable="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView11"
+        android:textSize="16sp"
+        android:layout_below="@+id/textView8"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView10" />
 
 </RelativeLayout>

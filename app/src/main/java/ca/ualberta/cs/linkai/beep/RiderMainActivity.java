@@ -56,6 +56,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -192,7 +193,20 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         SourceAddress = start.getLocality();
                         startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
                         if (StartMarker == null) {
-                            StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                            //StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                            /**
+                             * add start marker
+                             * code from
+                             * http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
+                             */
+                            BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.src);
+                            Bitmap b = bitmapdraw.getBitmap();
+                            Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                            StartMarker = mMap.addMarker(new MarkerOptions()
+                                    .position(startLatLng)
+                                    .title("start")
+                                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                            );
                             StartMarker.showInfoWindow();
                         } else {
                             StartMarker.setPosition(startLatLng);
@@ -206,7 +220,15 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         SourceAddress = start.getLocality();
                         startLatLng = new LatLng(start.getLatitude(), start.getLongitude());
                         if (StartMarker == null) {
-                            StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                            //StartMarker = mMap.addMarker(new MarkerOptions().position(startLatLng).title("From"));
+                            BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.src);
+                            Bitmap b = bitmapdraw.getBitmap();
+                            Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                            StartMarker = mMap.addMarker(new MarkerOptions()
+                                    .position(startLatLng)
+                                    .title("start")
+                                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                            );
                             StartMarker.showInfoWindow();
                         } else {
                             StartMarker.setPosition(startLatLng);
@@ -215,22 +237,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         mMap.animateCamera(CameraUpdateFactory.newLatLng(startLatLng));
                     }
                 }
-                /**
-                 * add start marker
-                 * code from
-                 * http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
-                 */
 
-                /*
-                BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.src);
-                Bitmap b = bitmapdraw.getBitmap();
-                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-                StartMarker = mMap.addMarker(new MarkerOptions()
-                        .position(startLatLng)
-                        .title("start")
-                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-                );
-                */
             }
 
             /**
@@ -268,7 +275,15 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         DestAddress = end.getLocality();
                         endLatLng = new LatLng(end.getLatitude(), end.getLongitude());
                         if (EndMarker == null) {
-                            EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To"));
+                            //EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To"));
+                            BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.des);
+                            Bitmap b = bitmapdraw.getBitmap();
+                            Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                            EndMarker = mMap.addMarker(new MarkerOptions()
+                                    .position(endLatLng)
+                                    .title("end")
+                                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                            );
                             EndMarker.showInfoWindow();
                         } else {
                             EndMarker.setPosition(endLatLng);
@@ -281,29 +296,26 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
                         DestAddress = end.getLocality();
                         endLatLng = new LatLng(end.getLatitude(), end.getLongitude());
                         if (EndMarker == null) {
-                            EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To"));
+                            //EndMarker = mMap.addMarker(new MarkerOptions().position(endLatLng).title("To"));
+                            /**
+                             * add end marker
+                             * code from
+                             * http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
+                             */
+                            BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.des);
+                            Bitmap b = bitmapdraw.getBitmap();
+                            Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                            EndMarker = mMap.addMarker(new MarkerOptions()
+                                    .position(endLatLng)
+                                    .title("end")
+                                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                            );
                             EndMarker.showInfoWindow();
                         } else {
                             EndMarker.setPosition(endLatLng);
                         }
                     }
                 }
-                /**
-                 * add end marker
-                 * code from
-                 * http://stackoverflow.com/questions/35718103/how-to-specify-the-size-of-the-icon-on-the-marker-in-google-maps-v2-android
-                 */
-
-                /*
-                BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.des);
-                Bitmap b = bitmapdraw.getBitmap();
-                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-                EndMarker = mMap.addMarker(new MarkerOptions()
-                        .position(endLatLng)
-                        .title("end")
-                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-                );
-                */
 
                 //LatLng avgLatLng = new LatLng((start.getLatitude() + end.getLatitude()) / DIVIDE_BY_TWO,
                        // (start.getLongitude() + end.getLongitude()) / DIVIDE_BY_TWO);
@@ -441,7 +453,7 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
 
             LatLng loc = new LatLng(53.523219, -113.526354);
             OriginMarker = mMap.addMarker(new MarkerOptions().position(loc).title("My Current Location"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,13    ));
 
         }
 
@@ -558,8 +570,11 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             @Override
             public void onMapLongClick(LatLng latLng) {
                 if (longClickMarker == null) {
+                    DecimalFormat numberFormat = new DecimalFormat("#.00");
+                    String temp1 = numberFormat.format(latLng.latitude);
+                    String temp2 = numberFormat.format(latLng.longitude);
                     longClickMarker = mMap.addMarker(new MarkerOptions().position(latLng).title(
-                            latLng.toString()));
+                            "Lat:" + temp1 + " , " + "Lng:" + temp2));
                     longClickMarker.setDraggable(true);
                 } else {
                     longClickMarker.setPosition(latLng);

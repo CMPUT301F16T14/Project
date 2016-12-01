@@ -34,6 +34,8 @@ public class RequestDetailAndAcceptActivity extends Activity {
 
     Bundle bundle;
     public static Request request;
+    String startAddressStr;
+    String endAddressStr;
 
     TextView riderName;
     TextView start;
@@ -108,8 +110,23 @@ public class RequestDetailAndAcceptActivity extends Activity {
             e.printStackTrace();
         }
 
-        start.setText(from.get(0).getLocality());
-        end.setText(to.get(0).getLocality());
+
+        try {
+            for(int i = 0; i < from.get(0).getMaxAddressLineIndex(); i++) {
+                startAddressStr = startAddressStr + from.get(0).getAddressLine(i);
+            }
+        } catch (RuntimeException e) {
+            startAddressStr = "Unable to parse the location";
+        }
+        try {
+            for(int i = 0; i < to.get(0).getMaxAddressLineIndex(); i++) {
+                endAddressStr = endAddressStr + to.get(0).getAddressLine(i);
+            }
+        } catch (RuntimeException e) {
+            endAddressStr = "Unable to parse the location";
+        }
+        start.setText(startAddressStr);
+        end.setText(endAddressStr);
 
         totalPrice.setText(request.getFare().toString());
 
