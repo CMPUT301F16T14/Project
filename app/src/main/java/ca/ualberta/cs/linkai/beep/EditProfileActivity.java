@@ -22,10 +22,12 @@ public class EditProfileActivity extends Activity {
     TextView userName;
     private EditText newPhone;
     private EditText newEmail;
+    private EditText vehicleInfo;
     Button finishChangeButton;
     Button driver;
     Button rider;
     String userPhone;
+    String vehicle;
     private String userEmail;
     Account currentAccount;
 
@@ -47,6 +49,7 @@ public class EditProfileActivity extends Activity {
         userName = (TextView) findViewById(R.id.currentNameTextView);
         newPhone = (EditText) findViewById(R.id.newPhoneEditText);
         newEmail = (EditText) findViewById(R.id.newEmailEditText);
+        vehicleInfo = (EditText) findViewById(R.id.editText3);
         driver = (RadioButton) findViewById(R.id.driver);
         rider = (RadioButton) findViewById(R.id.rider);
         finishChangeButton = (Button) findViewById(R.id.finishChangeButton);
@@ -60,8 +63,20 @@ public class EditProfileActivity extends Activity {
             currentAccount.setUserType(3);
         } else if(RuntimeAccount.getInstance().myAccount.getUserType() == 2){ //if a rider wants also be driver
             driver.setVisibility(View.VISIBLE);
+            /*if(driver.isChecked()) {
+                Toast.makeText(EditProfileActivity.this, "checked",
+                        Toast.LENGTH_SHORT).show();
+                vehicleInfo.setVisibility(View.VISIBLE);
+            }*/
             currentAccount.setUserType(3);
         }
+        driver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(EditProfileActivity.this, "checked",Toast.LENGTH_SHORT).show();
+                vehicleInfo.setVisibility(View.VISIBLE);
+            }
+        });
 
         if (currentAccount.getEmail().equals("No email info")){
             //if user does not have email information before, leave the editText blank, wait for change
@@ -100,15 +115,24 @@ public class EditProfileActivity extends Activity {
                 if (userPhone.isEmpty()) {
                     userPhone = "No phone info";
                 }
-                //check if newName or newEmail is valid
+
+                // get vehicle information
+                vehicle = vehicleInfo.getText().toString();
+                //check if newName or newEmail or vehicle info is valid
                 if (userEmail.equals("No email info") && userPhone.equals("No phone info")) {
                     Toast.makeText(EditProfileActivity.this, "Contact information fields cannot be both empty",
                             Toast.LENGTH_SHORT).show();
+                } else if(vehicle.isEmpty()) {
+
+                    Toast.makeText(EditProfileActivity.this, "Please enter vehicle information",
+                                Toast.LENGTH_SHORT).show();
+
                 } else {
                     //Save newPhone and newEmail to elasticSearch
                     //Update to cloud
                     currentAccount.setEmail(userEmail);
                     currentAccount.setPhone(userPhone);
+                    currentAccount.setVehicleInfo(vehicle);
 
                     ElasticsearchAccountController.AddAccountTask addAccountTask = new ElasticsearchAccountController.AddAccountTask();
                     addAccountTask.execute(currentAccount);
