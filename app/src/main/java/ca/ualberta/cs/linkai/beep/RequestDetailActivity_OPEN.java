@@ -39,6 +39,8 @@ public class RequestDetailActivity_OPEN extends Activity {
     private TextView status;
     private Button cancel;
     private int flag;
+    String startAddressStr = "";
+    String endAddressStr = "";
 
     public static Request mRequest;
     private ListView allAcceptance;
@@ -83,16 +85,23 @@ public class RequestDetailActivity_OPEN extends Activity {
         }
 
         try {
-            start.setText(from.get(0).getLocality());
+            for(int i = 0; i < from.get(0).getMaxAddressLineIndex(); i++) {
+                startAddressStr = startAddressStr + from.get(0).getAddressLine(i);
+            }
         } catch (RuntimeException e) {
-            start.setText("Unable to parse the location");
+            startAddressStr = "Unable to parse the location";
+        }
+        try {
+            for(int i = 0; i < to.get(0).getMaxAddressLineIndex(); i++) {
+                endAddressStr = endAddressStr + to.get(0).getAddressLine(i);
+            }
+        } catch (RuntimeException e) {
+            endAddressStr = "Unable to parse the location";
         }
 
-        try {
-            end.setText(to.get(0).getLocality());
-        } catch (RuntimeException e) {
-            end.setText("Unable to parse the location");
-        }
+        start.setText(startAddressStr);
+        end.setText(endAddressStr);
+
 
         date.setText(mRequest.getDate().toString());
 

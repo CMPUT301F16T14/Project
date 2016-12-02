@@ -33,11 +33,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/from"
         android:id="@+id/StartAddress"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/from" />
+        android:layout_toEndOf="@+id/from"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/DestAddress" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,7 +46,7 @@
         android:layout_alignTop="@+id/to"
         android:layout_toEndOf="@+id/from"
         android:id="@+id/DestAddress"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:layout_alignRight="@+id/to"
         android:layout_alignParentRight="true" />
 

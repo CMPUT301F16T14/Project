@@ -34,8 +34,8 @@ public class RequestDetailAndAcceptActivity extends Activity {
 
     Bundle bundle;
     public static Request request;
-    String startAddressStr;
-    String endAddressStr;
+    String startAddressStr = "";
+    String endAddressStr = "";
 
     TextView riderName;
     TextView start;

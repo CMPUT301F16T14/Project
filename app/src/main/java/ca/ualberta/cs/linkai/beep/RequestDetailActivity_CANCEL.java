@@ -30,6 +30,8 @@ public class RequestDetailActivity_CANCEL extends Activity {
     private TextView status;
     private int flag;
     private Request mRequest;
+    String startAddressStr;
+    String endAddressStr;
 
     private List<Address> from;
     private List<Address> to;
@@ -68,8 +70,22 @@ public class RequestDetailActivity_CANCEL extends Activity {
             e.printStackTrace();
         }
 
-        start.setText(from.get(0).getLocality());
-        end.setText(to.get(0).getLocality());
+        try {
+            for(int i = 0; i < from.get(0).getMaxAddressLineIndex(); i++) {
+                startAddressStr = startAddressStr + from.get(0).getAddressLine(i);
+            }
+        } catch (RuntimeException e) {
+            startAddressStr = "Unable to parse the location";
+        }
+        try {
+            for(int i = 0; i < to.get(0).getMaxAddressLineIndex(); i++) {
+                endAddressStr = endAddressStr + to.get(0).getAddressLine(i);
+            }
+        } catch (RuntimeException e) {
+            endAddressStr = "Unable to parse the location";
+        }
+        start.setText(startAddressStr);
+        end.setText(endAddressStr);
         date.setText(mRequest.getDate().toString());
         status.setText("Request cancelled");
     }

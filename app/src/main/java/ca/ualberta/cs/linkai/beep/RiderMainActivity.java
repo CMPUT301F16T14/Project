@@ -452,8 +452,8 @@ public class RiderMainActivity extends FragmentActivity implements OnMapReadyCal
             lng = mLastLocation.getLongitude();
 
             LatLng loc = new LatLng(53.523219, -113.526354);
-            OriginMarker = mMap.addMarker(new MarkerOptions().position(loc).title("My Current Location"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,13    ));
+            //OriginMarker = mMap.addMarker(new MarkerOptions().position(loc).title("My Current Location"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,13));
 
         }
 
